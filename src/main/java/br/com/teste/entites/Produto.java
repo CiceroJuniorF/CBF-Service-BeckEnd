@@ -5,8 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.google.gson.Gson;
-
 @XmlRootElement
 @Entity
 public class Produto {
@@ -46,8 +44,6 @@ public class Produto {
 		this.name = name;
 	}
 
-	public String toJson() {
-		return new Gson().toJson(this);
-	}
+	
 
 }
