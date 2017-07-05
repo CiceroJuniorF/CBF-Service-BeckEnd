@@ -6,8 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="cliente_entity")
+@NamedQuery(name="Cliente.findAll", query="SELECT f FROM Cliente f")
 public class Cliente {
 	
 	@Id
