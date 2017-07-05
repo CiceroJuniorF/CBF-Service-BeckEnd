@@ -5,15 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Ajudante {
+public class Cliente {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_anjudante")
-	private Integer idAjudante;
+	@Column(name="id_cliente")
+	private Integer idCliente;
 	
-	@OneToOne
+	@ManyToOne
 	private Freguesia freguesia;
+	
 }
