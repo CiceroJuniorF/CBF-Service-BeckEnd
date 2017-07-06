@@ -16,8 +16,7 @@ public class Ajudante {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_anjudante")
-	private Integer idAjudante;
-	
+	private Integer idAjudante;	
 	@OneToOne
 	private Freguesia freguesia;
 }

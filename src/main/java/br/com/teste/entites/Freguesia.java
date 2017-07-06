@@ -26,15 +26,15 @@ public class Freguesia {
 	@Column(name="nome_identifica")	
 	private String nomeIndetifica;
 	
-	@Column(name="fk_vendedor")	
+	
 	@OneToOne(mappedBy="freguesia")
 	private Vendedor vendedor;
 	
-	@Column(name="fk_ajudante")
+	
 	@OneToOne(mappedBy="freguesia")
 	private Ajudante ajudante;
 	
-	@Column(name="fk_clientes")	
+	
 	@OneToMany(mappedBy="freguesia")
 	private List<Cliente> clientes;
 	
