@@ -2,8 +2,10 @@ package br.com.teste.entites;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,15 +29,15 @@ public class Freguesia {
 	private String nomeIndetifica;
 	
 	
-	@OneToOne(mappedBy="freguesia")
+	@OneToOne
 	private Vendedor vendedor;
 	
 	
-	@OneToOne(mappedBy="freguesia")
+	@OneToOne
 	private Ajudante ajudante;
 	
 	
-	@OneToMany(mappedBy="freguesia")
+	@OneToMany(mappedBy = "freguesia", targetEntity = Cliente.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Cliente> clientes;
 	
 	
