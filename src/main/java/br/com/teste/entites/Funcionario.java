@@ -11,9 +11,10 @@ import br.com.teste.enums.Acesso;
 @Table(name="funcionario_entity")
 @NamedQuery(name="Funcionario.findAll", query="SELECT f FROM Funcionario f")
 public abstract class Funcionario extends Usuario {
-	//Atributos
+	//Atributos	
 	@OneToOne
-	private Freguesia freguesia;
+	private Freguesia freguesia;	
+	private double salario;
 	
 	@Deprecated
 	public Funcionario(){}
@@ -26,11 +27,29 @@ public abstract class Funcionario extends Usuario {
 	public void nada() {
 		
 	}
+
+	public Freguesia getFreguesia() {
+		return freguesia;
+	}
+
+	public void setFreguesia(Freguesia freguesia) {
+		this.freguesia = freguesia;
+	}
+
+	public double getSalario() {
+		return salario;
+	}
+
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
 	
 	
 	
 	
 	//GGAS
+	
+	
 	
 	
 }

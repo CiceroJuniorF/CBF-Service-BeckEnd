@@ -30,7 +30,6 @@ public class Freguesia {
 	
 	
 	@OneToOne
-	@Column(name="fk_vendedor",nullable=false)
 	private Funcionario funcionario;
 	
 	
