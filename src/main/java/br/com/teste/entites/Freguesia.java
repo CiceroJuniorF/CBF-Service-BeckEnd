@@ -25,23 +25,19 @@ public class Freguesia {
 	@Column(name="id_freguesia")
 	private Integer idFreguesia;
 	
-	@Column(name="nome_identifica")	
+	@Column(name="nome_identifica",nullable=false)	
 	private String nomeIndetifica;
 	
 	
 	@OneToOne
-	private Vendedor vendedor;
-	
-	
-	@OneToOne
-	private Ajudante ajudante;
+	@Column(name="fk_vendedor",nullable=false)
+	private Funcionario funcionario;
 	
 	
 	@OneToMany(mappedBy = "freguesia", targetEntity = Cliente.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Cliente> clientes;
 	
-	
-	
+
 	
 	public int getIdFreguesia() {
 		return idFreguesia;
@@ -55,24 +51,19 @@ public class Freguesia {
 	public void setNomeIndetifica(String nomeIndetifica) {
 		this.nomeIndetifica = nomeIndetifica;
 	}
-	public Vendedor getVendedor() {
-		return vendedor;
-	}
-	public void setVendedor(Vendedor vendedor) {
-		this.vendedor = vendedor;
-	}
-	public Ajudante getAjudante() {
-		return ajudante;
-	}
-	public void setAjudante(Ajudante ajudante) {
-		this.ajudante = ajudante;
-	}
 	public List<Cliente> getClientes() {
 		return clientes;
 	}
 	public void setCliente(Cliente cliente) {
 		this.clientes.add(cliente);
 	}
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+	
 	
 	
 	
