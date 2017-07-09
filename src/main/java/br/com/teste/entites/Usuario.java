@@ -14,7 +14,7 @@ import br.com.teste.enums.Acesso;
 @Entity
 @Table(name="usuario_entity")
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
-public abstract class Usuario {
+public class Usuario {
 	//Atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

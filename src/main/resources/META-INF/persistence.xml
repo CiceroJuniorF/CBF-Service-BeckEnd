@@ -7,7 +7,15 @@
 		transaction-type="RESOURCE_LOCAL">
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-
+		<class>br.com.teste.entites.Consultador</class>
+		<class>br.com.teste.entites.Ajudante</class>
+		<class>br.com.teste.entites.Cliente</class>
+		<class>br.com.teste.entites.Endereco</class>
+		<class>br.com.teste.entites.Freguesia</class>
+		<class>br.com.teste.entites.Funcionario</class>
+		<class>br.com.teste.entites.Master</class>
+		<class>br.com.teste.entites.Usuario</class>
+		<class>br.com.teste.entites.Vendedor</class>
 		<class>br.com.teste.entites.Produto</class>
 
 		<properties>

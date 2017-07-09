@@ -40,7 +40,7 @@ public class ProductDAOImpl implements ProductDAO{
 	@Override
 	public List<Produto> listaTodos() {
 		em.getTransaction().begin();
-		String jpql = "select p from Product p";
+		String jpql = "select p from Produto p";
 		Query query = em.createQuery(jpql);
 		this.em.getTransaction().commit();
 		
