@@ -17,6 +17,9 @@ public class ApplicationConf extends Application
 
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(br.com.teste.webservice.impl.ProductEndpoint.class);
+        resources.add(br.com.teste.webservice.impl.AjudanteEndpoint.class);
+        resources.add(br.com.teste.webservice.impl.MasterEndpoint.class);
+        resources.add(br.com.teste.webservice.impl.VendedorEndpoint.class);
     
     }
 }

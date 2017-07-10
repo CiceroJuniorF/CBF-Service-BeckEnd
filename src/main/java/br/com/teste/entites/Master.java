@@ -28,8 +28,8 @@ public class Master{
 	@Deprecated
 	public Master() {}
 	
-	public Master(Integer id, String nome, String email, String password, Endereco endereco){
-		this.idMaster = id;
+	public Master( String nome, String email, String password, Endereco endereco){
+		
 		this.usuario = new Usuario(nome,email,password,endereco,nivelAcesso);
 	}
 

@@ -19,4 +19,5 @@ public class Ajudante extends Funcionario {
 	public Ajudante(String nome, String email, String password, Endereco endereco){		
 		super(nome,email,password,endereco,nivelAcesso);
 	}
+	
 }

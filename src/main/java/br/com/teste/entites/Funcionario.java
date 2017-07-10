@@ -22,9 +22,11 @@ public abstract class Funcionario{
 	@Column(name = "id_funcionario")
 	private Integer idFuncionairo;
 	
-	@Column(name = "salario")
-	private double salario;
+	@Column(name = "salario_base")
+	private double salarioBase;
 	
+	@Column(name="salario_comissao")
+	private double salarioComissao;
 	
 	@OneToOne
 	private Usuario usuario;
@@ -36,16 +38,43 @@ public abstract class Funcionario{
 	public Funcionario(String nome, String email, String password, Endereco endereco, Acesso nivelAcesso){
 		this.usuario = new Usuario(nome,email,password,endereco,nivelAcesso);
 	}
-	
-	
+
 	//GGAS
-	public double getSalario() {
-		return salario;
+	public Integer getIdFuncionairo() {
+		return idFuncionairo;
 	}
 
-	public void setSalario(double salario) {
-		this.salario = salario;
+	public void setIdFuncionairo(Integer idFuncionairo) {
+		this.idFuncionairo = idFuncionairo;
 	}
+
+	public double getSalarioBase() {
+		return salarioBase;
+	}
+
+	public void setSalarioBase(double salarioBase) {
+		this.salarioBase = salarioBase;
+	}
+
+	public double getSalarioComissao() {
+		return salarioComissao;
+	}
+
+	public void setSalarioComissao(double salarioComissao) {
+		this.salarioComissao = salarioComissao;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	
+	
+	
 	
 	
 	
