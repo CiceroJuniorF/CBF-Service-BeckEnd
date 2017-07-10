@@ -17,6 +17,8 @@
 		<class>br.com.teste.entites.Usuario</class>
 		<class>br.com.teste.entites.Vendedor</class>
 		<class>br.com.teste.entites.Produto</class>
+		<class>br.com.teste.entites.Compra</class>
+		<class>br.com.teste.entites.Pagamento</class>
 
 		<properties>
 

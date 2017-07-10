@@ -2,7 +2,6 @@ package br.com.teste.entites;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,21 +28,30 @@ public class Freguesia {
 	private String nomeIndetifica;
 	
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY, optional=false)
 	private Funcionario funcionario;
 	
 	
-	@OneToMany(mappedBy = "freguesia", targetEntity = Cliente.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "freguesia", targetEntity = Cliente.class, fetch = FetchType.LAZY)
 	private List<Cliente> clientes;
+	
+	@Column(name="alvo_mensal")
+	private Double alvoMensal;
 	
 
 	
-	public int getIdFreguesia() {
-		return idFreguesia;
+	public Double getAlvoMensal() {
+		return alvoMensal;
 	}
-	public void setIdFreguesia(int idFreguesia) {
+	public void setAlvoMensal(Double alvoMensal) {
+		this.alvoMensal = alvoMensal;
+	}
+	public void setIdFreguesia(Integer idFreguesia) {
 		this.idFreguesia = idFreguesia;
 	}
+	public int getIdFreguesia() {
+		return idFreguesia;
+	}	
 	public String getNomeIndetifica() {
 		return nomeIndetifica;
 	}

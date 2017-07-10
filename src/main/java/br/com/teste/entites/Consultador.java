@@ -14,7 +14,7 @@ import br.com.teste.enums.Acesso;
 
 @Entity
 @Table(name = "consultador_entity")
-@NamedQuery(name = "Consultador.findAll", query = "SELECT u FROM Consultador u")
+@NamedQuery(name = "Consultador.findAll", query = "SELECT c FROM Consultador c")
 
 public class Consultador {
 	

@@ -22,9 +22,6 @@ public abstract class Funcionario{
 	@Column(name = "id_funcionario")
 	private Integer idFuncionairo;
 	
-	@OneToOne
-	private Freguesia freguesia;
-	
 	@Column(name = "salario")
 	private double salario;
 	
@@ -42,14 +39,6 @@ public abstract class Funcionario{
 	
 	
 	//GGAS
-	public Freguesia getFreguesia() {
-		return freguesia;
-	}
-
-	public void setFreguesia(Freguesia freguesia) {
-		this.freguesia = freguesia;
-	}
-
 	public double getSalario() {
 		return salario;
 	}
