@@ -1,10 +1,10 @@
 package br.com.teste.entites;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -22,7 +22,7 @@ public class Usuario {
 	private String email;
 	private String password;
 
-	@ManyToOne
+	@Embedded
 	private Endereco endereco;
 
 	@Column(name = "nivel_acesso")

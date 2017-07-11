@@ -1,26 +1,14 @@
 package br.com.teste.entites;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.Embeddable;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity
-@Table(name="endereco")
-@NamedQuery(name="Endereco.findAll", query="SELECT e FROM Endereco e")
+@Embeddable
 @XmlRootElement
 public class Endereco {
 	
 	
 	//Atributos
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_endereco")	
-	private Integer idEndereco;
 	private String cep;
     private String logradouro;
     private String complemento;
@@ -35,12 +23,6 @@ public class Endereco {
     
     
     //GGAS
-	public Integer getIdEndereco() {
-		return idEndereco;
-	}
-	public void setIdEndereco(Integer idEndereco) {
-		this.idEndereco = idEndereco;
-	}
 	public String getCep() {
 		return cep;
 	}
