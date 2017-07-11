@@ -16,7 +16,7 @@ public class AjudanteServiceImpl implements AjudanteService {
 	public Response cadastrarFuncionario(Ajudante funcionario) {
 		try {
 			dao.cadastrarFuncionario(funcionario);
-			URI uri = URI.create("/ajudante/json/"+funcionario.getIdFuncionario());
+			URI uri = URI.create("/ajudante/json/"+funcionario.getIdUsuario());
 			System.out.println(uri);
 			return Response.created(uri).build();
 			
