@@ -38,10 +38,12 @@ public class GenericDAOImpl<T> implements Serializable,GenericDAO<T> {
 	}
 
 	public List<T> listaTodos() throws SQLException {
+		em.getTransaction().begin();
 		CriteriaQuery<T> query = em.getCriteriaBuilder().createQuery(classe);
 		query.select(query.from(classe));
 
 		List<T> lista = em.createQuery(query).getResultList();
+		em.getTransaction().commit();
 
 		return lista;
 	}

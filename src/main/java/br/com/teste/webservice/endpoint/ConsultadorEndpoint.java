@@ -1,7 +1,7 @@
-package br.com.teste.webservice.impl;
+package br.com.teste.webservice.endpoint;
 
-import br.com.teste.webservice.ConsultadorWebservice;
+import br.com.teste.service.ConsultadorService;
 
-public class ConsultadorEndpoint implements ConsultadorWebservice {
+public class ConsultadorEndpoint implements ConsultadorService {
 
 }

@@ -1,4 +1,4 @@
-package br.com.teste.webservice.impl;
+package br.com.teste.webservice.endpoint;
 
 import java.util.List;
 

@@ -1,5 +1,7 @@
-package br.com.teste.webservice.impl;
+package br.com.teste.webservice.endpoint;
 
-public class MasterEndpoint {
+import br.com.teste.service.MasterService;
+
+public class MasterEndpoint implements MasterService {
 
 }
