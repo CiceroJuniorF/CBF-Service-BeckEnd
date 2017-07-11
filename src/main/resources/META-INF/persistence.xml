@@ -18,6 +18,7 @@
 		<class>br.com.teste.entites.Compra</class>
 		<class>br.com.teste.entites.Pagamento</class>
 		<class>br.com.teste.entites.Usuario</class>
+		<class>br.com.teste.entites.Funcionario</class>
 
 		<properties>
 
