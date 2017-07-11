@@ -1,6 +1,7 @@
 package br.com.teste.dao.impl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -23,6 +24,12 @@ public class AjudanteDAOImpl implements AjudanteDAO {
 		this.dao.adiciona(ajudante);
 		
 		
+	}
+
+	@Override
+	public List<Ajudante> listarTodosAjudantes() throws SQLException {
+		
+		return dao.listaTodos();
 	}
  
 }

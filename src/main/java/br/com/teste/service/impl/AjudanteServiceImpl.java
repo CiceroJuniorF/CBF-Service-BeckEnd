@@ -2,6 +2,7 @@ package br.com.teste.service.impl;
 
 import java.net.URI;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ws.rs.core.Response;
 
@@ -22,6 +23,15 @@ public class AjudanteServiceImpl implements AjudanteService {
 			
 		} catch (SQLException e) {
 			
+			return null;
+		}
+	}
+	
+	@Override
+	public List<Ajudante> listarTodosAjudantes() {
+		try {
+		return dao.listarTodosAjudantes();
+		}catch (SQLException e) {
 			return null;
 		}
 	}

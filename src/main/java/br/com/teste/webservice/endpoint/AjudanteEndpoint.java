@@ -1,17 +1,20 @@
-package br.com.teste.webservice.impl;
+package br.com.teste.webservice.endpoint;
+
+import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.teste.entites.Ajudante;
 import br.com.teste.service.AjudanteService;
 import br.com.teste.service.impl.AjudanteServiceImpl;
-import br.com.teste.webservice.AjudanteWebservice;
 @Path("/ajudante")
-public class AjudanteEndpoint implements AjudanteWebservice {
+public class AjudanteEndpoint implements AjudanteService {
 	
 	private AjudanteService service = new AjudanteServiceImpl();
 	@Path("/novo")
@@ -21,6 +24,16 @@ public class AjudanteEndpoint implements AjudanteWebservice {
 	public Response cadastrarFuncionario(Ajudante funcionario) {		
 		return this.service.cadastrarFuncionario(funcionario);
 	}
+	@Path("/listarTodos")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)	
+	@Override
+	public List<Ajudante> listarTodosAjudantes() {
+		
+		return this.service.listarTodosAjudantes();
+	}
+	
+	
 
 
 }
