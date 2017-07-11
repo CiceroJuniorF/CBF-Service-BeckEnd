@@ -12,6 +12,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.joda.time.DateTime;
 
@@ -20,6 +21,7 @@ import org.joda.time.DateTime;
 @Entity
 @Table(name = "compra_entity")
 @NamedQuery(name = "Compra.findAll", query = "SELECT c FROM Compra c")
+@XmlRootElement
 public class Compra {
 	
 	@Id
@@ -32,7 +34,7 @@ public class Compra {
 	private Freguesia freguesia;
 
 	@OneToOne
-	private Funcionario vendedor;
+	private Vendedor vendedor;
 
 	@OneToOne
 	private Cliente cliente;
@@ -49,7 +51,7 @@ public class Compra {
 	public Compra() {
 	}
 
-	public Compra(Freguesia freguesia, Funcionario vendedor, Cliente cliente, Double valorDaCompra,
+	public Compra(Freguesia freguesia, Vendedor vendedor, Cliente cliente, Double valorDaCompra,
 			DateTime dataDaCompra) {
 		this.freguesia = freguesia;
 		this.vendedor = vendedor;
@@ -66,11 +68,11 @@ public class Compra {
 		this.freguesia = freguesia;
 	}
 
-	public Funcionario getVendedor() {
+	public Vendedor getVendedor() {
 		return vendedor;
 	}
 
-	public void setVendedor(Funcionario vendedor) {
+	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
 	}
 

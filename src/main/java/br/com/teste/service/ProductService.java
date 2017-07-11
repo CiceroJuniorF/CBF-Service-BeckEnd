@@ -7,7 +7,7 @@ import br.com.teste.entites.Produto;
 public interface ProductService {
 	public String persistir();
 
-	public String cadastrar(String string);
+	public String cadastrar(Produto produto);
 
 	public List<Produto> listar();
 	

@@ -40,7 +40,7 @@ public class ProductEndpoint implements ProductWebservice {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)	
 	@Override
-	public String cadastrar(String string) {
+	public String cadastrar(Produto string) {
 		return service.cadastrar(string);
 	}
 	

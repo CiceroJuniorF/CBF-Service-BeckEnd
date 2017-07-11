@@ -2,8 +2,6 @@ package br.com.teste.service.impl;
 
 import java.util.List;
 
-import com.google.gson.Gson;
-
 import br.com.teste.dao.ProductDAO;
 import br.com.teste.dao.impl.ProductDAOImpl;
 import br.com.teste.entites.Produto;
@@ -17,8 +15,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public String cadastrar(String string) {
-		Produto produto = new Gson().fromJson(string, Produto.class);
+	public String cadastrar(Produto produto) {
+		//Produto produto = new Gson().fromJson(string, Produto.class);
 		try {
 
 			dao.adicionar(produto);

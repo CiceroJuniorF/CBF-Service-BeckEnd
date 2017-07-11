@@ -9,10 +9,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="cliente_entity")
 @NamedQuery(name="Cliente.findAll", query="SELECT f FROM Cliente f")
+@XmlRootElement
 public class Cliente {
 	
 	@Id

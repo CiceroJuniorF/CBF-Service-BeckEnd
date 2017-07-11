@@ -8,12 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "pagamento_entity")
 @NamedQuery(name = "Pagamento.findAll", query = "SELECT p FROM Pagamento p")
+@XmlRootElement
 public class Pagamento {
 	
 	@Id
@@ -25,7 +27,7 @@ public class Pagamento {
 	private Double valorPago;
 	
 	@ManyToOne
-	private Funcionario cobrador;
+	private Vendedor cobrador;
 	
 	@ManyToOne
 	private Compra compra;
@@ -33,7 +35,7 @@ public class Pagamento {
 	@Deprecated
 	public Pagamento() {}
 	
-	public Pagamento(DateTime dataPagamento, Double valorPago, Funcionario cobrador,Compra compra) {
+	public Pagamento(DateTime dataPagamento, Double valorPago, Vendedor cobrador,Compra compra) {
 		this.dataPagamento = dataPagamento;
 		this.valorPago = valorPago;
 		this.cobrador = cobrador;
@@ -42,11 +44,11 @@ public class Pagamento {
 	
 	
 
-	public Funcionario getCobrador() {
+	public Vendedor getCobrador() {
 		return cobrador;
 	}
 
-	public void setCobrador(Funcionario cobrador) {
+	public void setCobrador(Vendedor cobrador) {
 		this.cobrador = cobrador;
 	}
 

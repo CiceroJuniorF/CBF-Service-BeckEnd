@@ -2,6 +2,7 @@ package br.com.teste.entites;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -9,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 public class Produto {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 

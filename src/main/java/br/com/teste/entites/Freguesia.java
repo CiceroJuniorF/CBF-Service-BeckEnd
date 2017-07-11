@@ -12,12 +12,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
 @Table(name="freguesia_entity")
 @NamedQuery(name="Freguesia.findAll", query="SELECT f FROM Freguesia f")
-
+@XmlRootElement
 public class Freguesia {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,8 +30,10 @@ public class Freguesia {
 	
 	
 	@OneToOne(fetch = FetchType.LAZY, optional=false)
-	private Funcionario funcionario;
+	private Vendedor vendedor;
 	
+	@OneToMany(targetEntity = Ajudante.class ,fetch = FetchType.LAZY)
+	private List<Ajudante> ajudante;
 	
 	@OneToMany(mappedBy = "freguesia", targetEntity = Cliente.class, fetch = FetchType.LAZY)
 	private List<Cliente> clientes;
@@ -64,12 +67,20 @@ public class Freguesia {
 	public void setCliente(Cliente cliente) {
 		this.clientes.add(cliente);
 	}
-	public Funcionario getFuncionario() {
-		return funcionario;
+	public Vendedor getVendedor() {
+		return vendedor;
 	}
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
 	}
+	public List<Ajudante> getAjudante() {
+		return ajudante;
+	}
+	public void setAjudante(List<Ajudante> ajudante) {
+		this.ajudante = ajudante;
+	}
+	
+
 	
 	
 	

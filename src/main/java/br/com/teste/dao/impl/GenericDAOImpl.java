@@ -1,6 +1,7 @@
 package br.com.teste.dao.impl;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -21,20 +22,22 @@ public class GenericDAOImpl<T> implements Serializable,GenericDAO<T> {
 		this.classe = classe;
 	}
 
-	public void adiciona(T t) {
+	public void adiciona(T t)throws SQLException {
 		// persiste o objeto
+		em.getTransaction().begin();
 		em.persist(t);
+		em.getTransaction().commit();
 	}
 
-	public void remove(T t) {
+	public void remove(T t) throws SQLException{
 		em.remove(em.merge(t));
 	}
 
-	public void atualiza(T t) {
+	public void atualiza(T t) throws SQLException{
 		em.merge(t);
 	}
 
-	public List<T> listaTodos() {
+	public List<T> listaTodos() throws SQLException {
 		CriteriaQuery<T> query = em.getCriteriaBuilder().createQuery(classe);
 		query.select(query.from(classe));
 
@@ -43,7 +46,7 @@ public class GenericDAOImpl<T> implements Serializable,GenericDAO<T> {
 		return lista;
 	}
 
-	public T buscaPorId(Integer id) {
+	public T buscaPorId(Integer id) throws SQLException{
 		T instancia = em.find(classe, id);
 		return instancia;
 	}

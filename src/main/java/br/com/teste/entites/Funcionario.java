@@ -1,52 +1,31 @@
 package br.com.teste.entites;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import br.com.teste.enums.Acesso;
 
-@Entity
-@Table(name="funcionario_entity")
-@NamedQuery(name="Funcionario.findAll", query="SELECT f FROM Funcionario f")
-public abstract class Funcionario{
-	//Atributos	
+@MappedSuperclass
+@XmlRootElement
+public class Funcionario extends Usuario{
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_funcionario")
-	private Integer idFuncionairo;
-	
-	@Column(name = "salario_base")
+	@Column(name= "salario_base")
 	private double salarioBase;
 	
-	@Column(name="salario_comissao")
+	@Column(name= "salario_comissao")
 	private double salarioComissao;
-	
-	@OneToOne
-	private Usuario usuario;
+
 	
 	
 	@Deprecated
 	public Funcionario(){}
 	
 	public Funcionario(String nome, String email, String password, Endereco endereco, Acesso nivelAcesso){
-		this.usuario = new Usuario(nome,email,password,endereco,nivelAcesso);
+		super(nome,email,password,endereco,nivelAcesso);
 	}
 
 	//GGAS
-	public Integer getIdFuncionairo() {
-		return idFuncionairo;
-	}
-
-	public void setIdFuncionairo(Integer idFuncionairo) {
-		this.idFuncionairo = idFuncionairo;
-	}
 
 	public double getSalarioBase() {
 		return salarioBase;
@@ -64,24 +43,5 @@ public abstract class Funcionario{
 		this.salarioComissao = salarioComissao;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
