@@ -11,4 +11,7 @@ public interface AjudanteDAO extends FuncionarioDAO {
 	
 	public List<Ajudante> listarTodosAjudantes() throws SQLException;
 	
+	public Ajudante buscaPorId(Integer id) throws SQLException;
+	
+	public void deletar(Integer id) throws SQLException;
 }

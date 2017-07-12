@@ -19,17 +19,26 @@ public class AjudanteDAOImpl implements AjudanteDAO {
 	@Override
 	public void cadastrarFuncionario(Ajudante funcionario) throws SQLException {
 		
-		
-		this.ajudante = (Ajudante) funcionario;		
+		this.ajudante = funcionario;		
 		this.dao.adiciona(ajudante);
-		
-		
 	}
 
 	@Override
 	public List<Ajudante> listarTodosAjudantes() throws SQLException {
 		
 		return dao.listaTodos();
+	}
+
+	@Override
+	public Ajudante buscaPorId(Integer id) throws SQLException {
+		
+		return this.dao.buscaPorId(id);
+	}
+
+	@Override
+	public void deletar(Integer id) throws SQLException {
+		
+		dao.remove(id);
 	}
  
 }

@@ -11,4 +11,9 @@ public interface AjudanteService {
 	public Response cadastrarFuncionario(Ajudante funcionario);
 	
 	public List<Ajudante> listarTodosAjudantes();
+	
+	public Ajudante buscaPorId(Integer id);
+	
+	public Response deletar(Integer id);
+			
 }

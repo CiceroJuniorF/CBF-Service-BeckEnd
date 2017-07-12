@@ -29,8 +29,10 @@ public class GenericDAOImpl<T> implements Serializable,GenericDAO<T> {
 		em.getTransaction().commit();
 	}
 
-	public void remove(T t) throws SQLException{
-		em.remove(em.merge(t));
+	public void remove(Integer id) throws SQLException{
+		em.getTransaction().begin();
+		em.remove(em.merge(em.find(classe, id)));
+		em.getTransaction().commit();
 	}
 
 	public void atualiza(T t) throws SQLException{
@@ -49,7 +51,9 @@ public class GenericDAOImpl<T> implements Serializable,GenericDAO<T> {
 	}
 
 	public T buscaPorId(Integer id) throws SQLException{
+		em.getTransaction().begin();
 		T instancia = em.find(classe, id);
+		em.getTransaction().commit();
 		return instancia;
 	}
 

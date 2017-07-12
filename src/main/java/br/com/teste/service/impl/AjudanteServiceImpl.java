@@ -17,7 +17,7 @@ public class AjudanteServiceImpl implements AjudanteService {
 	public Response cadastrarFuncionario(Ajudante funcionario) {
 		try {
 			dao.cadastrarFuncionario(funcionario);
-			URI uri = URI.create("/ajudante/json/"+funcionario.getIdUsuario());
+			URI uri = URI.create("/ajudante/listar/"+funcionario.getIdUsuario());
 			System.out.println(uri);
 			return Response.created(uri).build();
 			
@@ -34,6 +34,31 @@ public class AjudanteServiceImpl implements AjudanteService {
 		}catch (SQLException e) {
 			return null;
 		}
+	}
+
+	@Override
+	public Ajudante buscaPorId(Integer id) {
+		
+		try {
+			return dao.buscaPorId(id);
+		} catch (SQLException e) {			
+			e.printStackTrace();
+			return null;
+			
+		}
+		
+	}
+
+	@Override
+	public Response deletar(Integer id) {
+		
+		try {
+			dao.deletar(id);
+			return Response.status(200).build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Response.status(500).build();
 	}
 
 }
