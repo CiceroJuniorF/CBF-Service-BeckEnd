@@ -8,24 +8,24 @@ import br.com.teste.enums.Acesso;
 
 @MappedSuperclass
 @XmlRootElement
-public class Funcionario extends Usuario{
-	
-	@Column(name= "salario_base")
-	private double salarioBase;
-	
-	@Column(name= "salario_comissao")
-	private double salarioComissao;
+public class Funcionario extends Usuario {
 
-	
-	
+	@Column(name = "salario_base")
+	private Double salarioBase;
+
+	@Column(name = "salario_comissao")
+	private Double salarioComissao;
+
 	@Deprecated
-	public Funcionario(){}
-	
-	public Funcionario(String nome, String email, String password, Endereco endereco, Acesso nivelAcesso){
-		super(nome,email,password,endereco,nivelAcesso);
+	public Funcionario() {
 	}
 
-	//GGAS
+	public Funcionario(String nome, String email, String password, Endereco endereco,Acesso nivelAcesso) {
+		super(nome, email, password, endereco, nivelAcesso);
+	}
+
+
+	// GGAS
 
 	public double getSalarioBase() {
 		return salarioBase;
@@ -42,6 +42,5 @@ public class Funcionario extends Usuario{
 	public void setSalarioComissao(double salarioComissao) {
 		this.salarioComissao = salarioComissao;
 	}
-
 
 }

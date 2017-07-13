@@ -15,5 +15,7 @@ public interface AjudanteService {
 	public Ajudante buscaPorId(Integer id);
 	
 	public Response deletar(Integer id);
+
+	public Response atualizar(Ajudante ajudante);
 			
 }

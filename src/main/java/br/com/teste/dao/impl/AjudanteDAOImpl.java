@@ -40,5 +40,12 @@ public class AjudanteDAOImpl implements AjudanteDAO {
 		
 		dao.remove(id);
 	}
+
+	@Override
+	public void atualizar(Ajudante ajudante) throws SQLException {
+		
+		dao.atualiza(ajudante);
+		
+	}
  
 }

@@ -6,6 +6,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -55,6 +56,15 @@ public class AjudanteEndpoint implements AjudanteService {
 	public Response deletar(@PathParam("id") Integer id) {
 		
 		return this.service.deletar(id);
+		
+	}
+	@PUT
+	@Path("/atualizar/")
+	@Consumes(MediaType.APPLICATION_JSON)	
+	@Override
+	public Response atualizar(Ajudante ajudante) {
+		
+		return service.atualizar(ajudante);
 		
 	}
 	

@@ -32,6 +32,7 @@ public class AjudanteServiceImpl implements AjudanteService {
 		try {
 		return dao.listarTodosAjudantes();
 		}catch (SQLException e) {
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -43,8 +44,7 @@ public class AjudanteServiceImpl implements AjudanteService {
 			return dao.buscaPorId(id);
 		} catch (SQLException e) {			
 			e.printStackTrace();
-			return null;
-			
+			return null;			
 		}
 		
 	}
@@ -57,8 +57,22 @@ public class AjudanteServiceImpl implements AjudanteService {
 			return Response.status(200).build();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return Response.status(500).build();
+			
 		}
-		return Response.status(500).build();
+		
+	}
+
+	@Override
+	public Response atualizar(Ajudante ajudante) {
+		try {			
+			dao.atualizar(ajudante);
+			return Response.status(200).build();
+		}catch(SQLException e) {			
+			e.printStackTrace();
+			return Response.status(500).build();
+		}
+		
 	}
 
 }

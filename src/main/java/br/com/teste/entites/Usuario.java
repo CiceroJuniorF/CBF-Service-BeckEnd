@@ -1,7 +1,6 @@
 package br.com.teste.entites;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,40 +11,32 @@ import br.com.teste.enums.Acesso;
 
 @MappedSuperclass
 @XmlRootElement
-public class Usuario {
+public class Usuario extends PessoaFisica {
 	// Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_usuario")
 	private Integer idUsuario;
-	private String nome;
+	
 	private String email;
 	private String password;
-
-	@Embedded
-	private Endereco endereco;
-
 	@Column(name = "nivel_acesso")
 	private Acesso nivelAcesso;
+	
+	
 
 	@Deprecated
 	public Usuario() {
 	}
-
-	public Usuario(String nome, String email, String password, Endereco endereco, Acesso nivelAcesso) {
-		this.nome = nome;
+	
+	public Usuario(String nome, String email, String password, Endereco endereco,Acesso nivelAcesso){		
+		super(nome,endereco);
 		this.email = email;
-		this.password = password;
-		this.endereco = endereco;
 		this.nivelAcesso = nivelAcesso;
-	}
-
-	public Usuario(String nome, String email, String password, Acesso nivelAcesso) {
-		this.nome = nome;
-		this.email = email;
 		this.password = password;
 		this.nivelAcesso = nivelAcesso;
 	}
+		
 
 	// GGAS
 
@@ -57,36 +48,12 @@ public class Usuario {
 		this.idUsuario = idUsuario;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
 	}
 
 	public Acesso getNivelAcesso() {
@@ -96,5 +63,14 @@ public class Usuario {
 	public void setNivelAcesso(Acesso nivelAcesso) {
 		this.nivelAcesso = nivelAcesso;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 
 }

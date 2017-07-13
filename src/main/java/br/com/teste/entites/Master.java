@@ -17,9 +17,8 @@ public class Master extends Usuario{
 	@Deprecated
 	public Master() {}
 	
-	public Master( String nome, String email, String password, Endereco endereco){
-		
-		super(nome,email,password,endereco,nivelAcesso);
+	public Master(String nome, String email, String password, Endereco endereco) {
+		super(nome, email, password, endereco, nivelAcesso);
 	}
 
 	
