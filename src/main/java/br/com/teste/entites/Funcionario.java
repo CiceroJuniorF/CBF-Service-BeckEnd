@@ -16,30 +16,31 @@ public class Funcionario extends Usuario {
 	@Column(name = "salario_comissao")
 	private Double salarioComissao;
 
-	@Deprecated
+	@Deprecated 
 	public Funcionario() {
 	}
 
 	public Funcionario(String nome, String email, String password, Endereco endereco,Acesso nivelAcesso) {
 		super(nome, email, password, endereco, nivelAcesso);
+		
 	}
 
 
 	// GGAS
 
-	public double getSalarioBase() {
+	public Double getSalarioBase() {
 		return salarioBase;
 	}
 
-	public void setSalarioBase(double salarioBase) {
+	public void setSalarioBase(Double salarioBase) {
 		this.salarioBase = salarioBase;
 	}
 
-	public double getSalarioComissao() {
+	public Double getSalarioComissao() {
 		return salarioComissao;
 	}
 
-	public void setSalarioComissao(double salarioComissao) {
+	public void setSalarioComissao(Double salarioComissao) {
 		this.salarioComissao = salarioComissao;
 	}
 

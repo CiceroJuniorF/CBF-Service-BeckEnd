@@ -12,7 +12,7 @@ import br.com.teste.enums.Acesso;
 @NamedQuery(name="Ajudante.findAll", query="SELECT a FROM Ajudante a")
 @XmlRootElement
 public class Ajudante extends Funcionario{
-	private static Acesso nivelAcesso = Acesso.MASTER;
+	private static Acesso nivelAcesso = Acesso.AJUDANTE;
 	@Deprecated
 	public Ajudante() {}
 	

@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.teste.dto.AjudanteDTO;
 import br.com.teste.entites.Ajudante;
 import br.com.teste.service.AjudanteService;
 import br.com.teste.service.impl.AjudanteServiceImpl;
@@ -34,7 +35,7 @@ public class AjudanteEndpoint implements AjudanteService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)	
 	@Override
-	public List<Ajudante> listarTodosAjudantes() {
+	public List<AjudanteDTO> listarTodosAjudantes() {
 		
 		return this.service.listarTodosAjudantes();
 	}
@@ -44,7 +45,7 @@ public class AjudanteEndpoint implements AjudanteService {
 	@Path("/listar/{id}")
 	@Produces(MediaType.APPLICATION_JSON)	
 	@Override
-	public Ajudante buscaPorId(@PathParam("id") Integer id) {
+	public AjudanteDTO buscaPorId(@PathParam("id") Integer id) {
 		
 		return this.service.buscaPorId(id);
 		

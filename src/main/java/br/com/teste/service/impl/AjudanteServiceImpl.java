@@ -6,8 +6,10 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
+import br.com.teste.auxiliar.ConversorDTO;
 import br.com.teste.dao.AjudanteDAO;
 import br.com.teste.dao.impl.AjudanteDAOImpl;
+import br.com.teste.dto.AjudanteDTO;
 import br.com.teste.entites.Ajudante;
 import br.com.teste.service.AjudanteService;
 
@@ -22,15 +24,15 @@ public class AjudanteServiceImpl implements AjudanteService {
 			return Response.created(uri).build();
 			
 		} catch (SQLException e) {
-			
-			return null;
+			e.printStackTrace();
+			return Response.status(500).build();
 		}
 	}
 	
 	@Override
-	public List<Ajudante> listarTodosAjudantes() {
+	public List<AjudanteDTO> listarTodosAjudantes() {
 		try {
-		return dao.listarTodosAjudantes();
+		return new ConversorDTO().coverteListaAjudante(dao.listarTodosAjudantes());
 		}catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -38,10 +40,10 @@ public class AjudanteServiceImpl implements AjudanteService {
 	}
 
 	@Override
-	public Ajudante buscaPorId(Integer id) {
-		
+	public AjudanteDTO buscaPorId(Integer id) {
 		try {
-			return dao.buscaPorId(id);
+			
+			return new ConversorDTO().coverteAjudante(dao.buscaPorId(id));
 		} catch (SQLException e) {			
 			e.printStackTrace();
 			return null;			

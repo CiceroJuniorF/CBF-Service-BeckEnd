@@ -8,16 +8,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Profissao {
 
 	private String nomeProfissao;
-	private Double salario;
+	
 	
 	@Deprecated
 	public Profissao() {}
 	
 	
 	
-	public Profissao(String nomeProfissao, Double salario) {
+	public Profissao(String nomeProfissao) {
 		this.nomeProfissao = nomeProfissao;
-		this.salario = salario;
+		
 	}
 
 
@@ -28,13 +28,7 @@ public class Profissao {
 	public void setNomeProfissao(String nomeProfissao) {
 		this.nomeProfissao = nomeProfissao;
 	}
-	public Double getSalario() {
-		return salario;
-	}
-	public void setSalario(Double salario) {
-		this.salario = salario;
-	}
-	
+
 	
 	
 }
