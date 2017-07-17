@@ -8,6 +8,7 @@ import br.com.teste.enums.Acesso;
 @XmlRootElement
 public class AjudanteDTO {
 	
+	private Integer idUsuario;
 	private String nome; 
 	private String email; 
 	private String password; 
@@ -21,8 +22,9 @@ public class AjudanteDTO {
 	@Deprecated
 	public AjudanteDTO() {}
 	
-	public AjudanteDTO(String nome, String email, String password, Endereco endereco, Double salarioBase,
+	public AjudanteDTO(Integer id,String nome, String email, String password, Endereco endereco, Double salarioBase,
 			Double salarioComissao) {
+		this.idUsuario = id;
 		this.nome = nome;
 		this.email = email;
 		this.password = password;
@@ -31,6 +33,16 @@ public class AjudanteDTO {
 		this.salarioComissao = salarioComissao;
 	}
 	
+	
+	
+	public Integer getId() {
+		return idUsuario;
+	}
+
+	public void setId(Integer id) {
+		this.idUsuario = id;
+	}
+
 	public Acesso getNivelAcesso() {
 		return nivelAcesso;
 	}

@@ -17,60 +17,76 @@ import br.com.teste.dto.AjudanteDTO;
 import br.com.teste.entites.Ajudante;
 import br.com.teste.service.AjudanteService;
 import br.com.teste.service.impl.AjudanteServiceImpl;
+
 @Path("/ajudante")
 public class AjudanteEndpoint implements AjudanteService {
-	
+
 	private AjudanteService service = new AjudanteServiceImpl();
+
 	
-	
-	@Path("/novo")
 	@POST
+	@Path("/novo")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
-	public Response cadastrarFuncionario(Ajudante funcionario) {		
+	public Response cadastrarFuncionario(Ajudante funcionario) {
 		return this.service.cadastrarFuncionario(funcionario);
 	}
+
 	
-	@Path("/listarTodos")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)	
+	@Path("/listarTodosDetalhado")
+	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public List<AjudanteDTO> listarTodosAjudantes() {
+	public List<Ajudante> listarTodosAjudantesDetalhado() {
 		
-		return this.service.listarTodosAjudantes();
+		return this.service.listarTodosAjudantesDetalhado();
 	}
-	
+
 	
 	@GET
-	@Path("/listar/{id}")
-	@Produces(MediaType.APPLICATION_JSON)	
+	@Path("/listarTodosSimples")
+	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public AjudanteDTO buscaPorId(@PathParam("id") Integer id) {
+	public List<AjudanteDTO> listarTodosAjudantesSimples() {
+
+		return this.service.listarTodosAjudantesSimples();
+	}
+
+	@GET
+	@Path("/listarDetalhado/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Override
+	public Ajudante buscaPorIdDetalhado(@PathParam("id") Integer id) {
 		
-		return this.service.buscaPorId(id);
-		
-	}	
-	
-	@Path("/deletar/{id}")
+		return service.buscaPorIdDetalhado(id);
+	}
+
+	@GET
+	@Path("/listarSimples/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Override
+	public AjudanteDTO buscaPorIdSimples(@PathParam("id") Integer id) {
+
+		return this.service.buscaPorIdSimples(id);
+
+	}
 	@DELETE
+	@Path("/deletar/{id}")	
 	@Override
 	public Response deletar(@PathParam("id") Integer id) {
-		
+
 		return this.service.deletar(id);
-		
+
 	}
+
 	@PUT
-	@Path("/atualizar/")
-	@Consumes(MediaType.APPLICATION_JSON)	
+	@Path("/atualizar")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response atualizar(Ajudante ajudante) {
-		
-		return service.atualizar(ajudante);
-		
-	}
-	
-	
-	
 
+		return service.atualizar(ajudante);
+
+	}
 
 }

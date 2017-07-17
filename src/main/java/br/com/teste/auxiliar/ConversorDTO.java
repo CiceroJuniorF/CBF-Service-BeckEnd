@@ -8,10 +8,11 @@ import br.com.teste.entites.Ajudante;
 public class ConversorDTO {
 	
 	//Ajudante
-	List<AjudanteDTO> listDTO;
-	public AjudanteDTO coverteAjudante(Ajudante ajudante) {
+	private List<AjudanteDTO> listDTO = null;
+	
+	public AjudanteDTO converteAjudante(Ajudante ajudante) {
 		
-		return new AjudanteDTO(ajudante.getNome(), ajudante.getEmail(),ajudante.getPassword(),
+		return new AjudanteDTO(ajudante.getIdUsuario(),ajudante.getNome(), ajudante.getEmail(),ajudante.getPassword(),
 				ajudante.getEndereco(),
 				ajudante.getSalarioBase(),
 				ajudante.getSalarioComissao());
@@ -19,16 +20,12 @@ public class ConversorDTO {
 	
 	public List<AjudanteDTO> coverteListaAjudante(List<Ajudante> lista) {
 		
-		for (Ajudante ajudante : lista) {
-			AjudanteDTO dto = new AjudanteDTO(ajudante.getNome(), ajudante.getEmail(),ajudante.getPassword(),
-					ajudante.getEndereco(),
-					ajudante.getSalarioBase(),
-					ajudante.getSalarioComissao());
-			this.listDTO.add(dto);		
+		for (Ajudante ajudante : lista) {			
+			System.out.println(ajudante.toString());
+			listDTO.add(this.converteAjudante(ajudante));
 		}	
 		
-		
-		return this.listDTO;
+		return listDTO;
 	}
 	
 	//Ajudante
