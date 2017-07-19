@@ -12,7 +12,9 @@ import br.com.teste.factory.EMFactory;
 
 public class AjudanteDAOImpl implements AjudanteDAO {
 	private Ajudante ajudante;
-	EntityManager em = new EMFactory().getEntityManager();
+	
+
+	EntityManager em =  new EMFactory().getEntityManager();
 	
 	private GenericDAO<Ajudante> dao = new GenericDAOImpl<Ajudante>(this.em, Ajudante.class);
 	

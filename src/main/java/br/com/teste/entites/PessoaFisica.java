@@ -1,8 +1,13 @@
 package br.com.teste.entites;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.joda.time.DateTime;
@@ -24,10 +29,13 @@ public class PessoaFisica {
 	private Endereco endereco;
 	
 	@Column(name = "data_de_atualizacao")
+	@XmlElement
 	private DateTime dataAtualizacao;
 	
-	@Column(name = "data_de_cadastro")
-	private DateTime dataCadastro;
+	@Column(name = "data_de_cadastro")	
+	@XmlElement
+	@Temporal(TemporalType.DATE)
+	private Calendar dataCadastro =  Calendar.getInstance();
 	
 	@Column(name = "telefone")
 	private String telefone;
@@ -57,7 +65,7 @@ public class PessoaFisica {
 	public PessoaFisica() {}
 
 	public PessoaFisica(String nome, String sobrenome, String apelido, Endereco endereco, DateTime dataAtualizacao,
-			DateTime dataCadastro, String telefone, RG rg, String cpf, Profissao profissao, String paisNascimento,
+			Calendar dataCadastro, String telefone, RG rg, String cpf, Profissao profissao, String paisNascimento,
 			String cidade_nascimento, String estadoNascimento) {
 		
 		this.nome = nome;
@@ -123,11 +131,12 @@ public class PessoaFisica {
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
-	public DateTime getDataCadastro() {
+	public Calendar getDataCadastro() {
+		
 		return dataCadastro;
 	}
 
-	public void setDataCadastro(DateTime dataCadastro) {
+	public void setDataCadastro(Calendar dataCadastro){
 		this.dataCadastro = dataCadastro;
 	}
 

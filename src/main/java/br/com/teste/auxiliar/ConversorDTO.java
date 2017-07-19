@@ -1,5 +1,8 @@
 package br.com.teste.auxiliar;
 
+
+
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.teste.dto.AjudanteDTO;
@@ -8,7 +11,7 @@ import br.com.teste.entites.Ajudante;
 public class ConversorDTO {
 	
 	//Ajudante
-	private List<AjudanteDTO> listDTO = null;
+	private List<AjudanteDTO> listDTO = new ArrayList<>();
 	
 	public AjudanteDTO converteAjudante(Ajudante ajudante) {
 		
@@ -21,8 +24,8 @@ public class ConversorDTO {
 	public List<AjudanteDTO> coverteListaAjudante(List<Ajudante> lista) {
 		
 		for (Ajudante ajudante : lista) {			
-			System.out.println(ajudante.toString());
-			listDTO.add(this.converteAjudante(ajudante));
+			System.out.println("AQUIIII--->>>"+ajudante.toString());
+			this.listDTO.add(this.converteAjudante(ajudante));
 		}	
 		
 		return listDTO;

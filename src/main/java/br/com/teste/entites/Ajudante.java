@@ -14,11 +14,14 @@ import br.com.teste.enums.Acesso;
 public class Ajudante extends Funcionario{
 	private static Acesso nivelAcesso = Acesso.AJUDANTE;
 	@Deprecated
-	public Ajudante() {}
-	
+	public Ajudante() {}	
 	
 	public Ajudante(String nome, String email, String password, Endereco endereco) {
 		super(nome, email, password, endereco, nivelAcesso);
+	}
+	
+	public Acesso getNivelAcesso() {
+		return nivelAcesso;
 	}
 
 	
