@@ -10,26 +10,11 @@ import br.com.teste.dao.GenericDAO;
 import br.com.teste.entites.Ajudante;
 import br.com.teste.factory.EMFactory;
 
-public class AjudanteDAOImpl implements AjudanteDAO {
-	private Ajudante ajudante;
-	
+public class AjudanteDAOImpl implements AjudanteDAO {	
 
 	EntityManager em =  new EMFactory().getEntityManager();
 	
 	private GenericDAO<Ajudante> dao = new GenericDAOImpl<Ajudante>(this.em, Ajudante.class);
-	
-	@Override
-	public void cadastrarFuncionario(Ajudante funcionario) throws SQLException {
-		
-		this.ajudante = funcionario;		
-		this.dao.adiciona(ajudante);
-	}
-
-	@Override
-	public List<Ajudante> listarTodosAjudantes() throws SQLException {
-		
-		return dao.listaTodos();
-	}
 
 	@Override
 	public Ajudante buscaPorId(Integer id) throws SQLException {
@@ -37,17 +22,32 @@ public class AjudanteDAOImpl implements AjudanteDAO {
 		return this.dao.buscaPorId(id);
 	}
 
+	
+
 	@Override
-	public void deletar(Integer id) throws SQLException {
+	public void adiciona(Ajudante ajudante) throws SQLException {
 		
-		dao.remove(id);
+		this.dao.adiciona(ajudante);
+		
 	}
 
 	@Override
-	public void atualizar(Ajudante ajudante) throws SQLException {
+	public void remove(Integer id) throws SQLException {
+		dao.remove(id);
 		
+	}
+
+	@Override
+	public void atualiza(Ajudante ajudante) throws SQLException {
 		dao.atualiza(ajudante);
 		
 	}
+
+	@Override
+	public List<Ajudante> listaTodos() throws SQLException {
+		return dao.listaTodos();
+	}
+
+
  
 }

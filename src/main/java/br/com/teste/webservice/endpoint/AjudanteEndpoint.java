@@ -28,8 +28,8 @@ public class AjudanteEndpoint implements AjudanteService {
 	@Path("/novo")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
-	public Response cadastrarFuncionario(Ajudante funcionario) {
-		return this.service.cadastrarFuncionario(funcionario);
+	public Response cadastrarOuAtualizarFuncionario(Ajudante funcionario) {
+		return this.service.cadastrarOuAtualizarFuncionario(funcionario);
 	}
 
 	
@@ -37,9 +37,9 @@ public class AjudanteEndpoint implements AjudanteService {
 	@Path("/listarTodosDetalhado")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public List<Ajudante> listarTodosAjudantesDetalhado() {
+	public List<Ajudante> listarTodosFuncionariosDetalhado() {
 		
-		return this.service.listarTodosAjudantesDetalhado();
+		return this.service.listarTodosFuncionariosDetalhado();
 	}
 
 	
@@ -47,9 +47,9 @@ public class AjudanteEndpoint implements AjudanteService {
 	@Path("/listarTodosSimples")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public List<AjudanteDTO> listarTodosAjudantesSimples() {
+	public List<AjudanteDTO> listarTodosFuncionariosSimples() {
 
-		return this.service.listarTodosAjudantesSimples();
+		return this.service.listarTodosFuncionariosSimples();
 	}
 
 	@GET
@@ -82,10 +82,9 @@ public class AjudanteEndpoint implements AjudanteService {
 	@PUT
 	@Path("/atualizar")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Override
 	public Response atualizar(Ajudante ajudante) {
 
-		return service.atualizar(ajudante);
+		return this.cadastrarOuAtualizarFuncionario(ajudante);
 
 	}
 

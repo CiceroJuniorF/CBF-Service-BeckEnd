@@ -22,13 +22,12 @@ public class AjudanteDTO {
 	@Deprecated
 	public AjudanteDTO() {}
 	
-	public AjudanteDTO(Integer id,String nome, String email, String password, Endereco endereco, Double salarioBase,
+	public AjudanteDTO(Integer id,String nome, String email, String password, Double salarioBase,
 			Double salarioComissao) {
 		this.idUsuario = id;
 		this.nome = nome;
 		this.email = email;
 		this.password = password;
-		this.endereco = endereco;
 		this.salarioBase = salarioBase;
 		this.salarioComissao = salarioComissao;
 	}
