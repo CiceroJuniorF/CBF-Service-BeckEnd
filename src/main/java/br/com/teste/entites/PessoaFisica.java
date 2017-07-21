@@ -7,16 +7,13 @@ import javax.persistence.Embedded;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import org.joda.time.DateTime;
 
 @MappedSuperclass
 @XmlRootElement
 public class PessoaFisica {
 	
-	@Column(name = "nome")
+	@Column(name = "nome",nullable=false)
 	private String nome;
 	
 	@Column(name = "sobrenome")
@@ -29,22 +26,21 @@ public class PessoaFisica {
 	private Endereco endereco;
 	
 	@Column(name = "data_de_atualizacao")
-	@XmlElement
-	private DateTime dataAtualizacao;
-	
-	@Column(name = "data_de_cadastro")	
-	@XmlElement
 	@Temporal(TemporalType.DATE)
-	private Calendar dataCadastro =  Calendar.getInstance();
+	private Calendar dataAtualizacao;
+	
+	@Column(name = "data_de_cadastro", nullable=false)	
+	@Temporal(TemporalType.DATE)
+	private Calendar dataCadastro;
 	
 	@Column(name = "telefone")
 	private String telefone;
 	
-	@Column(name = "rg")
+	@Column(nullable=false)
 	@Embedded
 	private RG rg;
 	
-	@Column(name = "cpf")
+	@Column(name = "cpf", nullable=false)
 	private String cpf;
 	
 	@Embedded
@@ -64,7 +60,7 @@ public class PessoaFisica {
 	@Deprecated
 	public PessoaFisica() {}
 
-	public PessoaFisica(String nome, String sobrenome, String apelido, Endereco endereco, DateTime dataAtualizacao,
+	public PessoaFisica(String nome, String sobrenome, String apelido, Endereco endereco, Calendar dataAtualizacao,
 			Calendar dataCadastro, String telefone, RG rg, String cpf, Profissao profissao, String paisNascimento,
 			String cidade_nascimento, String estadoNascimento) {
 		
@@ -87,7 +83,7 @@ public class PessoaFisica {
 		this.nome = nome;
 		this.endereco = endereco;
 	}
-
+	
 	
 	
 	//GGAS
@@ -123,11 +119,11 @@ public class PessoaFisica {
 		this.endereco = endereco;
 	}
 
-	public DateTime getDataAtualizacao() {
+	public Calendar getDataAtualizacao(){
 		return dataAtualizacao;
 	}
 
-	public void setDataAtualizacao(DateTime dataAtualizacao) {
+	public void setDataAtualizacao(Calendar dataAtualizacao){
 		this.dataAtualizacao = dataAtualizacao;
 	}
 

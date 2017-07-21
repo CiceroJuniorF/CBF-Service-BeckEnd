@@ -13,7 +13,7 @@ public class ConversorDTO {
 	// Ajudante
 	public AjudanteDTO converteAjudante(Ajudante ajudante) {
 
-		return new AjudanteDTO(ajudante.getIdUsuario(), ajudante.getNome(), ajudante.getEmail(), ajudante.getPassword(),
+		return new AjudanteDTO(ajudante.getIdUsuario(), ajudante.getNome(), ajudante.getEmail(),
 				ajudante.getSalarioBase(), ajudante.getSalarioComissao());
 	}
 
@@ -28,11 +28,14 @@ public class ConversorDTO {
 
 	// Ajudante
 
+	
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 
+	
+	
 	// Vendedor
 	public VendedorDTO converteVendedor(Vendedor Vendedor) {
 
@@ -51,6 +54,8 @@ public class ConversorDTO {
 
 	// Vendedor
 
+	
+	
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//

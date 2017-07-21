@@ -6,10 +6,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Embeddable
 @XmlRootElement
-public class RG {
+public class RG {	
 
 	private String orgaoEmissor;
-	private String numeroRg;
+	private String numeroRg;	
 	private String estadoEmissor;
 	
 	

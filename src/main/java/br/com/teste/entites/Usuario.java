@@ -18,9 +18,11 @@ public class Usuario extends PessoaFisica {
 	@Column(name = "id_usuario")
 	private Integer idUsuario;
 	
+	@Column(nullable=false) 
 	private String email;
+	@Column(nullable=false) 
 	private String password;
-	@Column(name = "nivel_acesso")
+	@Column(name = "nivel_acesso",nullable=false)
 	private Acesso nivelAcesso;
 	
 	
@@ -36,7 +38,7 @@ public class Usuario extends PessoaFisica {
 		this.password = password;
 		this.nivelAcesso = nivelAcesso;
 	}
-		
+	
 
 	// GGAS
 

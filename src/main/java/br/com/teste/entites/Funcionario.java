@@ -24,7 +24,7 @@ public class Funcionario extends Usuario {
 		super(nome, email, password, endereco, nivelAcesso);
 		
 	}
-
+	
 
 	// GGAS
 
