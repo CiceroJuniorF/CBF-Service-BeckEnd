@@ -14,14 +14,16 @@ public class AjudanteDAOImpl implements AjudanteDAO {
 
 	@Override
 	public List<Ajudante> buscaSimples() {
-		
-		List<Ajudante> recebe = em.createNamedQuery("Ajudante.findDTO", Ajudante.class).getResultList();
-		System.out.println(recebe);
-		return recebe;
+		em.getTransaction().begin();
+	
+		@SuppressWarnings("unchecked")
+		List<Ajudante> listaDeAjudantes = (List<Ajudante>) em.createQuery(
+				"select new br.com.teste.entites.Ajudante(idUsuario,nome,email,salarioBase,salarioComissao,nivelAcesso) from Ajudante")
+				.getResultList();
+		em.getTransaction().commit();
+		return listaDeAjudantes;
 	}
-	
-	//
-	
-	
+
+
 
 }

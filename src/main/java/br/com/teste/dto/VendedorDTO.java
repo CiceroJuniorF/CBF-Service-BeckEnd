@@ -1,31 +1,36 @@
 package br.com.teste.dto;
 
-import br.com.teste.entites.Endereco;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import br.com.teste.enums.Acesso;
 
+@XmlRootElement
 public class VendedorDTO {
+	
 	private Integer idUsuario;
-	private String nome;
-	private String email;
-	private String password;
-	private Endereco endereco;
+	private String nome; 
+	private String email; 
 	private Double salarioBase;
 	private Double salarioComissao;
-	private static Acesso nivelAcesso = Acesso.VENDEDOR;
+	private Acesso nivelAcesso;
+	
+
 
 	@Deprecated
 	public VendedorDTO() {}
-
-	public VendedorDTO(Integer id,String nome, String email, String password, Double salarioBase,
-			Double salarioComissao) {
+	
+	public VendedorDTO(Integer id,String nome, String email, Double salarioBase,
+		Double salarioComissao,Acesso acesso) {
 		this.idUsuario = id;
 		this.nome = nome;
 		this.email = email;
-		this.password = password;
 		this.salarioBase = salarioBase;
 		this.salarioComissao = salarioComissao;
+		this.nivelAcesso = acesso;
 	}
-
+	
+	
+	
 	public Integer getId() {
 		return idUsuario;
 	}
@@ -37,53 +42,34 @@ public class VendedorDTO {
 	public Acesso getNivelAcesso() {
 		return nivelAcesso;
 	}
-
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
 	public Double getSalarioBase() {
 		return salarioBase;
 	}
-
 	public void setSalarioBase(Double salarioBase) {
 		this.salarioBase = salarioBase;
 	}
-
 	public Double getSalarioComissao() {
 		return salarioComissao;
 	}
-
 	public void setSalarioComissao(Double salarioComissao) {
 		this.salarioComissao = salarioComissao;
 	}
-
+	
+	
+	
+	
+	
+	
 }

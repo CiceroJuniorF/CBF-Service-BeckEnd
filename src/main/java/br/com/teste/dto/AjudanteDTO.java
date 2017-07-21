@@ -12,7 +12,7 @@ public class AjudanteDTO {
 	private String email; 
 	private Double salarioBase;
 	private Double salarioComissao;
-	private static Acesso nivelAcesso = Acesso.AJUDANTE;
+	private Acesso nivelAcesso;
 	
 
 
@@ -20,12 +20,13 @@ public class AjudanteDTO {
 	public AjudanteDTO() {}
 	
 	public AjudanteDTO(Integer id,String nome, String email, Double salarioBase,
-			Double salarioComissao) {
+		Double salarioComissao,Acesso acesso) {
 		this.idUsuario = id;
 		this.nome = nome;
 		this.email = email;
 		this.salarioBase = salarioBase;
 		this.salarioComissao = salarioComissao;
+		this.nivelAcesso = acesso;
 	}
 	
 	

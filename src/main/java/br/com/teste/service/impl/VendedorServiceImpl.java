@@ -7,6 +7,8 @@ import javax.ws.rs.core.Response;
 
 import br.com.teste.auxiliar.ConversorDTO;
 import br.com.teste.auxiliar.DataAuxiliar;
+import br.com.teste.dao.VendedorDAO;
+import br.com.teste.dao.impl.VendedorDAOImpl;
 import br.com.teste.dto.VendedorDTO;
 import br.com.teste.entites.Vendedor;
 import br.com.teste.service.VendedorService;
@@ -14,7 +16,7 @@ import br.com.teste.service.VendedorService;
 public class VendedorServiceImpl implements VendedorService {
 
 	private GenericServiceImpl<Vendedor> genericservice = new GenericServiceImpl<Vendedor>(Vendedor.class);
-	// private VendedorDAO dao = new VendedorDAOImpl();
+	private VendedorDAO dao = new VendedorDAOImpl();
 
 	@Override
 	public Response cadastrarOuAtualizarFuncionario(Vendedor funcionario) {
@@ -22,13 +24,13 @@ public class VendedorServiceImpl implements VendedorService {
 			if (funcionario.getIdUsuario() == null) {
 				funcionario.setDataCadastro(DataAuxiliar.dataAtual());
 				genericservice.adiciona(funcionario);
-				URI uri = URI.create("/vendedor/listar/" + funcionario.getIdUsuario());
+				URI uri = URI.create("/vendedor/listarDetalhado/" + funcionario.getIdUsuario());
 				return Response.created(uri).build();
 
 			} else {
 				funcionario.setDataCadastro(DataAuxiliar.dataAtual());
 				genericservice.atualiza(funcionario);
-				return Response.status(200).build();
+				return Response.status(201).build();
 			}
 		} catch (Exception e) {
 			return Response.status(500).build();
@@ -45,29 +47,36 @@ public class VendedorServiceImpl implements VendedorService {
 	@Override
 	public List<VendedorDTO> listarTodosFuncionariosSimples() {
 
-		return new ConversorDTO().coverteListaVendedor(genericservice.listaTodosDetalhado());
+		return new ConversorDTO().coverteListaVendedor(dao.buscaSimples());
 
 	}
 
 	@Override
-	public Vendedor buscaPorIdDetalhado(Integer id) {
-		return genericservice.buscaPorId(id);
+	public Response buscaPorIdDetalhado(Integer id) {
+		try {
+			return Response.status(200).entity(genericservice.buscaPorId(id)).build();
+		} catch (Exception e) {
+			return Response.status(204).build();
+		}
 	}
 
 	@Override
-	public VendedorDTO buscaPorIdSimples(Integer id) {
-
-		return new ConversorDTO().converteVendedor(genericservice.buscaPorId(id));
-
+	public Response buscaPorIdSimples(Integer id) {
+		try {
+			return Response.status(200).entity(new ConversorDTO().converteVendedor(genericservice.buscaPorId(id)))
+					.build();
+		} catch (Exception e) {
+			return Response.status(204).build();
+		}
 	}
 
 	@Override
 	public Response deletar(Integer id) {
 		try {
 			genericservice.remove(id);
-			return Response.status(200).build();
+			return Response.status(202).build();
 		} catch (Exception e) {
-			return Response.status(500).build();
+			return Response.status(304).build();
 		}
 
 	}

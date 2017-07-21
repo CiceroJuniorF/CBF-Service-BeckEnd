@@ -13,9 +13,9 @@ public interface FuncionarioService<T,A> {
 
 	public List<A> listarTodosFuncionariosSimples();
 
-	public A buscaPorIdSimples(Integer id);
+	public Response buscaPorIdSimples(Integer id);
 
-	public T buscaPorIdDetalhado(Integer id);
+	public Response buscaPorIdDetalhado(Integer id);
 
 	public Response deletar(Integer id);
 

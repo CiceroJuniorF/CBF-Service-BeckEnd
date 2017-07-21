@@ -56,7 +56,7 @@ public class AjudanteEndpoint implements AjudanteService {
 	@Path("/listarDetalhado/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public Ajudante buscaPorIdDetalhado(@PathParam("id") Integer id) {
+	public Response buscaPorIdDetalhado(@PathParam("id") Integer id) {
 		
 		return service.buscaPorIdDetalhado(id);
 	}
@@ -65,7 +65,7 @@ public class AjudanteEndpoint implements AjudanteService {
 	@Path("/listarSimples/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public AjudanteDTO buscaPorIdSimples(@PathParam("id") Integer id) {
+	public Response buscaPorIdSimples(@PathParam("id") Integer id) {
 
 		return this.service.buscaPorIdSimples(id);
 

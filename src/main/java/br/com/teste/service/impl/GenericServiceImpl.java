@@ -48,7 +48,6 @@ public class GenericServiceImpl<Entity> implements Serializable{
 		try {
 			this.dao.atualiza(t);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -57,7 +56,6 @@ public class GenericServiceImpl<Entity> implements Serializable{
 		try {
 			return this.dao.listaTodos();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}

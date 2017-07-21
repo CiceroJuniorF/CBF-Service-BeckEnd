@@ -14,7 +14,7 @@ public class ConversorDTO {
 	public AjudanteDTO converteAjudante(Ajudante ajudante) {
 
 		return new AjudanteDTO(ajudante.getIdUsuario(), ajudante.getNome(), ajudante.getEmail(),
-				ajudante.getSalarioBase(), ajudante.getSalarioComissao());
+				ajudante.getSalarioBase(), ajudante.getSalarioComissao(), ajudante.getNivelAcesso());
 	}
 
 	public List<AjudanteDTO> coverteListaAjudante(List<Ajudante> lista) {
@@ -28,19 +28,16 @@ public class ConversorDTO {
 
 	// Ajudante
 
-	
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 
-	
-	
 	// Vendedor
 	public VendedorDTO converteVendedor(Vendedor Vendedor) {
 
-		return new VendedorDTO(Vendedor.getIdUsuario(), Vendedor.getNome(), Vendedor.getEmail(), Vendedor.getPassword(),
-				Vendedor.getSalarioBase(), Vendedor.getSalarioComissao());
+		return new VendedorDTO(Vendedor.getIdUsuario(), Vendedor.getNome(), Vendedor.getEmail(),
+				Vendedor.getSalarioBase(), Vendedor.getSalarioComissao(), Vendedor.getNivelAcesso());
 	}
 
 	public List<VendedorDTO> coverteListaVendedor(List<Vendedor> lista) {
@@ -54,8 +51,6 @@ public class ConversorDTO {
 
 	// Vendedor
 
-	
-	
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//

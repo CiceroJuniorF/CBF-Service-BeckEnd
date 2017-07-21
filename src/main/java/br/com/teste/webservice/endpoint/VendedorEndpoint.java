@@ -56,7 +56,7 @@ public class VendedorEndpoint implements VendedorService {
 	@Path("/listarDetalhado/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public Vendedor buscaPorIdDetalhado(@PathParam("id") Integer id) {
+	public Response buscaPorIdDetalhado(@PathParam("id") Integer id) {
 		
 		return service.buscaPorIdDetalhado(id);
 	}
@@ -65,7 +65,7 @@ public class VendedorEndpoint implements VendedorService {
 	@Path("/listarSimples/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public VendedorDTO buscaPorIdSimples(@PathParam("id") Integer id) {
+	public Response buscaPorIdSimples(@PathParam("id") Integer id) {
 
 		return this.service.buscaPorIdSimples(id);
 
