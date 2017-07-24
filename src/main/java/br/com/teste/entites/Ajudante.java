@@ -22,16 +22,6 @@ public class Ajudante extends Funcionario {
 		super(nome, email, password, endereco, nivelAcesso);
 	}
 
-	@Deprecated
-	public Ajudante(Integer idUsuario, String nome, String email, Double salarioBase, Double salarioComissao,
-			Acesso nivelAcesso) {
-		this.setIdUsuario(idUsuario);
-		this.setNome(nome);
-		this.setEmail(email);
-		this.setSalarioBase(salarioBase);
-		this.getSalarioComissao();
-		this.setNivelAcesso(nivelAcesso);
-	}
 
 	public Acesso getNivelAcesso() {
 		return nivelAcesso;

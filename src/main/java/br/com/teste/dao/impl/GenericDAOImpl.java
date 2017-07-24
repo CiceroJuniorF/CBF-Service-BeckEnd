@@ -24,37 +24,37 @@ public class GenericDAOImpl<T> implements Serializable,GenericDAO<T> {
 
 	public void adiciona(T t)throws SQLException {
 		// persiste o objeto
-		em.getTransaction().begin();
+		
 		em.persist(t);
-		em.getTransaction().commit();
+		
 	}
 
 	public void remove(Integer id) throws SQLException{
-		em.getTransaction().begin();
+		 
 		em.remove(em.merge(em.find(classe, id)));
-		em.getTransaction().commit();
+		 
 	}
 
 	public void atualiza(T t) throws SQLException{
-		em.getTransaction().begin();
+		 
 		em.merge(t);
-		em.getTransaction().commit();
+		 
 	}
 
 	public List<T> listaTodos() throws SQLException {
-		em.getTransaction().begin();
+		 
 		CriteriaQuery<T> query = em.getCriteriaBuilder().createQuery(classe);
 		query.select(query.from(classe));
 		List<T> lista = em.createQuery(query).getResultList();
-		em.getTransaction().commit();
+		 
 
 		return lista;
 	}
 
 	public T buscaPorId(Integer id) throws SQLException{
-		em.getTransaction().begin();
+		 
 		T instancia = em.find(classe, id);
-		em.getTransaction().commit();
+		 
 		return instancia;
 	}
 

@@ -4,7 +4,10 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -12,37 +15,38 @@ import javax.xml.bind.annotation.XmlRootElement;
 @MappedSuperclass
 @XmlRootElement
 public class PessoaFisica {
-	
-	@Column(name = "nome",nullable=false)
+
+	@Column(name = "nome", nullable = false)
 	private String nome;
-	
+
 	@Column(name = "sobrenome")
 	private String sobrenome;
-	
+
 	@Column(name = "apelido")
 	private String apelido;
-	
-	@Embedded
+
+	@OneToOne(fetch =FetchType.EAGER, optional=false)
+	@JoinColumn(name="endereco")
 	private Endereco endereco;
-	
+
 	@Column(name = "data_de_atualizacao")
 	@Temporal(TemporalType.DATE)
 	private Calendar dataAtualizacao;
-	
-	@Column(name = "data_de_cadastro", nullable=false)	
+
+	@Column(name = "data_de_cadastro", nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Calendar dataCadastro;
-	
+
 	@Column(name = "telefone")
 	private String telefone;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	@Embedded
 	private RG rg;
-	
-	@Column(name = "cpf", nullable=false)
+
+	@Column(name = "cpf", nullable = false)
 	private String cpf;
-	
+
 	@Embedded
 	private Profissao profissao;
 
@@ -55,15 +59,15 @@ public class PessoaFisica {
 	@Column(name = "estado_nascimento")
 	private String estadoNascimento;
 
-	
-	//Construtores
+	// Construtores
 	@Deprecated
-	public PessoaFisica() {}
+	public PessoaFisica() {
+	}
 
 	public PessoaFisica(String nome, String sobrenome, String apelido, Endereco endereco, Calendar dataAtualizacao,
 			Calendar dataCadastro, String telefone, RG rg, String cpf, Profissao profissao, String paisNascimento,
 			String cidade_nascimento, String estadoNascimento) {
-		
+
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.apelido = apelido;
@@ -78,15 +82,13 @@ public class PessoaFisica {
 		this.cidade_nascimento = cidade_nascimento;
 		this.estadoNascimento = estadoNascimento;
 	}
-	
-	public PessoaFisica(String nome,Endereco endereco) {
+
+	public PessoaFisica(String nome, Endereco endereco) {
 		this.nome = nome;
 		this.endereco = endereco;
 	}
-	
-	
-	
-	//GGAS
+
+	// GGAS
 	public String getNome() {
 		return nome;
 	}
@@ -119,20 +121,20 @@ public class PessoaFisica {
 		this.endereco = endereco;
 	}
 
-	public Calendar getDataAtualizacao(){
+	public Calendar getDataAtualizacao() {
 		return dataAtualizacao;
 	}
 
-	public void setDataAtualizacao(Calendar dataAtualizacao){
+	public void setDataAtualizacao(Calendar dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
 	public Calendar getDataCadastro() {
-		
+
 		return dataCadastro;
 	}
 
-	public void setDataCadastro(Calendar dataCadastro){
+	public void setDataCadastro(Calendar dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
@@ -191,9 +193,5 @@ public class PessoaFisica {
 	public void setEstadoNascimento(String estadoNascimento) {
 		this.estadoNascimento = estadoNascimento;
 	}
-	
-	
-	
-	
-	
+
 }

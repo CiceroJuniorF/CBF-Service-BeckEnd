@@ -1,14 +1,24 @@
 package br.com.teste.entites;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Embeddable
+@Entity
 @XmlRootElement
 public class Endereco {
 	
 	
 	//Atributos
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_endereco")
+	private Integer idEndereco;	
+	
 	private String cep;
     private String logradouro;
     private String complemento;
@@ -22,7 +32,24 @@ public class Endereco {
     
     
     
-    //GGAS
+    @Deprecated
+    public Endereco() {}
+    
+    
+    public Endereco(Integer idEndereco, String cep, String logradouro, String complemento, String bairro,
+			String localidade, String uf, String unidade, Integer ibge, Integer gia){
+		this.idEndereco = idEndereco;
+		this.cep = cep;
+		this.logradouro = logradouro;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.localidade = localidade;
+		this.uf = uf;
+		this.unidade = unidade;
+		this.ibge = ibge;
+		this.gia = gia;
+	}
+	//GGAS
 	public String getCep() {
 		return cep;
 	}

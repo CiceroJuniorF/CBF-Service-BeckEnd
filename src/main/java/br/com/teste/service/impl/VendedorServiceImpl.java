@@ -1,38 +1,46 @@
 package br.com.teste.service.impl;
 
 import java.net.URI;
+import java.sql.SQLException;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.ws.rs.core.Response;
 
-import br.com.teste.auxiliar.ConversorDTO;
 import br.com.teste.auxiliar.DataAuxiliar;
 import br.com.teste.dao.VendedorDAO;
 import br.com.teste.dao.impl.VendedorDAOImpl;
 import br.com.teste.dto.VendedorDTO;
 import br.com.teste.entites.Vendedor;
+import br.com.teste.factory.EMFactory;
 import br.com.teste.service.VendedorService;
 
 public class VendedorServiceImpl implements VendedorService {
-
-	private GenericServiceImpl<Vendedor> genericservice = new GenericServiceImpl<Vendedor>(Vendedor.class);
-	private VendedorDAO dao = new VendedorDAOImpl();
+	
+	private EntityManager em = new EMFactory().getEntityManager();
+	private GenericServiceImpl<Vendedor> genericservice = new GenericServiceImpl<Vendedor>(Vendedor.class, this.em);	
+	private VendedorDAO dao = new VendedorDAOImpl(this.em);
 
 	@Override
 	public Response cadastrarOuAtualizarFuncionario(Vendedor funcionario) {
 		try {
+			
 			if (funcionario.getIdUsuario() == null) {
 				funcionario.setDataCadastro(DataAuxiliar.dataAtual());
-				genericservice.adiciona(funcionario);
-				URI uri = URI.create("/vendedor/listarDetalhado/" + funcionario.getIdUsuario());
+				em.getTransaction().begin();
+				dao.salvar(funcionario);
+				em.getTransaction().commit();
+				
+				URI uri = URI.create("/Vendedor/listarDetalhado/" + funcionario.getIdUsuario());
 				return Response.created(uri).build();
 
 			} else {
 				funcionario.setDataCadastro(DataAuxiliar.dataAtual());
-				genericservice.atualiza(funcionario);
+				genericservice.atualiza(funcionario);				
 				return Response.status(201).build();
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return Response.status(500).build();
 		}
 	}
@@ -47,7 +55,15 @@ public class VendedorServiceImpl implements VendedorService {
 	@Override
 	public List<VendedorDTO> listarTodosFuncionariosSimples() {
 
-		return new ConversorDTO().coverteListaVendedor(dao.buscaSimples());
+		try {
+			em.getTransaction().begin();
+			List<VendedorDTO> lista = dao.listarSimples();
+			em.getTransaction().commit();
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 
 	}
 
@@ -63,8 +79,11 @@ public class VendedorServiceImpl implements VendedorService {
 	@Override
 	public Response buscaPorIdSimples(Integer id) {
 		try {
-			return Response.status(200).entity(new ConversorDTO().converteVendedor(genericservice.buscaPorId(id)))
-					.build();
+			em.getTransaction().begin();
+			VendedorDTO Vendedor = dao.buscaSimples(id);
+			em.getTransaction().commit();
+			
+			return Response.status(200).entity(Vendedor).build();
 		} catch (Exception e) {
 			return Response.status(204).build();
 		}
