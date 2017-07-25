@@ -1,5 +1,6 @@
 package br.com.teste.entites;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -8,8 +9,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class RG {	
 
+	@Column(name="estado_emissor")
 	private String orgaoEmissor;
-	private String numeroRg;	
+	@Column(name="numero_rg", unique=true, nullable=false)
+	private String numeroRg;
+	@Column(name="estado_emissor")
 	private String estadoEmissor;
 	
 	

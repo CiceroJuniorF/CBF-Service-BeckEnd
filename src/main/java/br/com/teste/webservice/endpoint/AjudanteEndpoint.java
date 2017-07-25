@@ -1,91 +1,15 @@
 package br.com.teste.webservice.endpoint;
 
-import java.util.List;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
-import br.com.teste.dto.AjudanteDTO;
-import br.com.teste.entites.Ajudante;
-import br.com.teste.service.AjudanteService;
-import br.com.teste.service.impl.AjudanteServiceImpl;
+import br.com.teste.webservice.AjudanteWebService;
 
 @Path("/ajudante")
-public class AjudanteEndpoint implements AjudanteService {
+public class AjudanteEndpoint implements AjudanteWebService {
 
-	private AjudanteService service = new AjudanteServiceImpl();
-
-	
-	@POST
-	@Path("/novo")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Override
-	public Response cadastrarOuAtualizarFuncionario(Ajudante funcionario) {
-		return this.service.cadastrarOuAtualizarFuncionario(funcionario);
-	}
+	//private AjudanteService service = new AjudanteServiceImpl();
 
 	
-	@GET
-	@Path("/listarTodosDetalhado")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Override
-	public List<Ajudante> listarTodosFuncionariosDetalhado() {
-		
-		return this.service.listarTodosFuncionariosDetalhado();
-	}
-
 	
-	@GET
-	@Path("/listarTodosSimples")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Override
-	public List<AjudanteDTO> listarTodosFuncionariosSimples() {
-
-		return this.service.listarTodosFuncionariosSimples();
-	}
-
-	@GET
-	@Path("/listarDetalhado/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Override
-	public Response buscaPorIdDetalhado(@PathParam("id") Integer id) {
-		
-		return service.buscaPorIdDetalhado(id);
-	}
-
-	@GET
-	@Path("/listarSimples/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Override
-	public Response buscaPorIdSimples(@PathParam("id") Integer id) {
-
-		return this.service.buscaPorIdSimples(id);
-
-	}
-	@DELETE
-	@Path("/deletar/{id}")	
-	@Override
-	public Response deletar(@PathParam("id") Integer id) {
-
-		return this.service.deletar(id);
-
-	}
-
-	@PUT
-	@Path("/atualizar")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response atualizar(Ajudante ajudante) {
-
-		return this.cadastrarOuAtualizarFuncionario(ajudante);
-
-	}
 
 }

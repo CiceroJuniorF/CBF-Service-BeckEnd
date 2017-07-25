@@ -16,27 +16,34 @@ import br.com.teste.factory.EMFactory;
 import br.com.teste.service.VendedorService;
 
 public class VendedorServiceImpl implements VendedorService {
-	
 	private EntityManager em = new EMFactory().getEntityManager();
-	private GenericServiceImpl<Vendedor> genericservice = new GenericServiceImpl<Vendedor>(Vendedor.class, this.em);	
-	private VendedorDAO dao = new VendedorDAOImpl(this.em);
+	// ------------------------------------------Vendedor---------------------------------------------------------------//
+	private GenericServiceImpl<Vendedor> genericserviceVendedor = new GenericServiceImpl<Vendedor>(Vendedor.class,
+			this.em);
+	private VendedorDAO daoVendedor = new VendedorDAOImpl(this.em);
+	// -----------------------------------------------------------------------------------------------------------------//
+
+	// ------------------------------------------Vendedor---------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
 
 	@Override
 	public Response cadastrarOuAtualizarFuncionario(Vendedor funcionario) {
 		try {
-			
+
 			if (funcionario.getIdUsuario() == null) {
 				funcionario.setDataCadastro(DataAuxiliar.dataAtual());
 				em.getTransaction().begin();
-				dao.salvar(funcionario);
+				daoVendedor.salvar(funcionario);
 				em.getTransaction().commit();
-				
+
 				URI uri = URI.create("/Vendedor/listarDetalhado/" + funcionario.getIdUsuario());
 				return Response.created(uri).build();
 
 			} else {
 				funcionario.setDataCadastro(DataAuxiliar.dataAtual());
-				genericservice.atualiza(funcionario);				
+				daoVendedor.atualiza(funcionario);
 				return Response.status(201).build();
 			}
 		} catch (Exception e) {
@@ -48,7 +55,7 @@ public class VendedorServiceImpl implements VendedorService {
 	@Override
 	public List<Vendedor> listarTodosFuncionariosDetalhado() {
 
-		return genericservice.listaTodosDetalhado();
+		return genericserviceVendedor.listaTodosDetalhado();
 
 	}
 
@@ -57,7 +64,7 @@ public class VendedorServiceImpl implements VendedorService {
 
 		try {
 			em.getTransaction().begin();
-			List<VendedorDTO> lista = dao.listarSimples();
+			List<VendedorDTO> lista = daoVendedor.listarSimples();
 			em.getTransaction().commit();
 			return lista;
 		} catch (SQLException e) {
@@ -70,7 +77,7 @@ public class VendedorServiceImpl implements VendedorService {
 	@Override
 	public Response buscaPorIdDetalhado(Integer id) {
 		try {
-			return Response.status(200).entity(genericservice.buscaPorId(id)).build();
+			return Response.status(200).entity(genericserviceVendedor.buscaPorId(id)).build();
 		} catch (Exception e) {
 			return Response.status(204).build();
 		}
@@ -80,9 +87,9 @@ public class VendedorServiceImpl implements VendedorService {
 	public Response buscaPorIdSimples(Integer id) {
 		try {
 			em.getTransaction().begin();
-			VendedorDTO Vendedor = dao.buscaSimples(id);
+			VendedorDTO Vendedor = daoVendedor.buscaSimples(id);
 			em.getTransaction().commit();
-			
+
 			return Response.status(200).entity(Vendedor).build();
 		} catch (Exception e) {
 			return Response.status(204).build();
@@ -92,12 +99,13 @@ public class VendedorServiceImpl implements VendedorService {
 	@Override
 	public Response deletar(Integer id) {
 		try {
-			genericservice.remove(id);
+			genericserviceVendedor.remove(id);
 			return Response.status(202).build();
 		} catch (Exception e) {
 			return Response.status(304).build();
 		}
 
 	}
+	// -----------------------------------------------------------------------------------------------------------------//
 
 }

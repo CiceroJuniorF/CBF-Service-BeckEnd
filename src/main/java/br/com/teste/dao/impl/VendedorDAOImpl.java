@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import br.com.teste.dao.VendedorDAO;
 import br.com.teste.dao.GenericDAO;
+import br.com.teste.dao.VendedorDAO;
 import br.com.teste.dto.VendedorDTO;
 import br.com.teste.entites.Vendedor;
 
@@ -17,7 +17,7 @@ public class VendedorDAOImpl implements VendedorDAO {
 
 	public VendedorDAOImpl(EntityManager em) {
 		this.em = em;
-		dao = new GenericDAOImpl<Vendedor>(this.em, Vendedor.class);
+		this.dao = new GenericDAOImpl<Vendedor>(this.em, Vendedor.class);
 	}
 
 	@Override
@@ -42,10 +42,15 @@ public class VendedorDAOImpl implements VendedorDAO {
 
 	@Override
 	public void salvar(Vendedor entity) throws SQLException {
-
 		em.persist(entity.getEndereco());
-		dao.adiciona(entity);
+		this.dao.adiciona(entity);
+	}
 
+	@Override
+	public void atualiza(Vendedor entity) throws SQLException {
+		em.merge(entity.getEndereco());
+		this.dao.atualiza(entity);
+		
 	}
 
 }

@@ -16,27 +16,34 @@ import br.com.teste.factory.EMFactory;
 import br.com.teste.service.AjudanteService;
 
 public class AjudanteServiceImpl implements AjudanteService {
-	
 	private EntityManager em = new EMFactory().getEntityManager();
-	private GenericServiceImpl<Ajudante> genericservice = new GenericServiceImpl<Ajudante>(Ajudante.class, this.em);	
-	private AjudanteDAO dao = new AjudanteDAOImpl(this.em);
+	// ------------------------------------------AJUDANTE---------------------------------------------------------------//
+	private GenericServiceImpl<Ajudante> genericserviceAjudante = new GenericServiceImpl<Ajudante>(Ajudante.class,
+			this.em);
+	private AjudanteDAO daoAjudante = new AjudanteDAOImpl(this.em);
+	// -----------------------------------------------------------------------------------------------------------------//
+
+	// ------------------------------------------AJUDANTE---------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
 
 	@Override
 	public Response cadastrarOuAtualizarFuncionario(Ajudante funcionario) {
 		try {
-			
+
 			if (funcionario.getIdUsuario() == null) {
 				funcionario.setDataCadastro(DataAuxiliar.dataAtual());
 				em.getTransaction().begin();
-				dao.salvar(funcionario);
+				daoAjudante.salvar(funcionario);
 				em.getTransaction().commit();
-				
+
 				URI uri = URI.create("/ajudante/listarDetalhado/" + funcionario.getIdUsuario());
 				return Response.created(uri).build();
 
 			} else {
 				funcionario.setDataCadastro(DataAuxiliar.dataAtual());
-				genericservice.atualiza(funcionario);				
+				daoAjudante.atualiza(funcionario);
 				return Response.status(201).build();
 			}
 		} catch (Exception e) {
@@ -48,7 +55,7 @@ public class AjudanteServiceImpl implements AjudanteService {
 	@Override
 	public List<Ajudante> listarTodosFuncionariosDetalhado() {
 
-		return genericservice.listaTodosDetalhado();
+		return genericserviceAjudante.listaTodosDetalhado();
 
 	}
 
@@ -57,7 +64,7 @@ public class AjudanteServiceImpl implements AjudanteService {
 
 		try {
 			em.getTransaction().begin();
-			List<AjudanteDTO> lista = dao.listarSimples();
+			List<AjudanteDTO> lista = daoAjudante.listarSimples();
 			em.getTransaction().commit();
 			return lista;
 		} catch (SQLException e) {
@@ -70,7 +77,7 @@ public class AjudanteServiceImpl implements AjudanteService {
 	@Override
 	public Response buscaPorIdDetalhado(Integer id) {
 		try {
-			return Response.status(200).entity(genericservice.buscaPorId(id)).build();
+			return Response.status(200).entity(genericserviceAjudante.buscaPorId(id)).build();
 		} catch (Exception e) {
 			return Response.status(204).build();
 		}
@@ -80,9 +87,9 @@ public class AjudanteServiceImpl implements AjudanteService {
 	public Response buscaPorIdSimples(Integer id) {
 		try {
 			em.getTransaction().begin();
-			AjudanteDTO ajudante = dao.buscaSimples(id);
+			AjudanteDTO ajudante = daoAjudante.buscaSimples(id);
 			em.getTransaction().commit();
-			
+
 			return Response.status(200).entity(ajudante).build();
 		} catch (Exception e) {
 			return Response.status(204).build();
@@ -92,12 +99,13 @@ public class AjudanteServiceImpl implements AjudanteService {
 	@Override
 	public Response deletar(Integer id) {
 		try {
-			genericservice.remove(id);
+			genericserviceAjudante.remove(id);
 			return Response.status(202).build();
 		} catch (Exception e) {
 			return Response.status(304).build();
 		}
 
 	}
+	// -----------------------------------------------------------------------------------------------------------------//
 
 }

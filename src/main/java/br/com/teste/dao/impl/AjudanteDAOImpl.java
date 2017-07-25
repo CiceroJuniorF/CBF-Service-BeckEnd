@@ -17,7 +17,7 @@ public class AjudanteDAOImpl implements AjudanteDAO {
 
 	public AjudanteDAOImpl(EntityManager em) {
 		this.em = em;
-		 dao = new GenericDAOImpl<Ajudante>(this.em, Ajudante.class);
+		this.dao = new GenericDAOImpl<Ajudante>(this.em, Ajudante.class);
 	}
 
 	@Override
@@ -41,12 +41,15 @@ public class AjudanteDAOImpl implements AjudanteDAO {
 	}
 
 	@Override
-	public void salvar(Ajudante entity) throws SQLException {
-		
+	public void salvar(Ajudante entity) throws SQLException {		
 		em.persist(entity.getEndereco());
-		dao.adiciona(entity);
-		
-
+		this.dao.adiciona(entity);	
+	}
+	
+	@Override
+	public void atualiza (Ajudante entity) throws SQLException {
+		em.merge(entity.getEndereco());
+		this.dao.atualiza(entity);
 	}
 
 }

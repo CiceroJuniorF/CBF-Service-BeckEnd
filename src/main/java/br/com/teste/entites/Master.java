@@ -21,6 +21,12 @@ public class Master extends Usuario{
 		super(nome, email, password, endereco, nivelAcesso);
 	}
 
+	public Acesso getNivelAcesso() {
+		return nivelAcesso;
+	}
+	
+	
+
 	
 	
 	

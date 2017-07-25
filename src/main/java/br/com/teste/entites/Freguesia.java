@@ -25,17 +25,20 @@ public class Freguesia {
 	@Column(name="id_freguesia")
 	private Integer idFreguesia;
 	
-	@Column(name="nome_identifica",nullable=false)	
+	@Column(name="nome_identifica",nullable=false,unique=true)	
 	private String nomeIndetifica;
 	
 	
-	@OneToOne(fetch = FetchType.LAZY, optional=false)
+	@OneToOne(fetch = FetchType.EAGER, optional=false)
+	@Column(unique=true)
 	private Vendedor vendedor;
 	
-	@OneToMany(targetEntity = Ajudante.class ,fetch = FetchType.LAZY)
+	@OneToMany(targetEntity = Ajudante.class ,fetch = FetchType.EAGER)
+	@Column(unique=true)
 	private List<Ajudante> ajudante;
 	
-	@OneToMany(mappedBy = "freguesia", targetEntity = Cliente.class, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "freguesia", targetEntity = Cliente.class)
+	@Column(unique=true)
 	private List<Cliente> clientes;
 	
 	@Column(name="alvo_mensal")

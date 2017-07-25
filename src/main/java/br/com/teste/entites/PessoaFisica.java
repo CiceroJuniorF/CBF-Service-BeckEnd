@@ -44,7 +44,7 @@ public class PessoaFisica {
 	@Embedded
 	private RG rg;
 
-	@Column(name = "cpf", nullable = false)
+	@Column(name = "cpf", nullable = false, unique=true)
 	private String cpf;
 
 	@Embedded
