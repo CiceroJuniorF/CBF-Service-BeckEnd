@@ -33,9 +33,7 @@ public class GenericDAOImpl<T> implements Serializable, GenericDAO<T> {
 	}
 
 	public void atualiza(T t) throws SQLException {
-
 		em.merge(t);
-
 	}
 
 	public List<T> listaTodos() throws SQLException {

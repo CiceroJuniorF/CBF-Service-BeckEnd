@@ -165,6 +165,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response cadastrarOuAtualizarAjudante(Ajudante Ajudante) {
+		
 		return this.serviceAjudante.cadastrarOuAtualizarFuncionario(Ajudante);
 	}
 
@@ -218,7 +219,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Path("ajudante/atualizar")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response atualizar(Ajudante ajudante) {
-
+	
 		return this.cadastrarOuAtualizarAjudante(ajudante);
 
 	}

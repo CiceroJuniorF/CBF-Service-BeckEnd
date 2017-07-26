@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -30,11 +31,11 @@ public class Freguesia {
 	
 	
 	@OneToOne(fetch = FetchType.EAGER, optional=false)
-	@Column(unique=true)
+	@JoinColumn(name = "vendedor_fk",unique=true)
 	private Vendedor vendedor;
 	
 	@OneToMany(targetEntity = Ajudante.class ,fetch = FetchType.EAGER)
-	@Column(unique=true)
+	@JoinColumn(unique=true)
 	private List<Ajudante> ajudante;
 	
 	@OneToMany(mappedBy = "freguesia", targetEntity = Cliente.class)

@@ -9,11 +9,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class RG {	
 
-	@Column(name="estado_emissor")
+	@Column(name="orgao_emissor", nullable=false)
 	private String orgaoEmissor;
 	@Column(name="numero_rg", unique=true, nullable=false)
 	private String numeroRg;
-	@Column(name="estado_emissor")
+	@Column(name="estado_emissor", nullable=false)
 	private String estadoEmissor;
 	
 	

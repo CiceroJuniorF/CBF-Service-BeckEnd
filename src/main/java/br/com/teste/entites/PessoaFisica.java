@@ -40,7 +40,7 @@ public class PessoaFisica {
 	@Column(name = "telefone")
 	private String telefone;
 
-	@Column(nullable = false)
+
 	@Embedded
 	private RG rg;
 

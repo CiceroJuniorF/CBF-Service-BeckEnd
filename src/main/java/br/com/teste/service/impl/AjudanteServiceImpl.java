@@ -42,8 +42,10 @@ public class AjudanteServiceImpl implements AjudanteService {
 				return Response.created(uri).build();
 
 			} else {
-				funcionario.setDataCadastro(DataAuxiliar.dataAtual());
+				funcionario.setDataAtualizacao(DataAuxiliar.dataAtual());				
+				em.getTransaction().begin();
 				daoAjudante.atualiza(funcionario);
+				em.getTransaction().commit();
 				return Response.status(201).build();
 			}
 		} catch (Exception e) {
