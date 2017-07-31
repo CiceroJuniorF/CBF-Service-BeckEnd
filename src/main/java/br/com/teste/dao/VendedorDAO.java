@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.teste.dto.VendedorDTO;
+import br.com.teste.entites.Venda;
 import br.com.teste.entites.Vendedor;
 
 public interface VendedorDAO{
@@ -16,4 +17,5 @@ public interface VendedorDAO{
 	
 	void atualiza (Vendedor vendedor) throws SQLException;
 	
+	void realizarVenda(Venda venda);
 }

@@ -31,11 +31,11 @@ public class VendedorDTO {
 	
 	
 	
-	public Integer getId() {
+	public Integer getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setId(Integer id) {
+	public void setIdUsuario(Integer id) {
 		this.idUsuario = id;
 	}
 

@@ -12,6 +12,7 @@ import br.com.teste.dao.AjudanteDAO;
 import br.com.teste.dao.impl.AjudanteDAOImpl;
 import br.com.teste.dto.AjudanteDTO;
 import br.com.teste.entites.Ajudante;
+import br.com.teste.entites.Venda;
 import br.com.teste.factory.EMFactory;
 import br.com.teste.service.AjudanteService;
 
@@ -108,6 +109,14 @@ public class AjudanteServiceImpl implements AjudanteService {
 		}
 
 	}
+	
+	@Override
+	public Response realizarVenda(Venda venda) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	// -----------------------------------------------------------------------------------------------------------------//
+
+
 
 }

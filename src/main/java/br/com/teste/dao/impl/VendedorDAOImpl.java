@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import br.com.teste.dao.GenericDAO;
 import br.com.teste.dao.VendedorDAO;
 import br.com.teste.dto.VendedorDTO;
+import br.com.teste.entites.Venda;
 import br.com.teste.entites.Vendedor;
 
 public class VendedorDAOImpl implements VendedorDAO {
@@ -50,6 +51,12 @@ public class VendedorDAOImpl implements VendedorDAO {
 	public void atualiza(Vendedor entity) throws SQLException {
 		em.merge(entity.getEndereco());
 		this.dao.atualiza(entity);
+		
+	}
+
+	@Override
+	public void realizarVenda(Venda venda) {
+		
 		
 	}
 

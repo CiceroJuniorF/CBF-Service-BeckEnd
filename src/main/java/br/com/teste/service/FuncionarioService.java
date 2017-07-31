@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
+import br.com.teste.entites.Venda;
+
 public interface FuncionarioService<T,A> {
 	//T =  Entity A = DTO
 	
@@ -18,5 +20,7 @@ public interface FuncionarioService<T,A> {
 	public Response buscaPorIdDetalhado(Integer id);
 
 	public Response deletar(Integer id);
+	
+	Response realizarVenda(Venda venda);
 
 }

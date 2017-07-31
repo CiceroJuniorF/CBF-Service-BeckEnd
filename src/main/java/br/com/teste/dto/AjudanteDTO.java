@@ -19,9 +19,9 @@ public class AjudanteDTO {
 	@Deprecated
 	public AjudanteDTO() {}
 	
-	public AjudanteDTO(Integer id,String nome, String email, Double salarioBase,
+	public AjudanteDTO(Integer idUsuario,String nome, String email, Double salarioBase,
 		Double salarioComissao,Acesso acesso) {
-		this.idUsuario = id;
+		this.idUsuario = idUsuario;
 		this.nome = nome;
 		this.email = email;
 		this.salarioBase = salarioBase;
@@ -31,11 +31,11 @@ public class AjudanteDTO {
 	
 	
 	
-	public Integer getId() {
+	public Integer getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setId(Integer id) {
+	public void setIdUsuario(Integer id) {
 		this.idUsuario = id;
 	}
 

@@ -1,5 +1,6 @@
 package br.com.teste.entites;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,14 +21,14 @@ import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "compra_entity")
-@NamedQuery(name = "Compra.findAll", query = "SELECT c FROM Compra c")
+@NamedQuery(name = "Compra.findAll", query = "SELECT v FROM Venda v")
 @XmlRootElement
-public class Compra {
+public class Venda {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_compra")	
-	private Integer idCompra; 
+	@Column(name = "id_venda")	
+	private Integer idVenda; 
 	
 	
 	@OneToOne
@@ -38,26 +39,57 @@ public class Compra {
 
 	@OneToOne
 	private Cliente cliente;
-
-	private Double valorDaCompra;
+	
+	private int parcelas;	
+	
+	private List<Calendar> dataVencimento;
+	
+	@OneToMany(targetEntity = Produto.class, fetch = FetchType.EAGER)
+	private List<Produto> produtos;
+	
 	private DateTime dataDaCompra;
 
-	@OneToMany(mappedBy = "compra", targetEntity = Pagamento.class, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "venda", targetEntity = Pagamento.class, fetch = FetchType.EAGER)
 	private List<Pagamento> pagamentos;
-
+	
+	private Double valorDaCompra;
+	
 	private Double valorRestante;
 
 	@Deprecated
-	public Compra() {
+	public Venda() {
 	}
 
-	public Compra(Freguesia freguesia, Vendedor vendedor, Cliente cliente, Double valorDaCompra,
-			DateTime dataDaCompra) {
+	public Venda(Freguesia freguesia, Vendedor vendedor, Cliente cliente, Double valorDaCompra,
+			DateTime dataDaCompra, int parcelas) {
 		this.freguesia = freguesia;
 		this.vendedor = vendedor;
 		this.cliente = cliente;
 		this.valorDaCompra = valorDaCompra;
 		this.dataDaCompra = dataDaCompra;
+		this.parcelas = parcelas;
+	}
+	
+	
+
+	public Integer getIdVenda() {
+		return idVenda;
+	}
+
+	public void setIdVenda(Integer idVenda) {
+		this.idVenda = idVenda;
+	}
+
+	public void setDataVencimento(List<Calendar> dataVencimento) {
+		this.dataVencimento = dataVencimento;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public void setPagamentos(List<Pagamento> pagamentos) {
+		this.pagamentos = pagamentos;
 	}
 
 	public Freguesia getFreguesia() {
@@ -84,12 +116,28 @@ public class Compra {
 		this.cliente = cliente;
 	}
 
-	public Double getValorDaCompra() {
-		return valorDaCompra;
+	public int getParcelas() {
+		return parcelas;
 	}
 
-	public void setValorDaCompra(Double valorDaCompra) {
-		this.valorDaCompra = valorDaCompra;
+	public void setParcelas(int parcelas) {
+		this.parcelas = parcelas;
+	}
+
+	public List<Calendar> getDataVencimento() {
+		return dataVencimento;
+	}
+
+	public void setDataVencimento(Calendar dataVencimento) {
+		this.dataVencimento.add(dataVencimento);
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(Produto produto) {
+		this.produtos.add(produto);
 	}
 
 	public DateTime getDataDaCompra() {
@@ -104,18 +152,29 @@ public class Compra {
 		return pagamentos;
 	}
 
-	public void novoPagamentos(Pagamento pagamento) {
-		this.getPagamentos().add(pagamento);
+	public void setPagamentos(Pagamento pagamento) {
+		this.pagamentos.add(pagamento);
 	}
-	
+
+	public Double getValorDaCompra() {
+		return valorDaCompra;
+	}
+
+	public void setValorDaCompra(Double valorDaCompra) {
+		this.valorDaCompra = valorDaCompra;
+	}
 
 	public Double getValorRestante() {
-		return this.valorRestante;
+		return valorRestante;
 	}
 
 	public void setValorRestante(Double valorRestante) {
 		this.valorRestante = valorRestante;
 	}
+
+
+	
+	
 	
 	
 

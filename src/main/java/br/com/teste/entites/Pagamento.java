@@ -30,16 +30,16 @@ public class Pagamento {
 	private Vendedor cobrador;
 	
 	@ManyToOne
-	private Compra compra;
+	private Venda venda;
 	
 	@Deprecated
 	public Pagamento() {}
 	
-	public Pagamento(DateTime dataPagamento, Double valorPago, Vendedor cobrador,Compra compra) {
+	public Pagamento(DateTime dataPagamento, Double valorPago, Vendedor cobrador,Venda venda) {
 		this.dataPagamento = dataPagamento;
 		this.valorPago = valorPago;
 		this.cobrador = cobrador;
-		this.compra = compra;
+		this.venda = venda;
 	}
 	
 	
@@ -52,12 +52,12 @@ public class Pagamento {
 		this.cobrador = cobrador;
 	}
 
-	public Compra getCompra() {
-		return compra;
+	public Venda getCompra() {
+		return venda;
 	}
 
-	public void setCompra(Compra compra) {
-		this.compra = compra;
+	public void setCompra(Venda venda) {
+		this.venda = venda;
 	}
 
 	public DateTime getDataPagamento() {

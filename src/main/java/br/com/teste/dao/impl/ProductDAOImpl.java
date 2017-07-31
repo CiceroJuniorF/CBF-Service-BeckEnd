@@ -14,18 +14,17 @@ public class ProductDAOImpl implements ProductDAO{
 
 	EntityManager em = new EMFactory().getEntityManager();
 	
-	public Produto produto(){
-		return new Produto("Pipoca");
-	}
+	public Produto produto;
+	
 	
 	@Override
 	public String adicionar(){
 		this.em.getTransaction().begin();
-		this.em.merge(this.produto());
+		this.em.merge(this.produto);
 		this.em.getTransaction().commit();
 	
 	
-		return this.produto().toString();
+		return this.produto.toString();
 	}
 
 	@Override

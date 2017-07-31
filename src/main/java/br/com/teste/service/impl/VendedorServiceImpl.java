@@ -11,6 +11,7 @@ import br.com.teste.auxiliar.DataAuxiliar;
 import br.com.teste.dao.VendedorDAO;
 import br.com.teste.dao.impl.VendedorDAOImpl;
 import br.com.teste.dto.VendedorDTO;
+import br.com.teste.entites.Venda;
 import br.com.teste.entites.Vendedor;
 import br.com.teste.factory.EMFactory;
 import br.com.teste.service.VendedorService;
@@ -104,8 +105,17 @@ public class VendedorServiceImpl implements VendedorService {
 		} catch (Exception e) {
 			return Response.status(304).build();
 		}
-
 	}
+
+	@Override
+	public Response realizarVenda(Venda venda) {
+		
+		return null;
+	}
+	
+	
+	
+	
 	// -----------------------------------------------------------------------------------------------------------------//
 
 }
