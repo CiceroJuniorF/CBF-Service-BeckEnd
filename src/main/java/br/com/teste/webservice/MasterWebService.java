@@ -5,67 +5,83 @@ import java.util.List;
 import javax.ws.rs.core.Response;
 
 import br.com.teste.dto.AjudanteDTO;
+import br.com.teste.dto.ConsultadorDTO;
 import br.com.teste.dto.MasterDTO;
 import br.com.teste.dto.VendedorDTO;
 import br.com.teste.entites.Ajudante;
+import br.com.teste.entites.Consultador;
 import br.com.teste.entites.Master;
 import br.com.teste.entites.Vendedor;
 
 public interface MasterWebService {
 	// --------------------------------------------MASTER---------------------------------------------------------------//
-		// -----------------------------------------------------------------------------------------------------------------//
-		// -----------------------------------------------------------------------------------------------------------------//
-		// -----------------------------------------------------------------------------------------------------------------//
-		Response cadastrarOuAtualizarMaster(Master master);
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	Response cadastrarOuAtualizarMaster(Master master);
 
-		Response deletarMaster(Integer id);
+	Response deletarMaster(Integer id);
 
-		List<Master> listarTodosMasterDetalhado();
+	List<Master> listarTodosMasterDetalhado();
 
-		List<MasterDTO> listarTodosMasterSimples();
+	List<MasterDTO> listarTodosMasterSimples();
 
-		Response buscaMasterPorIdSimples(Integer id);
-		
-		Response buscaMasterPorIdDetalhado(Integer id);
-		// -----------------------------------------------------------------------------------------------------------------//
-		
-		
+	Response buscaMasterPorIdSimples(Integer id);
 
-		// ------------------------------------------VENDEDOR---------------------------------------------------------------//
-		// -----------------------------------------------------------------------------------------------------------------//
-		// -----------------------------------------------------------------------------------------------------------------//
-		// -----------------------------------------------------------------------------------------------------------------//
+	Response buscaMasterPorIdDetalhado(Integer id);
+	// -----------------------------------------------------------------------------------------------------------------//
 
-		Response cadastrarOuAtualizarVendedor(Vendedor funcionario);
+	// ------------------------------------------VENDEDOR---------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
 
-		List<Vendedor> listarTodosVendedoresDetalhado();
+	Response cadastrarOuAtualizarVendedor(Vendedor funcionario);
 
-		List<VendedorDTO> listarTodosVendedoresSimples();
+	List<Vendedor> listarTodosVendedoresDetalhado();
 
-		Response buscaVendedorPorIdDetalhado(Integer id);
-		
-		Response buscaVendedorPorIdSimples(Integer id);
+	List<VendedorDTO> listarTodosVendedoresSimples();
 
-		Response deletarVendedor(Integer id);
-		// -----------------------------------------------------------------------------------------------------------------//
-		
+	Response buscaVendedorPorIdDetalhado(Integer id);
 
-		// ------------------------------------------AJUDANTE---------------------------------------------------------------//
-		// -----------------------------------------------------------------------------------------------------------------//
-		// -----------------------------------------------------------------------------------------------------------------//
-		// -----------------------------------------------------------------------------------------------------------------//
+	Response buscaVendedorPorIdSimples(Integer id);
 
-		Response cadastrarOuAtualizarAjudante(Ajudante funcionario);
+	Response deletarVendedor(Integer id);
+	// -----------------------------------------------------------------------------------------------------------------//
 
-		List<Ajudante> listarTodosAjudantesDetalhado();
+	// ------------------------------------------AJUDANTE---------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
 
-		List<AjudanteDTO> listarTodosAjudantesSimples();
+	Response cadastrarOuAtualizarAjudante(Ajudante funcionario);
 
-		Response buscaAjudantePorIdDetalhado(Integer id);
+	List<Ajudante> listarTodosAjudantesDetalhado();
 
-		Response buscaAjudantePorIdSimples(Integer id);
-		
-		Response deletarAjudante(Integer id);
-		// -----------------------------------------------------------------------------------------------------------------//
+	List<AjudanteDTO> listarTodosAjudantesSimples();
 
+	Response buscaAjudantePorIdDetalhado(Integer id);
+
+	Response buscaAjudantePorIdSimples(Integer id);
+
+	Response deletarAjudante(Integer id);
+	// -----------------------------------------------------------------------------------------------------------------//
+	
+	// ------------------------------------------Consultador------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+
+	Response cadastrarOuAtualizarConsultador(Consultador funcionario);
+
+	List<Consultador> listarTodosConsultadorsDetalhado();
+
+	List<ConsultadorDTO> listarTodosConsultadorsSimples();
+
+	Response buscaConsultadorPorIdDetalhado(Integer id);
+
+	Response buscaConsultadorPorIdSimples(Integer id);
+
+	Response deletarConsultador(Integer id);
+	// -----------------------------------------------------------------------------------------------------------------//
 }

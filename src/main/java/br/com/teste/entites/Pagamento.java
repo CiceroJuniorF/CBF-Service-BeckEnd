@@ -17,32 +17,31 @@ import org.joda.time.DateTime;
 @NamedQuery(name = "Pagamento.findAll", query = "SELECT p FROM Pagamento p")
 @XmlRootElement
 public class Pagamento {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_pagamento")	
-	private Integer idPagamento; 
-	
+	@Column(name = "id_pagamento")
+	private Integer idPagamento;
+
 	private DateTime dataPagamento;
 	private Double valorPago;
-	
+
 	@ManyToOne
 	private Vendedor cobrador;
-	
+
 	@ManyToOne
-	private Venda venda;
-	
+	private VendaDetalhes venda;
+
 	@Deprecated
-	public Pagamento() {}
-	
-	public Pagamento(DateTime dataPagamento, Double valorPago, Vendedor cobrador,Venda venda) {
+	public Pagamento() {
+	}
+
+	public Pagamento(DateTime dataPagamento, Double valorPago, Vendedor cobrador, VendaDetalhes venda) {
 		this.dataPagamento = dataPagamento;
 		this.valorPago = valorPago;
 		this.cobrador = cobrador;
 		this.venda = venda;
 	}
-	
-	
 
 	public Vendedor getCobrador() {
 		return cobrador;
@@ -52,29 +51,36 @@ public class Pagamento {
 		this.cobrador = cobrador;
 	}
 
-	public Venda getCompra() {
-		return venda;
-	}
-
-	public void setCompra(Venda venda) {
-		this.venda = venda;
-	}
-
 	public DateTime getDataPagamento() {
 		return dataPagamento;
 	}
-	
+
 	public void setDataPagamento(DateTime dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
-	
+
 	public Double getValorPago() {
 		return valorPago;
 	}
-	
+
 	public void setValorPago(Double valorPago) {
 		this.valorPago = valorPago;
 	}
-	
-	
+
+	public Integer getIdPagamento() {
+		return idPagamento;
+	}
+
+	public void setIdPagamento(Integer idPagamento) {
+		this.idPagamento = idPagamento;
+	}
+
+	public VendaDetalhes getVenda() {
+		return venda;
+	}
+
+	public void setVenda(VendaDetalhes venda) {
+		this.venda = venda;
+	}
+
 }

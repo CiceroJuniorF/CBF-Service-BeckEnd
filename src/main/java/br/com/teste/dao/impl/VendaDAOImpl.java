@@ -21,25 +21,17 @@ public class VendaDAOImpl implements br.com.teste.dao.VendaDAO {
 
 	@Override
 	public void novaVenda(Venda venda) throws SQLException {
-		em.merge(venda.getFreguesia());
-		em.merge(venda.getVendedor());
-		em.merge(venda.getCliente());
 		dao.adiciona(venda);
 	}
 
 	@Override
 	public void atualizarVenda(Venda venda) throws SQLException {
-		em.merge(venda.getFreguesia());
-		em.merge(venda.getVendedor());
-		em.merge(venda.getCliente());
-		dao.atualiza(venda);
+
 	}
 
 	@Override
 	public void novoPagamento(Pagamento pagamento) throws SQLException {
-		em.persist(pagamento);
-		em.merge(pagamento.getCompra());
-		em.merge(pagamento.getCobrador());
+		
 
 	}
 

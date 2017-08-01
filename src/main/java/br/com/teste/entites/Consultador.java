@@ -24,4 +24,10 @@ public class Consultador extends Usuario{
 	public Consultador(String nome, String email, String password, Endereco endereco) {
 		super(nome, email, password, endereco, nivelAcesso);
 	}
+
+	public Acesso getNivelAcesso() {
+		return nivelAcesso;
+	}
+
+
 }

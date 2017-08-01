@@ -14,15 +14,19 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.teste.dto.AjudanteDTO;
+import br.com.teste.dto.ConsultadorDTO;
 import br.com.teste.dto.MasterDTO;
 import br.com.teste.dto.VendedorDTO;
 import br.com.teste.entites.Ajudante;
+import br.com.teste.entites.Consultador;
 import br.com.teste.entites.Master;
 import br.com.teste.entites.Vendedor;
 import br.com.teste.service.AjudanteService;
+import br.com.teste.service.ConsultadorService;
 import br.com.teste.service.MasterService;
 import br.com.teste.service.VendedorService;
 import br.com.teste.service.impl.AjudanteServiceImpl;
+import br.com.teste.service.impl.ConsultadorServiceImpl;
 import br.com.teste.service.impl.MasterServiceImpl;
 import br.com.teste.service.impl.VendedorServiceImpl;
 import br.com.teste.webservice.MasterWebService;
@@ -33,7 +37,8 @@ public class MasterEndpoint implements MasterWebService {
 	private MasterService serviceMaster = new MasterServiceImpl();
 	private AjudanteService serviceAjudante = new AjudanteServiceImpl();
 	private VendedorService serviceVendedor = new VendedorServiceImpl();
-	
+	private ConsultadorService serviceConsultador = new ConsultadorServiceImpl();
+
 	// --------------------------------------------MASTER---------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
@@ -46,7 +51,7 @@ public class MasterEndpoint implements MasterWebService {
 		return this.serviceMaster.cadastrarOuAtualizarMaster(master);
 
 	}
-	
+
 	@GET
 	@Path("master/listarTodosDetalhado")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -54,7 +59,7 @@ public class MasterEndpoint implements MasterWebService {
 	public List<Master> listarTodosMasterDetalhado() {
 		return this.serviceMaster.listarTodosMasterDetalhado();
 	}
-	
+
 	@GET
 	@Path("master/listarTodosSimples")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -62,19 +67,20 @@ public class MasterEndpoint implements MasterWebService {
 	public List<MasterDTO> listarTodosMasterSimples() {
 		return this.serviceMaster.listarTodosMasterSimples();
 	}
-	
+
 	@GET
 	@Path("master/listarSimpes/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public Response buscaMasterPorIdSimples(@PathParam("id")Integer id) {
+	public Response buscaMasterPorIdSimples(@PathParam("id") Integer id) {
 		return this.serviceMaster.buscaMasterPorIdSimples(id);
 	}
+
 	@GET
 	@Path("master/listarDetalhado/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public Response buscaMasterPorIdDetalhado(@PathParam("id")Integer id) {
+	public Response buscaMasterPorIdDetalhado(@PathParam("id") Integer id) {
 		return this.serviceMaster.buscaMasterPorIdDetalhado(id);
 	}
 
@@ -165,7 +171,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response cadastrarOuAtualizarAjudante(Ajudante Ajudante) {
-		
+
 		return this.serviceAjudante.cadastrarOuAtualizarFuncionario(Ajudante);
 	}
 
@@ -219,13 +225,78 @@ public class MasterEndpoint implements MasterWebService {
 	@Path("ajudante/atualizar")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response atualizar(Ajudante ajudante) {
-	
+
 		return this.cadastrarOuAtualizarAjudante(ajudante);
 
 	}
 
-
-
 	// -----------------------------------------------------------------------------------------------------------------//
 
+	// ------------------------------------------Consultador------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	@POST
+	@Path("consultador/novo")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Override
+	public Response cadastrarOuAtualizarConsultador(Consultador consultador) {
+
+		return this.serviceConsultador.cadastrarOuAtualizarConsultador(consultador);
+	}
+
+	@GET
+	@Path("consultador/listarTodosDetalhado")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Override
+	public List<Consultador> listarTodosConsultadorsDetalhado() {
+
+		return this.serviceConsultador.listarTodosConsultadorsDetalhado();
+	}
+
+	@GET
+	@Path("consultador/listarTodosSimples")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Override
+	public List<ConsultadorDTO> listarTodosConsultadorsSimples() {
+
+		return this.serviceConsultador.listarTodosConsultadoresSimples();
+	}
+
+	@GET
+	@Path("consultador/listarDetalhado/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Override
+	public Response buscaConsultadorPorIdDetalhado(@PathParam("id") Integer id) {
+
+		return serviceConsultador.buscaPorIdDetalhado(id);
+	}
+
+	@GET
+	@Path("consultador/listarSimples/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Override
+	public Response buscaConsultadorPorIdSimples(@PathParam("id") Integer id) {
+
+		return this.serviceConsultador.buscaPorIdSimples(id);
+
+	}
+
+	@DELETE
+	@Path("consultador/deletar/{id}")
+	@Override
+	public Response deletarConsultador(@PathParam("id") Integer id) {
+
+		return this.serviceConsultador.deletar(id);
+
+	}
+
+	@PUT
+	@Path("consultador/atualizar")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response atualizar(Consultador Consultador) {
+
+		return this.cadastrarOuAtualizarConsultador(Consultador);
+
+	}
 }
