@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import br.com.cbf.enums.Acesso;
 
 @XmlRootElement
-public class AjudanteDTO {
+public class FuncionarioDTO {
 	
 	private Integer idUsuario;
 	private String nome; 
@@ -17,9 +17,9 @@ public class AjudanteDTO {
 
 
 	@Deprecated
-	public AjudanteDTO() {}
+	public FuncionarioDTO() {}
 	
-	public AjudanteDTO(Integer idUsuario,String nome, String email, Double salarioBase,
+	public FuncionarioDTO(Integer idUsuario,String nome, String email, Double salarioBase,
 		Double salarioComissao,Acesso acesso) {
 		this.idUsuario = idUsuario;
 		this.nome = nome;

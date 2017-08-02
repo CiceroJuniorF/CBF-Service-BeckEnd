@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -30,13 +29,10 @@ public class Freguesia {
 	private String nomeIndetifica;
 	
 	
-	@OneToOne(fetch = FetchType.EAGER, optional=false)
-	@JoinColumn(name = "vendedor_fk",unique=true)
-	private Vendedor vendedor;
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "funcionarios",unique=true)
+	private List<Funcionario> funcionarios;
 	
-	@OneToMany(targetEntity = Ajudante.class ,fetch = FetchType.EAGER)
-	@JoinColumn(unique=true)
-	private List<Ajudante> ajudante;
 	
 	@OneToMany(mappedBy = "freguesia", targetEntity = Cliente.class)
 	@Column(unique=true)
@@ -71,30 +67,23 @@ public class Freguesia {
 	public void setCliente(Cliente cliente) {
 		this.clientes.add(cliente);
 	}
-	public Vendedor getVendedor() {
-		return vendedor;
-	}
-	public void setVendedor(Vendedor vendedor) {
-		this.vendedor = vendedor;
-	}
-	public List<Ajudante> getAjudante() {
-		return ajudante;
-	}
-	public void setAjudante(List<Ajudante> ajudante) {
-		this.ajudante = ajudante;
-	}
-	
-
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+

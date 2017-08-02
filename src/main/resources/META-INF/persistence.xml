@@ -8,11 +8,9 @@
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>br.com.cbf.entites.Consultador</class>
-		<class>br.com.cbf.entites.Ajudante</class>
 		<class>br.com.cbf.entites.Cliente</class>
 		<class>br.com.cbf.entites.Freguesia</class>
 		<class>br.com.cbf.entites.Master</class>
-		<class>br.com.cbf.entites.Vendedor</class>
 		<class>br.com.cbf.entites.Produto</class>
 		<class>br.com.cbf.entites.Venda</class>
 		<class>br.com.cbf.entites.Pagamento</class>

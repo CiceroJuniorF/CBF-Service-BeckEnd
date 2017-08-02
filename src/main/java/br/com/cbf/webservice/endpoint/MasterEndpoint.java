@@ -13,12 +13,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.cbf.dto.AjudanteDTO;
 import br.com.cbf.dto.ConsultadorDTO;
+import br.com.cbf.dto.FuncionarioDTO;
 import br.com.cbf.dto.MasterDTO;
-import br.com.cbf.dto.VendedorDTO;
 import br.com.cbf.entites.Ajudante;
 import br.com.cbf.entites.Consultador;
+import br.com.cbf.entites.Funcionario;
 import br.com.cbf.entites.Master;
 import br.com.cbf.entites.Vendedor;
 import br.com.cbf.service.AjudanteService;
@@ -102,15 +102,16 @@ public class MasterEndpoint implements MasterWebService {
 	@Path("vendedor/novo")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
-	public Response cadastrarOuAtualizarVendedor(Vendedor Vendedor) {
-		return this.serviceVendedor.cadastrarOuAtualizarFuncionario(Vendedor);
+	public Response cadastrarOuAtualizarVendedor(Vendedor vendedor) {
+		Funcionario func = vendedor;
+		return this.serviceVendedor.cadastrarOuAtualizarFuncionario(func);
 	}
 
 	@GET
 	@Path("vendedor/listarTodosDetalhado")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public List<Vendedor> listarTodosVendedoresDetalhado() {
+	public List<Funcionario> listarTodosVendedoresDetalhado() {
 
 		return this.serviceVendedor.listarTodosFuncionariosDetalhado();
 	}
@@ -119,7 +120,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Path("vendedor/listarTodosSimples")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public List<VendedorDTO> listarTodosVendedoresSimples() {
+	public List<FuncionarioDTO> listarTodosVendedoresSimples() {
 
 		return this.serviceVendedor.listarTodosFuncionariosSimples();
 	}
@@ -170,16 +171,16 @@ public class MasterEndpoint implements MasterWebService {
 	@Path("ajudante/novo")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
-	public Response cadastrarOuAtualizarAjudante(Ajudante Ajudante) {
-
-		return this.serviceAjudante.cadastrarOuAtualizarFuncionario(Ajudante);
+	public Response cadastrarOuAtualizarAjudante(Ajudante ajudante) {
+		Funcionario func = ajudante;
+		return this.serviceAjudante.cadastrarOuAtualizarFuncionario(func);
 	}
 
 	@GET
 	@Path("ajudante/listarTodosDetalhado")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public List<Ajudante> listarTodosAjudantesDetalhado() {
+	public List<Funcionario> listarTodosAjudantesDetalhado() {
 
 		return this.serviceAjudante.listarTodosFuncionariosDetalhado();
 	}
@@ -188,7 +189,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Path("ajudante/listarTodosSimples")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public List<AjudanteDTO> listarTodosAjudantesSimples() {
+	public List<FuncionarioDTO> listarTodosAjudantesSimples() {
 
 		return this.serviceAjudante.listarTodosFuncionariosSimples();
 	}
@@ -299,4 +300,36 @@ public class MasterEndpoint implements MasterWebService {
 		return this.cadastrarOuAtualizarConsultador(Consultador);
 
 	}
+	// -----------------------------------------------------------------------------------------------------------------//
+
+	// ------------------------------------------Funcionario------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+
+	@Override
+	public List<Funcionario> listarTodosFuncionariosDetalhado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<FuncionarioDTO> listarTodosFuncionariosSimples() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Response buscaFuncionarioPorIdDetalhado(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Response buscaFuncionarioPorIdSimples(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------//
 }

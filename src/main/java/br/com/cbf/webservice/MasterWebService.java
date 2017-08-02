@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
-import br.com.cbf.dto.AjudanteDTO;
 import br.com.cbf.dto.ConsultadorDTO;
+import br.com.cbf.dto.FuncionarioDTO;
 import br.com.cbf.dto.MasterDTO;
-import br.com.cbf.dto.VendedorDTO;
 import br.com.cbf.entites.Ajudante;
 import br.com.cbf.entites.Consultador;
+import br.com.cbf.entites.Funcionario;
 import br.com.cbf.entites.Master;
 import br.com.cbf.entites.Vendedor;
 
@@ -38,9 +38,9 @@ public interface MasterWebService {
 
 	Response cadastrarOuAtualizarVendedor(Vendedor funcionario);
 
-	List<Vendedor> listarTodosVendedoresDetalhado();
+	List<Funcionario> listarTodosVendedoresDetalhado();
 
-	List<VendedorDTO> listarTodosVendedoresSimples();
+	List<FuncionarioDTO> listarTodosVendedoresSimples();
 
 	Response buscaVendedorPorIdDetalhado(Integer id);
 
@@ -56,9 +56,9 @@ public interface MasterWebService {
 
 	Response cadastrarOuAtualizarAjudante(Ajudante funcionario);
 
-	List<Ajudante> listarTodosAjudantesDetalhado();
+	List<Funcionario> listarTodosAjudantesDetalhado();
 
-	List<AjudanteDTO> listarTodosAjudantesSimples();
+	List<FuncionarioDTO> listarTodosAjudantesSimples();
 
 	Response buscaAjudantePorIdDetalhado(Integer id);
 
@@ -66,7 +66,7 @@ public interface MasterWebService {
 
 	Response deletarAjudante(Integer id);
 	// -----------------------------------------------------------------------------------------------------------------//
-	
+
 	// ------------------------------------------Consultador------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
@@ -84,4 +84,18 @@ public interface MasterWebService {
 
 	Response deletarConsultador(Integer id);
 	// -----------------------------------------------------------------------------------------------------------------//
+
+	// ------------------------------------------Funcionario------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	
+	List<Funcionario> listarTodosFuncionariosDetalhado();
+
+	List<FuncionarioDTO> listarTodosFuncionariosSimples();
+
+	Response buscaFuncionarioPorIdDetalhado(Integer id);
+
+	Response buscaFuncionarioPorIdSimples(Integer id);
+
 }

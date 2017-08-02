@@ -1,55 +1,46 @@
 package br.com.cbf.dao.impl;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import br.com.cbf.dao.AjudanteDAO;
-import br.com.cbf.dao.GenericDAO;
-import br.com.cbf.dto.AjudanteDTO;
-import br.com.cbf.entites.Ajudante;
+import br.com.cbf.dto.FuncionarioDTO;
+import br.com.cbf.entites.Funcionario;
+import br.com.cbf.enums.Acesso;
 
-public class AjudanteDAOImpl implements AjudanteDAO {
-
-	EntityManager em;
-	private GenericDAO<Ajudante> dao;
+public class AjudanteDAOImpl extends FuncionarioDAOImpl implements AjudanteDAO {
 
 	public AjudanteDAOImpl(EntityManager em) {
-		this.em = em;
-		this.dao = new GenericDAOImpl<Ajudante>(this.em, Ajudante.class);
+		super(em);		
 	}
-
+	
 	@Override
-	public List<AjudanteDTO> listarSimples() {
+	public List<Funcionario> listaTodosDetalhado() {
+		
+		
 		@SuppressWarnings("unchecked")
-		List<AjudanteDTO> listaDeAjudantesDTO = (List<AjudanteDTO>) em.createQuery(
-				"SELECT new br.com.cbf.dto.AjudanteDTO(idUsuario,nome,email,salarioBase,salarioComissao,nivelAcesso) FROM Ajudante")
+		List<Funcionario> listaDeAjudantes = (List<Funcionario>) em.createQuery(
+				"SELECT a FROM Funcionario a where a.nivelAcesso = :pAcesso")
+				.setParameter("pAcesso", Acesso.AJUDANTE)
+				.getResultList();
+
+		return listaDeAjudantes;
+		
+	}
+	
+	@Override
+	public List<FuncionarioDTO> listarSimples() {
+		@SuppressWarnings("unchecked")
+		List<FuncionarioDTO> listaDeAjudantesDTO = (List<FuncionarioDTO>) em.createQuery(
+				"SELECT new br.com.cbf.dto.FuncionarioDTO(a.idUsuario,a.nome,a.email,a.salarioBase,a.salarioComissao,a.nivelAcesso) FROM Funcionario a where a.nivelAcesso = :pAcesso")
+				.setParameter("pAcesso", Acesso.AJUDANTE)
 				.getResultList();
 
 		return listaDeAjudantesDTO;
 	}
-
-	@Override
-	public AjudanteDTO buscaSimples(Integer id) {
-
-		AjudanteDTO ajudanteDTO = (AjudanteDTO) em.createQuery(
-				"SELECT new br.com.cbf.dto.AjudanteDTO(a.idUsuario,a.nome,a.email,a.salarioBase,a.salarioComissao,a.nivelAcesso) FROM Ajudante a where a.idUsuario = :pId")
-				.setParameter("pId", id).getSingleResult();
-
-		return ajudanteDTO;
-	}
-
-	@Override
-	public void salvar(Ajudante entity) throws SQLException {		
-		em.persist(entity.getEndereco());
-		this.dao.adiciona(entity);	
-	}
 	
-	@Override
-	public void atualiza (Ajudante entity) throws SQLException {
-		em.merge(entity.getEndereco());
-		this.dao.atualiza(entity);
-	}
+
+
 
 }
