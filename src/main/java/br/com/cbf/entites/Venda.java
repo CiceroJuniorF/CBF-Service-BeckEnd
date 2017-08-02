@@ -38,7 +38,7 @@ public class Venda {
 
 	@OneToOne(fetch =FetchType.EAGER, optional=false)
 	@JoinColumn(name="vendedor")
-	private Vendedor vendedor;
+	private Funcionario vendedor;
 
 	@OneToOne(fetch =FetchType.EAGER, optional=false)
 	@JoinColumn(name="cliente")
@@ -80,7 +80,7 @@ public class Venda {
 		this.freguesia = freguesia;
 	}
 
-	public Vendedor getVendedor() {
+	public Funcionario getVendedor() {
 		return vendedor;
 	}
 

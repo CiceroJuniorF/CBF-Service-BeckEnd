@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import br.com.cbf.enums.Acesso;
 
 @Entity
-@Table(name="Master")
+@Table(name="master")
 @NamedQuery(name="Master.findAll", query="SELECT m FROM Master m")
 @XmlRootElement
 public class Master extends Usuario{

@@ -8,7 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -30,10 +29,11 @@ public class Freguesia {
 	
 	
 	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "funcionarios",unique=true)
+	@Column(name = "funcionarios",unique=true)
 	private List<Funcionario> funcionarios;
 	
 	
+
 	@OneToMany(mappedBy = "freguesia", targetEntity = Cliente.class)
 	@Column(unique=true)
 	private List<Cliente> clientes;
@@ -67,7 +67,12 @@ public class Freguesia {
 	public void setCliente(Cliente cliente) {
 		this.clientes.add(cliente);
 	}
-	
+	public List<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+	public void setFuncionarios(Funcionario funcionarios) {
+		this.funcionarios.add(funcionarios);
+	}
 	
 	
 }

@@ -16,6 +16,7 @@ import br.com.cbf.factory.EMFactory;
 import br.com.cbf.service.MasterService;
 
 public class MasterServiceImpl implements MasterService {
+	
 	private EntityManager em = new EMFactory().getEntityManager();
 	
 	

@@ -103,7 +103,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response cadastrarOuAtualizarVendedor(Vendedor vendedor) {
-		Funcionario func = vendedor;
+		Funcionario func = (Funcionario) vendedor;
 		return this.serviceVendedor.cadastrarOuAtualizarFuncionario(func);
 	}
 
@@ -172,7 +172,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response cadastrarOuAtualizarAjudante(Ajudante ajudante) {
-		Funcionario func = ajudante;
+		Funcionario func = (Funcionario) ajudante;
 		return this.serviceAjudante.cadastrarOuAtualizarFuncionario(func);
 	}
 

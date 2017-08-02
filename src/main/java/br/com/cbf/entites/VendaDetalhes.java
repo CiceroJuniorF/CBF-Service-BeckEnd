@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,11 +35,12 @@ public class VendaDetalhes {
 	
 	private int parcelas;
 	
+	
 	private DateTime dataDaCompra;
 	
-	private List<Calendar> dataVencimento;
+	private Calendar dataVencimento;
 	
-	@OneToMany(targetEntity = Pagamento.class, fetch = FetchType.EAGER)
+	@OneToMany(targetEntity = Pagamento.class)
 	private List<Pagamento> pagamentos;
 	
 	private Double valorDaCompra;
@@ -54,7 +54,7 @@ public class VendaDetalhes {
 	@Deprecated
 	public VendaDetalhes() {}
 
-	public VendaDetalhes(int parcelas, DateTime dataDaCompra, List<Calendar> dataVencimento, List<Pagamento> pagamentos,
+	public VendaDetalhes(int parcelas, DateTime dataDaCompra, Calendar dataVencimento, List<Pagamento> pagamentos,
 			Double valorDaCompra, Double valorRestante, StatusVenda status) {
 		this.parcelas = parcelas;
 		this.dataDaCompra = dataDaCompra;
@@ -89,13 +89,6 @@ public class VendaDetalhes {
 		this.dataDaCompra = dataDaCompra;
 	}
 
-	public List<Calendar> getDataVencimento() {
-		return dataVencimento;
-	}
-
-	public void setDataVencimento(List<Calendar> dataVencimento) {
-		this.dataVencimento = dataVencimento;
-	}
 
 	public List<Pagamento> getPagamentos() {
 		return pagamentos;
@@ -128,6 +121,23 @@ public class VendaDetalhes {
 	public void setStatus(StatusVenda status) {
 		this.status = status;
 	}
+
+	public Venda getVenda() {
+		return venda;
+	}
+
+	public void setVenda(Venda venda) {
+		this.venda = venda;
+	}
+
+	public Calendar getDataVencimento() {
+		return dataVencimento;
+	}
+
+	public void setDataVencimento(Calendar dataVencimento) {
+		this.dataVencimento = dataVencimento;
+	}
+	
 	
 	
 	

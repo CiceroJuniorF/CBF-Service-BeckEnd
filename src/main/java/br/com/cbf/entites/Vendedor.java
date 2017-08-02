@@ -1,14 +1,11 @@
 package br.com.cbf.entites;
 
 import javax.persistence.Entity;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import br.com.cbf.enums.Acesso;
+
 @Entity
-@Table(name="vendedor_entity")
-@NamedQuery(name="Vendedor.findAll", query="SELECT v FROM Vendedor v")
 @XmlRootElement
 public class Vendedor extends Funcionario{	
 	private static Acesso nivelAcesso = Acesso.VENDEDOR;
@@ -30,5 +27,11 @@ public class Vendedor extends Funcionario{
 		this.getSalarioComissao();
 		this.setNivelAcesso(nivelAcesso);
 	}
+
+	public Acesso getNivelAcesso() {
+		return nivelAcesso;
+	}
+	
+	
 	
 }

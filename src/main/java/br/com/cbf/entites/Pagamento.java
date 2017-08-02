@@ -27,7 +27,7 @@ public class Pagamento {
 	private Double valorPago;
 
 	@ManyToOne
-	private Vendedor cobrador;
+	private Funcionario cobrador;
 
 	@ManyToOne
 	private VendaDetalhes venda;
@@ -43,7 +43,7 @@ public class Pagamento {
 		this.venda = venda;
 	}
 
-	public Vendedor getCobrador() {
+	public Funcionario getCobrador() {
 		return cobrador;
 	}
 

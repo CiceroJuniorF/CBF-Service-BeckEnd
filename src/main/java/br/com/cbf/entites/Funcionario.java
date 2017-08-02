@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import br.com.cbf.enums.Acesso;
 
 @Entity
-@Table(name = "ajudante_entity")
+@Table(name = "funcionario_entity")
 @NamedQueries({
 	@NamedQuery(name = "Funcionario.findAll", query = "SELECT f FROM Funcionario f"), 	
 	@NamedQuery(name ="Funcionario.findDTO", query = "SELECT new br.com.cbf.dto.FuncionarioDTO(a.idUsuario,a.nome,a.email,a.salarioBase,a.salarioComissao,a.nivelAcesso) FROM Funcionario a"),
@@ -24,6 +24,7 @@ public class Funcionario extends Usuario {
 
 	@Column(name = "salario_comissao")
 	private Double salarioComissao;
+	
 
 	@Deprecated 
 	public Funcionario() {
@@ -50,5 +51,7 @@ public class Funcionario extends Usuario {
 	public void setSalarioComissao(Double salarioComissao) {
 		this.salarioComissao = salarioComissao;
 	}
+
+	
 
 }
