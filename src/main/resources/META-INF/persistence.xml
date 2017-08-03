@@ -23,7 +23,8 @@
 		<class>br.com.cbf.entites.VendaDetalhes</class>
 		<class>br.com.cbf.entites.Ajudante</class>
 		<class>br.com.cbf.entites.Vendedor</class>
-		<class>br.com.cbf.entites.RegistroCliente</class>
+		<class>br.com.cbf.entites.DetalhesDoCliente</class>
+		<class>br.com.cbf.entites.RegistroAlteracoesCliente</class>
 
 		<properties>
 

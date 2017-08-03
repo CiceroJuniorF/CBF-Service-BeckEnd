@@ -21,5 +21,4 @@ public interface ConsultadorService {
 
 	public Response deletar(Integer id);
 	
-	public Response realizarConsultaDeCPFdeCliente(String CPF);
 }

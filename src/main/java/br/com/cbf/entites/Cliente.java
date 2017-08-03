@@ -28,18 +28,17 @@ public class Cliente extends PessoaFisica {
 	@JoinColumn(name = "freguesia", nullable = false)
 	private Freguesia freguesia;
 	
-	@OneToOne
+	@OneToOne(mappedBy="cliente") 
 	@JoinColumn(name = "registro", nullable = false)
-	private RegistroCliente registro;
-
+	private DetalhesDoCliente registro;
+	
 	@Deprecated
 	public Cliente() {
 	}
 
 	public Cliente(Freguesia freguesia, String nome, String sobrenome, String apelido,
 			Endereco endereco, Calendar dataAtualizacao, Calendar dataCadastro, String telefone, RG rg, String cpf,
-			Profissao profissao, String paisNascimento, String cidade_nascimento, String estadoNascimento) {
-		
+			Profissao profissao, String paisNascimento, String cidade_nascimento, String estadoNascimento) {		
 		super(nome, sobrenome, apelido, endereco, dataAtualizacao, dataCadastro, telefone, rg, cpf, profissao,
 				paisNascimento, cidade_nascimento, estadoNascimento);
 		

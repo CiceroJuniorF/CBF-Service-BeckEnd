@@ -110,11 +110,6 @@ public class ConsultadorServiceImpl implements ConsultadorService {
 
 	}
 
-	@Override
-	public Response realizarConsultaDeCPFdeCliente(String CPF) {
-		
-		return null;
-	}
 	
 
 	// -----------------------------------------------------------------------------------------------------------------//

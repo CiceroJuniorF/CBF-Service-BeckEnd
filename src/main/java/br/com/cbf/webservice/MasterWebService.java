@@ -42,11 +42,6 @@ public interface MasterWebService {
 
 	List<FuncionarioDTO> listarTodosVendedoresSimples();
 
-	Response buscaVendedorPorIdDetalhado(Integer id);
-
-	Response buscaVendedorPorIdSimples(Integer id);
-
-	Response deletarVendedor(Integer id);
 	// -----------------------------------------------------------------------------------------------------------------//
 
 	// ------------------------------------------AJUDANTE---------------------------------------------------------------//
@@ -60,11 +55,7 @@ public interface MasterWebService {
 
 	List<FuncionarioDTO> listarTodosAjudantesSimples();
 
-	Response buscaAjudantePorIdDetalhado(Integer id);
-
-	Response buscaAjudantePorIdSimples(Integer id);
-
-	Response deletarAjudante(Integer id);
+	
 	// -----------------------------------------------------------------------------------------------------------------//
 
 	// ------------------------------------------Consultador------------------------------------------------------------//
@@ -97,5 +88,7 @@ public interface MasterWebService {
 	Response buscaFuncionarioPorIdDetalhado(Integer id);
 
 	Response buscaFuncionarioPorIdSimples(Integer id);
+	
+	Response deletarFuncionario(Integer id);
 
 }

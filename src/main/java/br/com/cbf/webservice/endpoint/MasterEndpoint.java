@@ -23,10 +23,12 @@ import br.com.cbf.entites.Master;
 import br.com.cbf.entites.Vendedor;
 import br.com.cbf.service.AjudanteService;
 import br.com.cbf.service.ConsultadorService;
+import br.com.cbf.service.FuncionarioService;
 import br.com.cbf.service.MasterService;
 import br.com.cbf.service.VendedorService;
 import br.com.cbf.service.impl.AjudanteServiceImpl;
 import br.com.cbf.service.impl.ConsultadorServiceImpl;
+import br.com.cbf.service.impl.FuncionarioServiceImpl;
 import br.com.cbf.service.impl.MasterServiceImpl;
 import br.com.cbf.service.impl.VendedorServiceImpl;
 import br.com.cbf.webservice.MasterWebService;
@@ -37,12 +39,14 @@ public class MasterEndpoint implements MasterWebService {
 	private MasterService serviceMaster = new MasterServiceImpl();
 	private AjudanteService serviceAjudante = new AjudanteServiceImpl();
 	private VendedorService serviceVendedor = new VendedorServiceImpl();
+	private FuncionarioService serviceFuncionario = new FuncionarioServiceImpl();
 	private ConsultadorService serviceConsultador = new ConsultadorServiceImpl();
 
 	// --------------------------------------------MASTER---------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
+	
 	@POST
 	@Path("master/novo")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -99,7 +103,7 @@ public class MasterEndpoint implements MasterWebService {
 	// -----------------------------------------------------------------------------------------------------------------//
 
 	@POST
-	@Path("vendedor/novo")
+	@Path("funcionario/vendedor/novo")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response cadastrarOuAtualizarVendedor(Vendedor vendedor) {
@@ -108,16 +112,15 @@ public class MasterEndpoint implements MasterWebService {
 	}
 
 	@GET
-	@Path("vendedor/listarTodosDetalhado")
+	@Path("funcionario/vendedor/listarTodosDetalhado")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
 	public List<Funcionario> listarTodosVendedoresDetalhado() {
-
 		return this.serviceVendedor.listarTodosFuncionariosDetalhado();
 	}
 
 	@GET
-	@Path("vendedor/listarTodosSimples")
+	@Path("funcionario/vendedor/listarTodosSimples")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
 	public List<FuncionarioDTO> listarTodosVendedoresSimples() {
@@ -125,36 +128,9 @@ public class MasterEndpoint implements MasterWebService {
 		return this.serviceVendedor.listarTodosFuncionariosSimples();
 	}
 
-	@GET
-	@Path("vendedor/listarDetalhado/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Override
-	public Response buscaVendedorPorIdDetalhado(@PathParam("id") Integer id) {
-
-		return serviceVendedor.buscaPorIdDetalhado(id);
-	}
-
-	@GET
-	@Path("vendedor/listarSimples/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Override
-	public Response buscaVendedorPorIdSimples(@PathParam("id") Integer id) {
-
-		return this.serviceVendedor.buscaPorIdSimples(id);
-
-	}
-
-	@DELETE
-	@Path("vendedor/deletar/{id}")
-	@Override
-	public Response deletarVendedor(@PathParam("id") Integer id) {
-
-		return this.serviceVendedor.deletar(id);
-
-	}
 
 	@PUT
-	@Path("vendedor/atualizar")
+	@Path("funcionario/vendedor/atualizar")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response atualizar(Vendedor Vendedor) {
 
@@ -168,7 +144,7 @@ public class MasterEndpoint implements MasterWebService {
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 	@POST
-	@Path("ajudante/novo")
+	@Path("funcionario/ajudante/novo")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response cadastrarOuAtualizarAjudante(Ajudante ajudante) {
@@ -177,7 +153,7 @@ public class MasterEndpoint implements MasterWebService {
 	}
 
 	@GET
-	@Path("ajudante/listarTodosDetalhado")
+	@Path("funcionario/ajudante/listarTodosDetalhado")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
 	public List<Funcionario> listarTodosAjudantesDetalhado() {
@@ -186,7 +162,7 @@ public class MasterEndpoint implements MasterWebService {
 	}
 
 	@GET
-	@Path("ajudante/listarTodosSimples")
+	@Path("funcionario/ajudante/listarTodosSimples")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
 	public List<FuncionarioDTO> listarTodosAjudantesSimples() {
@@ -194,36 +170,8 @@ public class MasterEndpoint implements MasterWebService {
 		return this.serviceAjudante.listarTodosFuncionariosSimples();
 	}
 
-	@GET
-	@Path("ajudante/listarDetalhado/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Override
-	public Response buscaAjudantePorIdDetalhado(@PathParam("id") Integer id) {
-
-		return serviceAjudante.buscaPorIdDetalhado(id);
-	}
-
-	@GET
-	@Path("ajudante/listarSimples/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Override
-	public Response buscaAjudantePorIdSimples(@PathParam("id") Integer id) {
-
-		return this.serviceAjudante.buscaPorIdSimples(id);
-
-	}
-
-	@DELETE
-	@Path("ajudante/deletar/{id}")
-	@Override
-	public Response deletarAjudante(@PathParam("id") Integer id) {
-
-		return this.serviceAjudante.deletar(id);
-
-	}
-
 	@PUT
-	@Path("ajudante/atualizar")
+	@Path("funcionario/ajudante/atualizar")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response atualizar(Ajudante ajudante) {
 
@@ -307,28 +255,50 @@ public class MasterEndpoint implements MasterWebService {
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 
+	@GET
+	@Path("funcionario/listarTodosDetalhado")
+	@Produces(MediaType.APPLICATION_JSON)
 	@Override
 	public List<Funcionario> listarTodosFuncionariosDetalhado() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return this.serviceAjudante.listarTodosFuncionariosDetalhado();
 	}
 
+	@GET
+	@Path("funcionario/listarTodosSimples")
+	@Produces(MediaType.APPLICATION_JSON)
 	@Override
 	public List<FuncionarioDTO> listarTodosFuncionariosSimples() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return this.serviceAjudante.listarTodosFuncionariosSimples();
 	}
 
+	@GET
+	@Path("funcionario/listarDetalhado/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public Response buscaFuncionarioPorIdDetalhado(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Response buscaFuncionarioPorIdDetalhado(@PathParam("id") Integer id) {
+
+		return serviceFuncionario.buscaPorIdDetalhado(id);
 	}
 
+	@GET
+	@Path("funcionario/listarSimples/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public Response buscaFuncionarioPorIdSimples(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Response buscaFuncionarioPorIdSimples(@PathParam("id") Integer id) {
+
+		return this.serviceFuncionario.buscaPorIdSimples(id);
+
+	}
+
+	@DELETE
+	@Path("funcionario/deletar/{id}")
+	@Override
+	public Response deletarFuncionario(@PathParam("id") Integer id) {
+
+		return this.serviceFuncionario.deletar(id);
+
 	}
 	
 	// -----------------------------------------------------------------------------------------------------------------//

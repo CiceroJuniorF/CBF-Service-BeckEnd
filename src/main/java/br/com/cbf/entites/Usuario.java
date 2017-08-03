@@ -1,10 +1,14 @@
 package br.com.cbf.entites;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import br.com.cbf.enums.Acesso;
@@ -18,12 +22,25 @@ public class Usuario extends PessoaFisica {
 	@Column(name = "id_usuario")
 	private Integer idUsuario;
 	
+	
+
 	@Column(nullable=false) 
 	private String email;
+	
 	@Column(nullable=false) 
 	private String password;
+	
 	@Column(name = "nivel_acesso",nullable=false)
-	private Acesso nivelAcesso;
+	private Acesso nivelAcesso;	
+	
+	@Column(name = "data_de_atualizacao")
+	@Temporal(TemporalType.DATE)
+	private Calendar dataAtualizacao;
+	
+	@Column(name = "data_de_cadastro", nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Calendar dataCadastro;
+	
 	
 	
 
@@ -73,6 +90,20 @@ public class Usuario extends PessoaFisica {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+	public Calendar getDataAtualizacao() {
+		return dataAtualizacao;
+	}
+
+	public void setDataAtualizacao(Calendar dataAtualizacao) {
+		this.dataAtualizacao = dataAtualizacao;
+	}
+	public Calendar getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(Calendar dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
 
 }
