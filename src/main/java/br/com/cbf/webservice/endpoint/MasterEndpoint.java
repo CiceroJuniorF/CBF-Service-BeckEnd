@@ -107,7 +107,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response cadastrarOuAtualizarVendedor(Vendedor vendedor) {
-		Funcionario func = (Funcionario) vendedor;
+		Funcionario func = vendedor;
 		return this.serviceVendedor.cadastrarOuAtualizarFuncionario(func);
 	}
 
@@ -148,7 +148,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response cadastrarOuAtualizarAjudante(Ajudante ajudante) {
-		Funcionario func = (Funcionario) ajudante;
+		Funcionario func = ajudante;
 		return this.serviceAjudante.cadastrarOuAtualizarFuncionario(func);
 	}
 
@@ -261,7 +261,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Override
 	public List<Funcionario> listarTodosFuncionariosDetalhado() {
 
-		return this.serviceAjudante.listarTodosFuncionariosDetalhado();
+		return this.serviceFuncionario.listarTodosFuncionariosDetalhado();
 	}
 
 	@GET
@@ -270,7 +270,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Override
 	public List<FuncionarioDTO> listarTodosFuncionariosSimples() {
 
-		return this.serviceAjudante.listarTodosFuncionariosSimples();
+		return this.serviceFuncionario.listarTodosFuncionariosSimples();
 	}
 
 	@GET

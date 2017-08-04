@@ -19,7 +19,7 @@ public class VendedorDAOImpl extends FuncionarioDAOImpl implements VendedorDAO {
 	public List<FuncionarioDTO> listarSimples() {
 		@SuppressWarnings("unchecked")
 		List<FuncionarioDTO> listaDeAjudantesDTO = (List<FuncionarioDTO>) em.createQuery(
-				"SELECT new br.com.cbf.dto.FuncionarioDTO(idUsuario,nome,email,salarioBase,salarioComissao,nivelAcesso) FROM Funcionario where Funcionario.nivelAcesso = :pAcesso")
+				"SELECT new br.com.cbf.dto.FuncionarioDTO(a.idUsuario,a.nome,a.email,a.salarioBase,a.salarioComissao,a.nivelAcesso) FROM Funcionario a where a.nivelAcesso = :pAcesso")
 				.setParameter("pAcesso", Acesso.VENDEDOR)
 				.getResultList();
 
