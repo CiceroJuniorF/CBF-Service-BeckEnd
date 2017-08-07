@@ -9,7 +9,7 @@ import br.com.cbf.entites.Cliente;
 
 public interface ClienteService {
 	
-	public Response cadastrarOuAtualizarCliente(Cliente Cliente);
+	public Response cadastrarOuAtualizarCliente(Cliente cliente);
 
 	public List<Cliente> listarTodosClientesDetalhado();
 
@@ -19,5 +19,5 @@ public interface ClienteService {
 
 	public Response buscaPorIdDetalhado(Integer id);
 	
-	public Response realizarConsultaDeCPFdeCliente(String CPF);
+	public Response realizarConsultaDeCPFdeCliente(String CPF,String dataNascimento);
 }

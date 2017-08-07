@@ -23,28 +23,24 @@ public class Endereco {
 	private String logradouro;
 	private String complemento;
 	private String bairro;
-	private String localidade;
+	private String cidade;
 	private String uf;
-	private String unidade;
-	private Integer ibge;
-	private Integer gia;
+	private String numero;
 
 	@Deprecated
 	public Endereco() {
 	}
 
 	public Endereco(Integer idEndereco, String cep, String logradouro, String complemento, String bairro,
-			String localidade, String uf, String unidade, Integer ibge, Integer gia) {
+			String cidade, String uf,String numero) {
 		this.idEndereco = idEndereco;
 		this.cep = cep;
 		this.logradouro = logradouro;
 		this.complemento = complemento;
 		this.bairro = bairro;
-		this.localidade = localidade;
+		this.cidade = cidade;
 		this.uf = uf;
-		this.unidade = unidade;
-		this.ibge = ibge;
-		this.gia = gia;
+		this.numero = numero;
 	}
 
 	// GGAS
@@ -88,14 +84,6 @@ public class Endereco {
 		this.bairro = bairro;
 	}
 
-	public String getLocalidade() {
-		return localidade;
-	}
-
-	public void setLocalidade(String localidade) {
-		this.localidade = localidade;
-	}
-
 	public String getUf() {
 		return uf;
 	}
@@ -104,28 +92,23 @@ public class Endereco {
 		this.uf = uf;
 	}
 
-	public String getUnidade() {
-		return unidade;
+	public String getNumero() {
+		return numero;
 	}
 
-	public void setUnidade(String unidade) {
-		this.unidade = unidade;
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
-	public Integer getIbge() {
-		return ibge;
+	public String getCidade() {
+		return cidade;
 	}
 
-	public void setIbge(Integer ibge) {
-		this.ibge = ibge;
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
+	
+	
 
-	public Integer getGia() {
-		return gia;
-	}
-
-	public void setGia(Integer gia) {
-		this.gia = gia;
-	}
 
 }

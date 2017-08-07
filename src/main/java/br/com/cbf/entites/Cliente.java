@@ -27,21 +27,26 @@ public class Cliente extends PessoaFisica {
 	@ManyToOne
 	@JoinColumn(name = "freguesia", nullable = false)
 	private Freguesia freguesia;
-	
-	@OneToOne(mappedBy="cliente") 
+
+	@OneToOne(mappedBy = "cliente")
 	@JoinColumn(name = "registro", nullable = false)
 	private DetalhesDoCliente registro;
-	
+
+	@Column(name = "sintuacao_cliente")
+	private String sintuacao;
+
 	@Deprecated
 	public Cliente() {
 	}
 
-	public Cliente(Freguesia freguesia, String nome, String sobrenome, String apelido,
-			Endereco endereco, Calendar dataAtualizacao, Calendar dataCadastro, String telefone, RG rg, String cpf,
-			Profissao profissao, String paisNascimento, String cidade_nascimento, String estadoNascimento) {		
-		super(nome, sobrenome, apelido, endereco, dataAtualizacao, dataCadastro, telefone, rg, cpf, profissao,
-				paisNascimento, cidade_nascimento, estadoNascimento);
-		
+	public Cliente(Freguesia freguesia, String nome, String sobrenome, String apelido, String sexo,
+			Calendar dataNascimento, Endereco endereco, Calendar dataAtualizacao, Calendar dataCadastro,
+			String telefone, RG rg, String cpf, Profissao profissao, String paisNascimento, String cidade_nascimento,
+			String estadoNascimento,String sintuacao) {
+		super(nome, sobrenome, apelido, sexo, dataNascimento, endereco, dataAtualizacao, dataCadastro, telefone, rg,
+				cpf, profissao, paisNascimento, cidade_nascimento, estadoNascimento);
+		this.sintuacao = sintuacao;
+
 		this.freguesia = freguesia;
 	}
 
@@ -56,12 +61,26 @@ public class Cliente extends PessoaFisica {
 	public Freguesia getFreguesia() {
 		return freguesia;
 	}
+	
+
+	public DetalhesDoCliente getRegistro() {
+		return registro;
+	}
+
+	public void setRegistro(DetalhesDoCliente registro) {
+		this.registro = registro;
+	}
+
+	public String getSintuacao() {
+		return sintuacao;
+	}
+
+	public void setSintuacao(String sintuacao) {
+		this.sintuacao = sintuacao;
+	}
 
 	public void setFreguesia(Freguesia freguesia) {
 		this.freguesia = freguesia;
 	}
-	
-	
-
 
 }

@@ -20,6 +20,7 @@ public class ApplicationConf extends Application
         resources.add(br.com.cbf.webservice.endpoint.AjudanteEndpoint.class);
         resources.add(br.com.cbf.webservice.endpoint.MasterEndpoint.class);
         resources.add(br.com.cbf.webservice.endpoint.VendedorEndpoint.class);
+        resources.add(br.com.cbf.webservice.endpoint.ConsultadorEndpoint.class);
     
     }
 }

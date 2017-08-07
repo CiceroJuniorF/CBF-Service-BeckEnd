@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @MappedSuperclass
@@ -22,6 +24,13 @@ public class PessoaFisica {
 
 	@Column(name = "apelido")
 	private String apelido;
+	
+	@Column(name = "sexo")
+	private String sexo;
+	
+	@Column(name = "data_de_nascimento")
+	@Temporal(TemporalType.DATE)
+	private Calendar dataNascimento;
 
 	@OneToOne(fetch =FetchType.EAGER, optional=false)
 	@JoinColumn(name="endereco")
@@ -54,13 +63,15 @@ public class PessoaFisica {
 	public PessoaFisica() {
 	}
 
-	public PessoaFisica(String nome, String sobrenome, String apelido, Endereco endereco, Calendar dataAtualizacao,
+	public PessoaFisica(String nome, String sobrenome, String apelido, String sexo,Calendar dataNascimento, Endereco endereco, Calendar dataAtualizacao,
 			Calendar dataCadastro, String telefone, RG rg, String cpf, Profissao profissao, String paisNascimento,
 			String cidade_nascimento, String estadoNascimento) {
 
 		this.nome = nome;
 		this.sobrenome = sobrenome;
-		this.apelido = apelido;
+		this.apelido = apelido; 
+		this.sexo = sexo;
+		this.dataNascimento = dataNascimento;
 		this.endereco = endereco;
 		this.telefone = telefone;
 		this.rg = rg;
@@ -99,6 +110,25 @@ public class PessoaFisica {
 
 	public void setApelido(String apelido) {
 		this.apelido = apelido;
+	}
+	
+	
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	
+	public Calendar getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Calendar dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public Endereco getEndereco() {

@@ -133,7 +133,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 
 	@Override
 	public Response cadastrarCliente(Cliente cliente) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }
