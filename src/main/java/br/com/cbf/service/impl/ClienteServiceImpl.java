@@ -50,9 +50,10 @@ public class ClienteServiceImpl implements ClienteService {
 			dto = new BuscaCPF().buscaPorCPF(CPF, dataNascimento);
 			 return Response.status(200).entity(dto).build();
 		} catch (Exception e) {
-		
+			e.printStackTrace();
 			System.out.println("--------------------------------"+e.getMessage());
-			return Response.status(500).header("Error", Exception.class).build();
+			return Response.status(500)
+					.entity(e.getMessage()).build();
 		}
 	}
 
