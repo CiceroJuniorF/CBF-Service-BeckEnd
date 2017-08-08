@@ -1,0 +1,7 @@
+package br.com.cbf.enums;
+
+public enum CodigosErros {
+	
+	CLIENTECADASTRADO, DATANAOPERTENCE, DATAINVALIDA , ERROCPF, CONNECTIONNEGADA, ERROR, CLIENTEIRREGULAR; 
+	
+}

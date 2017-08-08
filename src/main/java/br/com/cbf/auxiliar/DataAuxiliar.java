@@ -17,15 +17,19 @@ public class DataAuxiliar {
 		return cal;
 	}
 	
-	public Calendar coverteString(String data) {
-		String dataString = data;
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Calendar cal = Calendar.getInstance();
+	public static Calendar coverteString(String data) {
+		
+		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+		 
+		Calendar c = Calendar.getInstance();
+		 
+		
 		try {
-			cal.setTime(sdf.parse(dataString));
+			c.setTime(formatoData.parse(data));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return cal;
+		
+		return c;
 	}
 }
