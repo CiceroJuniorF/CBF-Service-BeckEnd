@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import br.com.cbf.enums.Acesso;
 
+
 @MappedSuperclass
 @XmlRootElement
 public class Usuario extends PessoaFisica {

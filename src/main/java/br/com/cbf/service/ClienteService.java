@@ -6,6 +6,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.cbf.dto.ClienteDTO;
 import br.com.cbf.entites.Cliente;
+import br.com.cbf.exception.ClienteException;
 
 public interface ClienteService {
 	
@@ -15,9 +16,11 @@ public interface ClienteService {
 
 	public List<ClienteDTO> listarTodosClienteesSimples();
 
-	public Response buscaPorIdSimples(Integer id);
+	public Cliente buscaPorIdSimples(Integer id);
 
-	public Response buscaPorIdDetalhado(Integer id);
+	public Cliente buscaPorIdDetalhado(Integer id);
 	
-	public Response realizarConsultaDeCPFdeCliente(String CPF,String dataNascimento);
+	public Cliente realizarConsultaDeCPF(String CPF, String dataNascimento) throws ClienteException;
+	
+	public boolean verificaCPFExistente(String CPF) throws ClienteException;
 }

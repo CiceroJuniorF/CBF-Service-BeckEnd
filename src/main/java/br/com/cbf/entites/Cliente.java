@@ -38,7 +38,8 @@ public class Cliente extends PessoaFisica {
 	@Deprecated
 	public Cliente() {
 	}
-
+	
+	//Construtor para persistencia direta
 	public Cliente(Freguesia freguesia, String nome, String sobrenome, String apelido, String sexo,
 			Calendar dataNascimento, Endereco endereco, Calendar dataAtualizacao, Calendar dataCadastro,
 			String telefone, RG rg, String cpf, Profissao profissao, String paisNascimento, String cidade_nascimento,
@@ -48,6 +49,14 @@ public class Cliente extends PessoaFisica {
 		this.sintuacao = sintuacao;
 
 		this.freguesia = freguesia;
+	}
+	
+	//Construtor para quando for feita uma busca por cpf
+	public Cliente(String nome, String sobrenome, String apelido, String sexo,Calendar dataNascimento,
+	String telefone, RG rg, String cpf, String cidade_nascimento,String estadoNascimento, String sintuacao, Endereco endereco) {
+		super(nome, sobrenome, apelido, sexo, dataNascimento, endereco, null, null, telefone, rg,
+				cpf, null, null, cidade_nascimento, estadoNascimento);
+		
 	}
 
 	public Integer getIdCliente() {

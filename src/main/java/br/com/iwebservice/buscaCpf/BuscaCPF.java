@@ -6,7 +6,7 @@
 package br.com.iwebservice.buscaCpf;
 
 import br.com.cbf.auxiliar.DataAuxiliar;
-import br.com.cbf.dto.ClienteDTO;
+import br.com.cbf.entites.Cliente;
 import br.com.cbf.entites.Endereco;
 import br.com.cbf.enums.CodigosErros;
 import br.com.cbf.exception.ClienteException;
@@ -24,14 +24,14 @@ public class BuscaCPF {
 	 */	
 	private String chave = "AAAAA-BBBBB-CCCCC-DDDDD-EEEEE";
 
-	private ClienteDTO clienteDTO;
+	private Cliente clienteDTO;
 
 	public BuscaCPF() {
 
 
 	}
 
-	public ClienteDTO buscaPorCPF(String cpf, String dataNascimento) throws ClienteException {
+	public Cliente buscaPorCPF(String cpf, String dataNascimento) throws ClienteException {
 		CpfWebService cpfWebService = new CpfWebService(cpf, dataNascimento, this.chave);
 		
 			if (cpfWebService.getResultado() == 0 || cpfWebService.getResultado() == 2) {
@@ -50,8 +50,8 @@ public class BuscaCPF {
 			} else if (cpfWebService.getResultado() == 1) {
 				Endereco endereco = new Endereco(null,cpfWebService.getCep(),cpfWebService.getLogradouro(), cpfWebService.getComplemento(), cpfWebService.getBairro(),
 						cpfWebService.getCidade(), cpfWebService.getUF(),cpfWebService.getNumero());				
-				this.clienteDTO = new ClienteDTO(null, cpfWebService.getTitular(), null, null, cpfWebService.getSexo(), DataAuxiliar.coverteString(cpfWebService.getDataNascimento()),
-						null, null, cpfWebService.getCpf(), null, null,cpfWebService.getSituacao(),endereco,cpfWebService.getResultadoTXT());
+				this.clienteDTO = new Cliente(cpfWebService.getTitular(), null, null, cpfWebService.getSexo(), DataAuxiliar.coverteString(cpfWebService.getDataNascimento()),
+						null, null, cpfWebService.getCpf(), null, null,cpfWebService.getSituacao(),endereco);
 				
 
 				

@@ -24,9 +24,9 @@ public class ResgistroDeConsulta {
 	
 	private String cpf;
 	
-	private Calendar dataNascimento;
+	private Calendar dataNascimento;	
 	
-	private String nomeConsultador;
+	private Usuario consultador;
 	
 	private Calendar dataDeConsulta;
 
@@ -34,17 +34,13 @@ public class ResgistroDeConsulta {
 	@Deprecated
 	public ResgistroDeConsulta() {}
 	
-	public ResgistroDeConsulta(String cpf, Calendar dataNascimento, String nomeConsultador,
+	public ResgistroDeConsulta(String cpf, Calendar dataNascimento, Usuario consultador,
 			Calendar dataDeConsulta) {
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
-		this.nomeConsultador = nomeConsultador;
+		this.consultador = consultador;
 		this.dataDeConsulta = dataDeConsulta;
 	}
-	
-
-
-
 
 	public Integer getIdRegistroConsulta() {
 		return idRegistroConsulta;
@@ -62,13 +58,16 @@ public class ResgistroDeConsulta {
 		return dataNascimento;
 	}
 
-	public String getNomeConsultador() {
-		return nomeConsultador;
-	}
 
 	public Calendar getDataDeConsulta() {
 		return dataDeConsulta;
 	}
+
+	public Usuario getConsultador() {
+		return consultador;
+	}
+	
+	
 	
 	
 	
