@@ -25,7 +25,7 @@ public class Cliente extends PessoaFisica {
 	private Integer idCliente;
 
 	@ManyToOne
-	@JoinColumn(name = "freguesia", nullable = false)
+	@JoinColumn(name = "freguesia")
 	private Freguesia freguesia;
 
 	@OneToOne(mappedBy = "cliente")
@@ -70,15 +70,6 @@ public class Cliente extends PessoaFisica {
 	public Freguesia getFreguesia() {
 		return freguesia;
 	}
-	
-
-	public DetalhesDoCliente getRegistro() {
-		return registro;
-	}
-
-	public void setRegistro(DetalhesDoCliente registro) {
-		this.registro = registro;
-	}
 
 	public String getSintuacao() {
 		return sintuacao;
@@ -91,5 +82,16 @@ public class Cliente extends PessoaFisica {
 	public void setFreguesia(Freguesia freguesia) {
 		this.freguesia = freguesia;
 	}
+
+	public DetalhesDoCliente getRegistro() {
+		return registro;
+	}
+
+	public void setRegistro(DetalhesDoCliente registro) {
+		this.registro = registro;
+	}
+	
+	
+	
 
 }

@@ -26,7 +26,7 @@ public class ResgistroDeConsulta {
 	
 	private Calendar dataNascimento;	
 	
-	private Usuario consultador;
+	private String consultador;
 	
 	private Calendar dataDeConsulta;
 
@@ -34,7 +34,7 @@ public class ResgistroDeConsulta {
 	@Deprecated
 	public ResgistroDeConsulta() {}
 	
-	public ResgistroDeConsulta(String cpf, Calendar dataNascimento, Usuario consultador,
+	public ResgistroDeConsulta(String cpf, Calendar dataNascimento, String consultador,
 			Calendar dataDeConsulta) {
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
@@ -63,14 +63,27 @@ public class ResgistroDeConsulta {
 		return dataDeConsulta;
 	}
 
-	public Usuario getConsultador() {
+	public String getConsultador() {
 		return consultador;
 	}
-	
-	
-	
-	
-	
+
+	public void setConsultador(String consultador) {
+		this.consultador = consultador;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public void setDataNascimento(Calendar dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public void setDataDeConsulta(Calendar dataDeConsulta) {
+		this.dataDeConsulta = dataDeConsulta;
+	}
+
+
 	
 	
 	

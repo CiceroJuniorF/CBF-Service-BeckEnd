@@ -1,11 +1,11 @@
 package br.com.cbf.service.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.ws.rs.core.Response;
 
-
+import br.com.cbf.auxiliar.DataAuxiliar;
 import br.com.cbf.dao.ClienteDAO;
 import br.com.cbf.dao.impl.ClienteDAOImpl;
 import br.com.cbf.dto.ClienteDTO;
@@ -28,9 +28,23 @@ public class ClienteServiceImpl implements ClienteService {
 	// -----------------------------------------------------------------------------------------------------------------//
 
 	@Override
-	public Response cadastrarOuAtualizarCliente(Cliente cliente) {
+	public Cliente cadastrar(Cliente cliente) throws SQLException {
+		
+			cliente.getRegistro().setDataCadastro(DataAuxiliar.dataAtual());
+			em.getTransaction().begin();
+			cliente.getRegistro().setCliente(cliente);
+			daoCliente.salvar(cliente);
+			em.getTransaction().commit();
+			return cliente;
+	
+	}
+	
+	@Override
+	public Cliente atualizar(Cliente cliente) throws SQLException {		
+		cliente.getRegistro().getAlteracao().get(cliente.getRegistro().getAlteracao().size()).setDataAtualizacao(DataAuxiliar.dataAtual());
+		daoCliente.atualiza(cliente);
+		return cliente;
 
-		return null;
 	}
 
 	@Override

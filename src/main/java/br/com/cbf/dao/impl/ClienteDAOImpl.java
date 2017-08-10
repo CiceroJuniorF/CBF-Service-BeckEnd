@@ -25,7 +25,11 @@ public class ClienteDAOImpl implements ClienteDAO {
 	
 	@Override
 	public void salvar(Cliente cliente) throws SQLException {
+		
+		em.persist(cliente.getEndereco());
 		dao.adiciona(cliente);
+		em.persist(cliente.getRegistro());		
+		
 
 	}
 
@@ -55,7 +59,10 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 	@Override
 	public void atualiza(Cliente cliente) throws SQLException {
-		// TODO Auto-generated method stub
+		
+		em.persist(cliente.getRegistro().getAlteracao().size());
+		em.merge(cliente.getRegistro());
+		dao.atualiza(cliente);
 
 	}
 

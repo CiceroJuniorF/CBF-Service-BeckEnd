@@ -1,8 +1,7 @@
 package br.com.cbf.service;
 
+import java.sql.SQLException;
 import java.util.List;
-
-import javax.ws.rs.core.Response;
 
 import br.com.cbf.dto.ClienteDTO;
 import br.com.cbf.entites.Cliente;
@@ -10,8 +9,6 @@ import br.com.cbf.exception.ClienteException;
 
 public interface ClienteService {
 	
-	public Response cadastrarOuAtualizarCliente(Cliente cliente);
-
 	public List<Cliente> listarTodosClientesDetalhado();
 
 	public List<ClienteDTO> listarTodosClienteesSimples();
@@ -23,4 +20,8 @@ public interface ClienteService {
 	public Cliente realizarConsultaDeCPF(String CPF, String dataNascimento) throws ClienteException;
 	
 	public boolean verificaCPFExistente(String CPF) throws ClienteException;
+
+	Cliente cadastrar(Cliente cliente) throws SQLException;
+
+	Cliente atualizar(Cliente cliente) throws SQLException;
 }

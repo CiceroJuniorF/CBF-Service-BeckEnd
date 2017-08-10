@@ -58,6 +58,18 @@ public class RegistroAlteracoesCliente {
 	public void setDescricaoDoMotivoDeAlteracao(String descricaoDoMotivoDeAlteracao) {
 		this.descricaoDoMotivoDeAlteracao = descricaoDoMotivoDeAlteracao;
 	}
+
+
+	public Calendar getDataAtualizacao() {
+		return dataAtualizacao;
+	}
+
+
+	public void setDataAtualizacao(Calendar dataAtualizacao) {
+		this.dataAtualizacao = dataAtualizacao;
+	}
+	
+	
 	
 	
 }

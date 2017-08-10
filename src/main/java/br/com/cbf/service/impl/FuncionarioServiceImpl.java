@@ -15,6 +15,7 @@ import br.com.cbf.entites.Cliente;
 import br.com.cbf.entites.Funcionario;
 import br.com.cbf.entites.Venda;
 import br.com.cbf.factory.EMFactory;
+import br.com.cbf.service.ClienteService;
 import br.com.cbf.service.FuncionarioService;
 
 public class FuncionarioServiceImpl implements FuncionarioService {
@@ -22,6 +23,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	private EntityManager em = new EMFactory().getEntityManager();
 	// ------------------------------------------Funcionario---------------------------------------------------------------//
 	private FuncionarioDAO daoFuncionario = new FuncionarioDAOImpl(this.em);
+	private ClienteService clienteService = new ClienteServiceImpl();
 	// -----------------------------------------------------------------------------------------------------------------//
 
 	// ------------------------------------------Funcionario---------------------------------------------------------------//
@@ -133,7 +135,13 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 
 	@Override
 	public Response cadastrarCliente(Cliente cliente) {
+		try {
+			clienteService.cadastrar(cliente);
+			return Response.status(202).build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(304).build();
+		}
 		
-		return null;
 	}
 }
