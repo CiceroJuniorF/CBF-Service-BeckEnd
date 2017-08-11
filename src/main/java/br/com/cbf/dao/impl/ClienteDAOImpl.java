@@ -10,6 +10,7 @@ import br.com.cbf.dao.ClienteDAO;
 import br.com.cbf.dao.GenericDAO;
 import br.com.cbf.dto.ClienteDTO;
 import br.com.cbf.entites.Cliente;
+import br.com.cbf.entites.RegistroDeConsulta;
 import br.com.cbf.enums.CodigosErros;
 import br.com.cbf.exception.ClienteException;
 
@@ -76,11 +77,17 @@ public class ClienteDAOImpl implements ClienteDAO {
 				.setParameter("pCPF", CPF).getSingleResult();
 			
 			throw new ClienteException("O cliente ja esta cadastrado no banco de dados",CodigosErros.CLIENTECADASTRADO);
-		}catch(NoResultException nre) {
-			
-			return true;
+		}catch(NoResultException nre) {			
+			return false;
 		}
 			
+		
+	}
+
+	@Override
+	public void registraConsultaCliente(RegistroDeConsulta registro)throws SQLException {
+		
+		em.persist(registro);
 		
 	}
 

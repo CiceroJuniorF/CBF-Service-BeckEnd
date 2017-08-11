@@ -10,6 +10,8 @@ import br.com.cbf.dao.ClienteDAO;
 import br.com.cbf.dao.impl.ClienteDAOImpl;
 import br.com.cbf.dto.ClienteDTO;
 import br.com.cbf.entites.Cliente;
+import br.com.cbf.entites.Funcionario;
+import br.com.cbf.entites.RegistroDeConsulta;
 import br.com.cbf.exception.ClienteException;
 import br.com.cbf.factory.EMFactory;
 import br.com.cbf.service.ClienteService;
@@ -29,19 +31,19 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public Cliente cadastrar(Cliente cliente) throws SQLException {
+
+		cliente.getRegistro().setDataCadastro(DataAuxiliar.dataAtual());
+		cliente.getRegistro().setCliente(cliente);
+		daoCliente.salvar(cliente);
 		
-			cliente.getRegistro().setDataCadastro(DataAuxiliar.dataAtual());
-			em.getTransaction().begin();
-			cliente.getRegistro().setCliente(cliente);
-			daoCliente.salvar(cliente);
-			em.getTransaction().commit();
-			return cliente;
-	
+		return cliente;
+
 	}
-	
+
 	@Override
-	public Cliente atualizar(Cliente cliente) throws SQLException {		
-		cliente.getRegistro().getAlteracao().get(cliente.getRegistro().getAlteracao().size()).setDataAtualizacao(DataAuxiliar.dataAtual());
+	public Cliente atualizar(Cliente cliente) throws SQLException {
+		cliente.getRegistro().getAlteracao().get(cliente.getRegistro().getAlteracao().size())
+				.setDataAtualizacao(DataAuxiliar.dataAtual());
 		daoCliente.atualiza(cliente);
 		return cliente;
 
@@ -60,23 +62,25 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
-	public Cliente realizarConsultaDeCPF(String CPF, String dataNascimento)
-			throws ClienteException {
-		
+	public Cliente realizarConsultaDeCPF(String CPF, String dataNascimento, Funcionario consultador)
+			throws ClienteException, SQLException{
+
 		Cliente cliente = new BuscaCPF().buscaPorCPF(CPF, dataNascimento);
-		
+
+		RegistroDeConsulta registro = new RegistroDeConsulta(CPF, DataAuxiliar.coverteString(dataNascimento),
+				consultador, DataAuxiliar.dataAtual());
+		em.getTransaction().begin();
+		daoCliente.registraConsultaCliente(registro);
+		em.getTransaction().commit();
+
 		return cliente;
 
 	}
 
 	@Override
 	public boolean verificaCPFExistente(String CPF) throws ClienteException {
-		
-		em.getTransaction().begin();
-		daoCliente.verificaExisteCPF(CPF);
-		em.getTransaction().commit();
-		return false;
-
+		boolean clienteExistente = daoCliente.verificaExisteCPF(CPF);
+		return clienteExistente;
 	}
 
 	@Override
@@ -90,7 +94,5 @@ public class ClienteServiceImpl implements ClienteService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
 
 }

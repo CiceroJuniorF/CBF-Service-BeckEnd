@@ -25,7 +25,7 @@ public class DataAuxiliar {
 		 
 		
 		try {
-			c.setTime(formatoData.parse(data));
+			c.setTime(formatoData.parse(data.replaceAll("-", "/")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

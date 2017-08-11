@@ -32,7 +32,7 @@ public class Cliente extends PessoaFisica {
 	@JoinColumn(name = "registro", nullable = false)
 	private DetalhesDoCliente registro;
 
-	@Column(name = "sintuacao_cliente")
+	@Column(name = "sintuacao_cliente", nullable = false)
 	private String sintuacao;
 
 	@Deprecated
@@ -56,7 +56,7 @@ public class Cliente extends PessoaFisica {
 	String telefone, RG rg, String cpf, String cidade_nascimento,String estadoNascimento, String sintuacao, Endereco endereco) {
 		super(nome, sobrenome, apelido, sexo, dataNascimento, endereco, null, null, telefone, rg,
 				cpf, null, null, cidade_nascimento, estadoNascimento);
-		
+		this.sintuacao = sintuacao;
 	}
 
 	public Integer getIdCliente() {

@@ -7,15 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "registro_consulta")
-@NamedQuery(name = "ResgistroDeConsulta.findAll", query = "SELECT r FROM ResgistroDeConsulta r")
+@NamedQuery(name = "ResgistroDeConsulta.findAll", query = "SELECT r FROM RegistroDeConsulta r")
 @XmlRootElement
-public class ResgistroDeConsulta {
+public class RegistroDeConsulta {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,17 +26,21 @@ public class ResgistroDeConsulta {
 	
 	private String cpf;
 	
+	@Column(name = "data_nascimento_cliente")
 	private Calendar dataNascimento;	
 	
-	private String consultador;
+	@ManyToOne
+	@JoinColumn(name="consultador", nullable = false)
+	private Funcionario consultador;
 	
+	@Column(name = "data_de_consulta")
 	private Calendar dataDeConsulta;
 
 	
 	@Deprecated
-	public ResgistroDeConsulta() {}
+	public RegistroDeConsulta() {}
 	
-	public ResgistroDeConsulta(String cpf, Calendar dataNascimento, String consultador,
+	public RegistroDeConsulta(String cpf, Calendar dataNascimento, Funcionario consultador,
 			Calendar dataDeConsulta) {
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
@@ -63,14 +69,6 @@ public class ResgistroDeConsulta {
 		return dataDeConsulta;
 	}
 
-	public String getConsultador() {
-		return consultador;
-	}
-
-	public void setConsultador(String consultador) {
-		this.consultador = consultador;
-	}
-
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
@@ -83,6 +81,15 @@ public class ResgistroDeConsulta {
 		this.dataDeConsulta = dataDeConsulta;
 	}
 
+	public Funcionario getConsultador() {
+		return consultador;
+	}
+
+	public void setConsultador(Funcionario consultador) {
+		this.consultador = consultador;
+	}
+	
+	
 
 	
 	

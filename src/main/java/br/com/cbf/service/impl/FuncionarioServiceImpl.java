@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.ws.rs.core.Response;
 
+import br.com.cbf.auxiliar.Alerts;
 import br.com.cbf.auxiliar.DataAuxiliar;
 import br.com.cbf.dao.FuncionarioDAO;
 import br.com.cbf.dao.impl.FuncionarioDAOImpl;
@@ -14,6 +15,7 @@ import br.com.cbf.dto.FuncionarioDTO;
 import br.com.cbf.entites.Cliente;
 import br.com.cbf.entites.Funcionario;
 import br.com.cbf.entites.Venda;
+import br.com.cbf.exception.ClienteException;
 import br.com.cbf.factory.EMFactory;
 import br.com.cbf.service.ClienteService;
 import br.com.cbf.service.FuncionarioService;
@@ -136,12 +138,32 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	@Override
 	public Response cadastrarCliente(Cliente cliente) {
 		try {
-			clienteService.cadastrar(cliente);
-			return Response.status(202).build();
+			em.getTransaction().begin();
+			Cliente clienteCadastrado = clienteService.cadastrar(cliente);
+			em.getTransaction().begin();
+			return Response.status(201).entity(clienteCadastrado).build();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return Response.status(304).build();
 		}
-		
+
+	}
+
+	@Override
+	public Response realizarConsultaDeCPFDeCliente(String cpfCliente, String dataNascimentoCliente,
+			Funcionario funcionario) {
+		try {
+			clienteService.verificaCPFExistente(cpfCliente);
+			Cliente clienteBuscado = clienteService.realizarConsultaDeCPF(cpfCliente, dataNascimentoCliente,
+					funcionario);
+			return Response.status(200).entity(clienteBuscado).build();
+		} catch (ClienteException e) {
+			e.printStackTrace();
+			return Response.status(500).entity(new Alerts(e.getMessage())).build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(500).entity(new Alerts(e.getMessage())).build();
+		}
+
 	}
 }

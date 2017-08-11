@@ -24,8 +24,10 @@ public interface FuncionarioService{
 
 	public Response deletar(Integer id);
 	
-	Response realizarVenda(Venda venda);
+	public Response realizarVenda(Venda venda);
 	
-	Response cadastrarCliente(Cliente cliente);
+	public Response cadastrarCliente(Cliente cliente);
+	
+	public Response realizarConsultaDeCPFDeCliente(String cpfCliente, String dataNascimentoCliente, Funcionario funcionario);
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.cbf.dto.ClienteDTO;
 import br.com.cbf.entites.Cliente;
+import br.com.cbf.entites.RegistroDeConsulta;
 import br.com.cbf.exception.ClienteException;
 
 public interface ClienteDAO {
@@ -22,6 +23,8 @@ public interface ClienteDAO {
 	void atualiza(Cliente cliente) throws SQLException;
 	
 	boolean verificaExisteCPF(String CPF) throws ClienteException;
+
+	void registraConsultaCliente(RegistroDeConsulta registro) throws SQLException;
 
 	
 

@@ -25,6 +25,7 @@
 		<class>br.com.cbf.entites.Vendedor</class>
 		<class>br.com.cbf.entites.DetalhesDoCliente</class>
 		<class>br.com.cbf.entites.RegistroAlteracoesCliente</class>
+		<class>br.com.cbf.entites.RegistroDeConsulta</class>
 
 		<properties>
 
