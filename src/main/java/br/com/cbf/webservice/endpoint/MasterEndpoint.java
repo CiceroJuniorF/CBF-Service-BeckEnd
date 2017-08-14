@@ -13,20 +13,25 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.cbf.dto.ClienteDTO;
 import br.com.cbf.dto.ConsultadorDTO;
 import br.com.cbf.dto.FuncionarioDTO;
 import br.com.cbf.dto.MasterDTO;
 import br.com.cbf.entites.Ajudante;
+import br.com.cbf.entites.Cliente;
 import br.com.cbf.entites.Consultador;
+import br.com.cbf.entites.Freguesia;
 import br.com.cbf.entites.Funcionario;
 import br.com.cbf.entites.Master;
 import br.com.cbf.entites.Vendedor;
 import br.com.cbf.service.AjudanteService;
+import br.com.cbf.service.ClienteService;
 import br.com.cbf.service.ConsultadorService;
 import br.com.cbf.service.FuncionarioService;
 import br.com.cbf.service.MasterService;
 import br.com.cbf.service.VendedorService;
 import br.com.cbf.service.impl.AjudanteServiceImpl;
+import br.com.cbf.service.impl.ClienteServiceImpl;
 import br.com.cbf.service.impl.ConsultadorServiceImpl;
 import br.com.cbf.service.impl.FuncionarioServiceImpl;
 import br.com.cbf.service.impl.MasterServiceImpl;
@@ -41,6 +46,7 @@ public class MasterEndpoint implements MasterWebService {
 	private VendedorService serviceVendedor = new VendedorServiceImpl();
 	private FuncionarioService serviceFuncionario = new FuncionarioServiceImpl();
 	private ConsultadorService serviceConsultador = new ConsultadorServiceImpl();
+	private ClienteService serviceCliente = new ClienteServiceImpl();
 
 	// --------------------------------------------MASTER---------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
@@ -299,6 +305,70 @@ public class MasterEndpoint implements MasterWebService {
 
 		return this.serviceFuncionario.deletar(id);
 
+	}
+	
+	// ------------------------------------------Cliente------------------------------------------------------------//
+		// -----------------------------------------------------------------------------------------------------------------//
+		// -----------------------------------------------------------------------------------------------------------------//
+		// -----------------------------------------------------------------------------------------------------------------//
+
+	@GET
+	@Path("cliente/listarTodosDetalhado")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Override
+	public List<Cliente> listarTodosClientesDetalhado() {
+		// TODO Auto-generated method stub
+		return serviceCliente.listarTodosClientesDetalhado();
+	}
+
+	@GET
+	@Path("cliente/listarTodosSimples")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Override
+	public List<ClienteDTO> listarTodosClienteSimples() {
+		
+		return serviceCliente.listarTodosClienteesSimples();
+	}
+
+	@GET
+	@Path("cliente/listarDetalhado/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Override
+	public Response buscaClientePorIdDetalhado(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@GET
+	@Path("cliente/listarSimples/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Override
+	public Response buscaClientePorIdSimples(Integer id) {
+		
+		return null;
+	}
+	@POST
+	@Path("cliente/novoCliente")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Override
+	public Response cadastrarCliente(Cliente cliente) {
+		
+		return serviceFuncionario.cadastrarCliente(cliente);
+	}
+
+	@POST
+	@Path("cliente/consultaCliente/{cpf}/{dataNascimento}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response consultaCliente(String cpf, String dataNascimento, Funcionario funcionario) {
+		
+		return serviceFuncionario.realizarConsultaDeCPFDeCliente(cpf, dataNascimento, funcionario);
+	}
+
+	@Override
+	public Response buscarClientePorFreguesia(Freguesia freguesia) {
+		
+		return null;
 	}
 	
 	// -----------------------------------------------------------------------------------------------------------------//

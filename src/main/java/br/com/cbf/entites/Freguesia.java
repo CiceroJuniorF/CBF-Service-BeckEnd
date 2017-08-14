@@ -28,7 +28,7 @@ public class Freguesia {
 	private String nomeIndetifica;
 	
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "freguesia",fetch = FetchType.EAGER)
 	@Column(name = "funcionarios",unique=true)
 	private List<Funcionario> funcionarios;
 	
@@ -38,9 +38,12 @@ public class Freguesia {
 	@Column(unique=true)
 	private List<Cliente> clientes;
 	
-	@Column(name="alvo_mensal")
-	private Double alvoMensal;
+	@OneToMany(mappedBy = "freguesia", targetEntity = Cliente.class)
+	@Column(name = "despesas_mensais")
+	private List<DespesaFreguesia> despesasMensais;
 	
+	@Column(name="alvo_mensal")
+	private Double alvoMensal;	
 
 	
 	public Double getAlvoMensal() {

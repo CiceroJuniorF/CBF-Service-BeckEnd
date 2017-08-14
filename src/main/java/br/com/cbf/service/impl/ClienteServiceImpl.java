@@ -30,18 +30,18 @@ public class ClienteServiceImpl implements ClienteService {
 	// -----------------------------------------------------------------------------------------------------------------//
 
 	@Override
-	public Cliente cadastrar(Cliente cliente) throws SQLException {
-
+	public void cadastrar(Cliente cliente) throws SQLException {
+		System.out.println("------------------------------------ENTREI");
 		cliente.getRegistro().setDataCadastro(DataAuxiliar.dataAtual());
-		cliente.getRegistro().setCliente(cliente);
+		em.getTransaction().begin();
 		daoCliente.salvar(cliente);
-		
-		return cliente;
+		em.getTransaction().commit();
 
 	}
 
 	@Override
 	public Cliente atualizar(Cliente cliente) throws SQLException {
+		
 		cliente.getRegistro().getAlteracao().get(cliente.getRegistro().getAlteracao().size())
 				.setDataAtualizacao(DataAuxiliar.dataAtual());
 		daoCliente.atualiza(cliente);
@@ -51,8 +51,17 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public List<Cliente> listarTodosClientesDetalhado() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			em.getTransaction().begin();
+			List<Cliente> clientes = daoCliente.listaTodosDetalhado();
+			em.getTransaction().commit();
+			return clientes;
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 	@Override
@@ -63,7 +72,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public Cliente realizarConsultaDeCPF(String CPF, String dataNascimento, Funcionario consultador)
-			throws ClienteException, SQLException{
+			throws ClienteException, SQLException {
 
 		Cliente cliente = new BuscaCPF().buscaPorCPF(CPF, dataNascimento);
 

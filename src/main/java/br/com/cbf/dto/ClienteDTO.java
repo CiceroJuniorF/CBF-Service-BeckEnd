@@ -16,10 +16,6 @@ public class ClienteDTO {
 	private String nome;
 	
 	private String sobrenome;
-
-	private String apelido;	
-	
-	private String sexo;
 	
 	private Calendar dataNascimento;
 
@@ -30,42 +26,26 @@ public class ClienteDTO {
 	private RG rg;
 	
 	private String cpf;
-
-	private String cidade_nascimento;
-
-	private String estadoNascimento;
-	
-	private int resultado;
-	
-    private String resultadoTXT;
-    
+	    
     private String sintuacao;
 
     
     
     
     
-	public ClienteDTO(Integer id, String nome, String sobrenome, String apelido, String sexo,Calendar dataNascimento,
-			String telefone, RG rg, String cpf, String cidade_nascimento,String estadoNascimento, String sintuacao, Endereco endereco, String resultadoTXT) {
+	public ClienteDTO(Integer id, String nome, String sobrenome,Calendar dataNascimento,
+			String telefone, RG rg, String cpf, String sintuacao, Endereco endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
-		this.apelido = apelido;
-		this.sexo = sexo;
 		this.dataNascimento = dataNascimento;
 		this.telefone = telefone;
 		this.rg = rg;
 		this.cpf = cpf;
-		this.cidade_nascimento = cidade_nascimento;
-		this.estadoNascimento = estadoNascimento;
 		this.sintuacao = sintuacao;
 		this.endereco = endereco;
-		this.resultadoTXT = resultadoTXT;
+		
 	}	
-	
-	public ClienteDTO(String resultadoTXT) {
-		this.resultadoTXT = resultadoTXT;
-	}
 	
 
 	public Integer getId() {
@@ -78,14 +58,6 @@ public class ClienteDTO {
 
 	public String getSobrenome() {
 		return sobrenome;
-	}
-
-	public String getApelido() {
-		return apelido;
-	}
-
-	public String getSexo() {
-		return sexo;
 	}
 
 	public Endereco getEndereco() {
@@ -102,22 +74,6 @@ public class ClienteDTO {
 
 	public String getCpf() {
 		return cpf;
-	}
-
-	public String getCidade_nascimento() {
-		return cidade_nascimento;
-	}
-
-	public String getEstadoNascimento() {
-		return estadoNascimento;
-	}
-
-	public int getResultado() {
-		return resultado;
-	}
-
-	public String getResultadoTXT() {
-		return resultadoTXT;
 	}
 
 

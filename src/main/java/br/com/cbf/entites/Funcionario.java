@@ -2,6 +2,8 @@ package br.com.cbf.entites;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -24,6 +26,10 @@ public class Funcionario extends Usuario {
 
 	@Column(name = "salario_comissao")
 	private Double salarioComissao;
+	
+	@ManyToOne(/*optional = false*/)
+	@JoinColumn(name = "freguesia_pertecente")
+	private Freguesia freguesia;
 	
 
 	@Deprecated 

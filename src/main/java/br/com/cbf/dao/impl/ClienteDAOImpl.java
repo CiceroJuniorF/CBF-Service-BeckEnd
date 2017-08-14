@@ -26,36 +26,43 @@ public class ClienteDAOImpl implements ClienteDAO {
 	
 	@Override
 	public void salvar(Cliente cliente) throws SQLException {
-		
 		em.persist(cliente.getEndereco());
+		em.persist(cliente.getRegistro());
 		dao.adiciona(cliente);
-		em.persist(cliente.getRegistro());		
 		
-
+		
 	}
 
 	@Override
 	public List<ClienteDTO> listarSimples() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		@SuppressWarnings("unchecked")
+		List<ClienteDTO> listaDeClientesDTO = (List<ClienteDTO>) em.createQuery(
+				"SELECT new br.com.cbf.dto.ClienteDTO(c.idCliente, c.nome, c.sobrenome,c.dataNascimento, c.telefone, c.rg, c.cpf, c.sintuacao, c.endereco) FROM Cliente c")
+				.getResultList();
+
+		return listaDeClientesDTO;
 	}
 
 	@Override
 	public ClienteDTO buscaSimples(Integer id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ClienteDTO clienteDTO = (ClienteDTO) em.createQuery(
+				"SELECT new br.com.cbf.dto.ClienteDTO(c.idCliente, c.nome, c.sobrenome,c.dataNascimento, c.telefone, c.rg, c.cpf, c.sintuacao, c.endereco) FROM Cliente c where idCliente = :pId")
+				.setParameter("pId", id)
+				.getSingleResult();
+		return clienteDTO;
 	}
 
 	@Override
 	public Cliente buscaPorId(Integer id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return dao.buscaPorId(id);
 	}
 
 	@Override
 	public List<Cliente> listaTodosDetalhado() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return dao.listaTodos();
 	}
 
 	@Override
@@ -85,10 +92,8 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 
 	@Override
-	public void registraConsultaCliente(RegistroDeConsulta registro)throws SQLException {
-		
-		em.persist(registro);
-		
+	public void registraConsultaCliente(RegistroDeConsulta registro)throws SQLException {		
+		em.persist(registro);		
 	}
 
 }

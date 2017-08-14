@@ -1,9 +1,11 @@
 package br.com.cbf.entites;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,11 +16,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "cliente_entity")
 @NamedQuery(name = "Cliente.findAll", query = "SELECT f FROM Cliente f")
 @XmlRootElement
-public class Cliente extends PessoaFisica {
+public class Cliente extends PessoaFisica  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cliente")
@@ -28,7 +31,7 @@ public class Cliente extends PessoaFisica {
 	@JoinColumn(name = "freguesia")
 	private Freguesia freguesia;
 
-	@OneToOne(mappedBy = "cliente")
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "registro", nullable = false)
 	private DetalhesDoCliente registro;
 

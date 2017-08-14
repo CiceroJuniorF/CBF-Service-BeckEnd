@@ -22,7 +22,7 @@ public interface ClienteService {
 	
 	public boolean verificaCPFExistente(String CPF) throws ClienteException;
 
-	Cliente cadastrar(Cliente cliente) throws SQLException;
+	void cadastrar(Cliente cliente) throws SQLException;
 
 	Cliente atualizar(Cliente cliente) throws SQLException;
 }

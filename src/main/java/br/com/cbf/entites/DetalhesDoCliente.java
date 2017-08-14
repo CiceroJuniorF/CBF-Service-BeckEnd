@@ -16,10 +16,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "detalhes_cliente_entity")
 @NamedQuery(name = "DetalhesDoCliente.findAll", query = "SELECT r FROM DetalhesDoCliente r")
+@XmlRootElement
 public class DetalhesDoCliente {
 	
 	@Id
@@ -31,10 +33,7 @@ public class DetalhesDoCliente {
 	@Temporal(TemporalType.DATE)
 	private Calendar dataCadastro;
 	
-	@OneToOne 
-	@JoinColumn(name = "cliente", nullable = false)
-	private Cliente cliente;
-	
+
 	@OneToOne
 	@JoinColumn(name = "cadastrador", nullable = false)
 	private Funcionario cadastrador;
@@ -52,7 +51,6 @@ public class DetalhesDoCliente {
 			Calendar dataDeCadastro) {
 		this.idRegistroCliente = idRegistroCliente;
 		this.dataCadastro = dataCadastro;
-		this.cliente = cliente;
 		this.cadastrador = cadastrador;
 		this.dataCadastro = dataDeCadastro;
 	}
@@ -71,14 +69,6 @@ public class DetalhesDoCliente {
 
 	public void setDataCadastro(Calendar dataCadastro) {
 		this.dataCadastro = dataCadastro;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	public Funcionario getCadastrador() {

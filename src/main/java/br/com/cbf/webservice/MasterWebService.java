@@ -4,11 +4,14 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
+import br.com.cbf.dto.ClienteDTO;
 import br.com.cbf.dto.ConsultadorDTO;
 import br.com.cbf.dto.FuncionarioDTO;
 import br.com.cbf.dto.MasterDTO;
 import br.com.cbf.entites.Ajudante;
+import br.com.cbf.entites.Cliente;
 import br.com.cbf.entites.Consultador;
+import br.com.cbf.entites.Freguesia;
 import br.com.cbf.entites.Funcionario;
 import br.com.cbf.entites.Master;
 import br.com.cbf.entites.Vendedor;
@@ -55,7 +58,6 @@ public interface MasterWebService {
 
 	List<FuncionarioDTO> listarTodosAjudantesSimples();
 
-	
 	// -----------------------------------------------------------------------------------------------------------------//
 
 	// ------------------------------------------Consultador------------------------------------------------------------//
@@ -80,7 +82,7 @@ public interface MasterWebService {
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
-	
+
 	List<Funcionario> listarTodosFuncionariosDetalhado();
 
 	List<FuncionarioDTO> listarTodosFuncionariosSimples();
@@ -88,7 +90,24 @@ public interface MasterWebService {
 	Response buscaFuncionarioPorIdDetalhado(Integer id);
 
 	Response buscaFuncionarioPorIdSimples(Integer id);
-	
+
 	Response deletarFuncionario(Integer id);
 
+	// ------------------------------------------Cliente------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	// -----------------------------------------------------------------------------------------------------------------//
+	List<Cliente> listarTodosClientesDetalhado();
+
+	List<ClienteDTO> listarTodosClienteSimples();
+
+	Response buscaClientePorIdDetalhado(Integer id);
+
+	Response buscaClientePorIdSimples(Integer id);
+	
+	Response cadastrarCliente(Cliente cliente);
+
+	Response consultaCliente(String cpf, String dataNascimento, Funcionario vendedor);
+	
+	Response buscarClientePorFreguesia(Freguesia freguesia);
 }

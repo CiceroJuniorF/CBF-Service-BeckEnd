@@ -5,6 +5,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.cbf.auxiliar.Alerts;
@@ -135,16 +139,21 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	}
 	// -----------------------------------------------------------------------------------------------------------------//
 
-	@Override
+	@POST
+	@Path("cliente/novoCliente")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response cadastrarCliente(Cliente cliente) {
 		try {
-			em.getTransaction().begin();
-			Cliente clienteCadastrado = clienteService.cadastrar(cliente);
-			em.getTransaction().begin();
-			return Response.status(201).entity(clienteCadastrado).build();
+			
+			clienteService.cadastrar(cliente);
+			
+			return Response.status(201).build();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return Response.status(304).build();
+		}catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(500).build();
 		}
 
 	}
