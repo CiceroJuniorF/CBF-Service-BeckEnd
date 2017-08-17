@@ -316,7 +316,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Path("cliente/listarTodosDetalhado")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public List<Cliente> listarTodosClientesDetalhado() {
+	public List<ClienteDTO> listarTodosClientesDetalhado() {
 		// TODO Auto-generated method stub
 		return serviceCliente.listarTodosClientesDetalhado();
 	}

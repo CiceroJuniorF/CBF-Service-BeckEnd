@@ -11,7 +11,7 @@ import br.com.cbf.exception.ClienteException;
 
 public interface ClienteService {
 	
-	public List<Cliente> listarTodosClientesDetalhado();
+	public List<ClienteDTO> listarTodosClientesDetalhado();
 
 	public List<ClienteDTO> listarTodosClienteesSimples();
 

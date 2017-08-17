@@ -146,11 +146,13 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 
 			return Response.status(201).entity(clienteService.cadastrar(cliente)).build();
 		} catch (SQLException e) {
+			System.out.println("ERRRRROOOORRR" + e.getMessage());
 			e.printStackTrace();
-			return Response.status(304).build();
+			return Response.status(304).entity(new Alerts(e.getMessage())).build();
 		} catch (Exception e) {
+			System.out.println("ERRRRROOOORRR" + e.getMessage());
 			e.printStackTrace();
-			return Response.status(500).build();
+			return Response.status(500).entity(new Alerts(e.getLocalizedMessage())).build();
 		}
 
 	}
@@ -178,11 +180,13 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 
 			return Response.status(201).entity(clienteService.atualizar(cliente,alteracao)).build();
 		} catch (SQLException e) {
+		
 			e.printStackTrace();
-			return Response.status(304).build();
+			return Response.status(304).entity(new Alerts(e.getMessage())).build();
 		} catch (Exception e) {
+			System.out.println("ERRRRROOOORRR" + e.getMessage());
 			e.printStackTrace();
-			return Response.status(500).build();
+			return Response.status(500).entity(new Alerts(e.getMessage())).build();
 		}
 	}
 	

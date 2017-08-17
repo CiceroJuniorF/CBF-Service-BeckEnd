@@ -31,7 +31,7 @@ public class Cliente extends PessoaFisica  implements Serializable{
 	private Freguesia freguesia;
 
 	@OneToOne
-	@JoinColumn(name = "registro", nullable = false)
+	@JoinColumn(name = "registro")
 	private DetalhesDoCliente registro;
 
 	@Column(name = "sintuacao_cliente", nullable = false)

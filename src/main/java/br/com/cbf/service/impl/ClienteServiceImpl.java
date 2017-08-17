@@ -1,6 +1,7 @@
 package br.com.cbf.service.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -32,9 +33,9 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public ClienteDTO cadastrar(Cliente cliente) throws SQLException {
-		cliente.getRegistro().setDataCadastro(DataAuxiliar.dataAtual());
-		cliente.getRegistro().setCliente(cliente);
+
 		em.getTransaction().begin();
+		cliente.getRegistro().setDataCadastro(DataAuxiliar.dataAtual());
 		ClienteDTO clienteCadastrado = new ClienteDTO(daoCliente.salvar(cliente));
 		em.getTransaction().commit();
 		return clienteCadastrado;
@@ -42,7 +43,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public ClienteDTO atualizar(Cliente cliente, RegistroAlteracoesCliente alteracao) throws SQLException {
-		
+		System.out.println("sdasdasdasd------------- "+alteracao.getDescricaoDoMotivoDeAlteracao());
 		alteracao.setDataAtualizacao(DataAuxiliar.dataAtual());
 		alteracao.setDetalhesCliente(cliente.getRegistro());
 		
@@ -54,10 +55,14 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
-	public List<Cliente> listarTodosClientesDetalhado() {
+	public List<ClienteDTO> listarTodosClientesDetalhado() {
 		try {
 			em.getTransaction().begin();
-			List<Cliente> clientes = daoCliente.listaTodosDetalhado();
+			List<ClienteDTO> clientes = new ArrayList<>(); 
+			for (Cliente cliente : daoCliente.listaTodosDetalhado() ) {
+				clientes.add(new ClienteDTO(cliente));
+			}
+			
 			em.getTransaction().commit();
 			return clientes;
 		} catch (SQLException e) {

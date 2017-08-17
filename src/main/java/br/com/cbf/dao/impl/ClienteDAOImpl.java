@@ -27,9 +27,12 @@ public class ClienteDAOImpl implements ClienteDAO {
 	
 	@Override
 	public Cliente salvar(Cliente cliente) throws SQLException {
+		
 		em.persist(cliente.getEndereco());
 		dao.adiciona(cliente);
+		cliente.getRegistro().setCliente(cliente);
 		em.persist(cliente.getRegistro());
+		
 		
 		return cliente;
 		

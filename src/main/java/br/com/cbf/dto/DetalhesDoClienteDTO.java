@@ -72,8 +72,10 @@ public class DetalhesDoClienteDTO implements GenericDTO<DetalhesDoCliente> {
 		this.dataCadastro = detalhes.getDataCadastro();
 		this.cadastrador = new FuncionarioDTO(detalhes.getCadastrador());
 
-		for (RegistroAlteracoesCliente registroAlteracoesCliente : detalhes.getAlteracao()) {
-			this.alteracao.add(new RegistroAlteracoesClienteDTO(registroAlteracoesCliente));
+		if (detalhes.getAlteracao() != null) {
+			for (RegistroAlteracoesCliente registroAlteracoesCliente : detalhes.getAlteracao()) {
+				this.alteracao.add(new RegistroAlteracoesClienteDTO(registroAlteracoesCliente));
+			}
 		}
 
 	}
