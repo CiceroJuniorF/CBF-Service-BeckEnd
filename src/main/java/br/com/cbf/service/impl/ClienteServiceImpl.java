@@ -11,6 +11,7 @@ import br.com.cbf.dao.impl.ClienteDAOImpl;
 import br.com.cbf.dto.ClienteDTO;
 import br.com.cbf.entites.Cliente;
 import br.com.cbf.entites.Funcionario;
+import br.com.cbf.entites.RegistroAlteracoesCliente;
 import br.com.cbf.entites.RegistroDeConsulta;
 import br.com.cbf.exception.ClienteException;
 import br.com.cbf.factory.EMFactory;
@@ -30,22 +31,25 @@ public class ClienteServiceImpl implements ClienteService {
 	// -----------------------------------------------------------------------------------------------------------------//
 
 	@Override
-	public void cadastrar(Cliente cliente) throws SQLException {
-		System.out.println("------------------------------------ENTREI");
+	public ClienteDTO cadastrar(Cliente cliente) throws SQLException {
 		cliente.getRegistro().setDataCadastro(DataAuxiliar.dataAtual());
+		cliente.getRegistro().setCliente(cliente);
 		em.getTransaction().begin();
-		daoCliente.salvar(cliente);
+		ClienteDTO clienteCadastrado = new ClienteDTO(daoCliente.salvar(cliente));
 		em.getTransaction().commit();
-
+		return clienteCadastrado;
 	}
 
 	@Override
-	public Cliente atualizar(Cliente cliente) throws SQLException {
+	public ClienteDTO atualizar(Cliente cliente, RegistroAlteracoesCliente alteracao) throws SQLException {
 		
-		cliente.getRegistro().getAlteracao().get(cliente.getRegistro().getAlteracao().size())
-				.setDataAtualizacao(DataAuxiliar.dataAtual());
-		daoCliente.atualiza(cliente);
-		return cliente;
+		alteracao.setDataAtualizacao(DataAuxiliar.dataAtual());
+		alteracao.setDetalhesCliente(cliente.getRegistro());
+		
+		em.getTransaction().begin();
+		ClienteDTO clienteAtualizado = new ClienteDTO(daoCliente.atualiza(cliente, alteracao));
+		em.getTransaction().commit();
+		return clienteAtualizado;
 
 	}
 

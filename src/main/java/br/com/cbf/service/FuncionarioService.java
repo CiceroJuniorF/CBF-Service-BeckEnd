@@ -7,6 +7,7 @@ import javax.ws.rs.core.Response;
 import br.com.cbf.dto.FuncionarioDTO;
 import br.com.cbf.entites.Cliente;
 import br.com.cbf.entites.Funcionario;
+import br.com.cbf.entites.RegistroAlteracoesCliente;
 import br.com.cbf.entites.Venda;
 
 public interface FuncionarioService{
@@ -14,7 +15,7 @@ public interface FuncionarioService{
 	
 	public Response cadastrarOuAtualizarFuncionario(Funcionario funcionario);
 
-	public List<Funcionario> listarTodosFuncionariosDetalhado();
+	public List<FuncionarioDTO> listarTodosFuncionariosDetalhado();
 
 	public List<FuncionarioDTO> listarTodosFuncionariosSimples();
 
@@ -29,5 +30,6 @@ public interface FuncionarioService{
 	public Response cadastrarCliente(Cliente cliente);
 	
 	public Response realizarConsultaDeCPFDeCliente(String cpfCliente, String dataNascimentoCliente, Funcionario funcionario);
-
+	
+	public Response atualizarCliente(Cliente cliente, RegistroAlteracoesCliente alteracao);
 }

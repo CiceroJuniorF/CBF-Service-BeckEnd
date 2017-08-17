@@ -121,7 +121,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Path("funcionario/vendedor/listarTodosDetalhado")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public List<Funcionario> listarTodosVendedoresDetalhado() {
+	public List<FuncionarioDTO> listarTodosVendedoresDetalhado() {
 		return this.serviceVendedor.listarTodosFuncionariosDetalhado();
 	}
 
@@ -162,7 +162,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Path("funcionario/ajudante/listarTodosDetalhado")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public List<Funcionario> listarTodosAjudantesDetalhado() {
+	public List<FuncionarioDTO> listarTodosAjudantesDetalhado() {
 
 		return this.serviceAjudante.listarTodosFuncionariosDetalhado();
 	}
@@ -265,7 +265,7 @@ public class MasterEndpoint implements MasterWebService {
 	@Path("funcionario/listarTodosDetalhado")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public List<Funcionario> listarTodosFuncionariosDetalhado() {
+	public List<FuncionarioDTO> listarTodosFuncionariosDetalhado() {
 
 		return this.serviceFuncionario.listarTodosFuncionariosDetalhado();
 	}

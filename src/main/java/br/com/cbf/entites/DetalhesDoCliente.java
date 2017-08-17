@@ -33,13 +33,16 @@ public class DetalhesDoCliente {
 	@Temporal(TemporalType.DATE)
 	private Calendar dataCadastro;
 	
-
+	@OneToOne
+	@JoinColumn(name = "cliente", nullable = false)
+	private Cliente cliente;
+	
 	@OneToOne
 	@JoinColumn(name = "cadastrador", nullable = false)
 	private Funcionario cadastrador;
 	
 	
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "detalhesCliente", fetch= FetchType.EAGER)
 	@Column(name="registro_alteracao")
 	private List<RegistroAlteracoesCliente> alteracao;
 	
@@ -47,12 +50,13 @@ public class DetalhesDoCliente {
 	@Deprecated
 	public DetalhesDoCliente() {}
 	
-	public DetalhesDoCliente(Integer idRegistroCliente, Calendar dataCadastro, Cliente cliente, Funcionario cadastrador,
-			Calendar dataDeCadastro) {
+	public DetalhesDoCliente(Integer idRegistroCliente, Calendar dataCadastro, Funcionario cadastrador,
+			Calendar dataDeCadastro, Cliente cliente) {
 		this.idRegistroCliente = idRegistroCliente;
 		this.dataCadastro = dataCadastro;
 		this.cadastrador = cadastrador;
 		this.dataCadastro = dataDeCadastro;
+		this.cliente = cliente;
 	}
 
 	public Integer getIdRegistroCliente() {
@@ -85,6 +89,14 @@ public class DetalhesDoCliente {
 
 	public void setAlteracao(List<RegistroAlteracoesCliente> alteracao) {
 		this.alteracao = alteracao;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 	

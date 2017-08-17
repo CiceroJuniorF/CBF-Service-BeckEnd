@@ -4,11 +4,14 @@ import javax.ws.rs.core.Response;
 
 import br.com.cbf.entites.Cliente;
 import br.com.cbf.entites.Funcionario;
+import br.com.cbf.entites.RegistroAlteracoesCliente;
 
 public interface VendedorWebService {
 
-	Response cadastrarCliente(Cliente cliente);
+	public Response cadastrarCliente(Cliente cliente);
 
-	Response consultaCliente(String cpf, String dataNascimento, Funcionario vendedor);
+	public Response consultaCliente(String cpf, String dataNascimento, Funcionario vendedor);
+
+	Response atualizarCliente(Cliente cliente, RegistroAlteracoesCliente alteracao);
 
 }

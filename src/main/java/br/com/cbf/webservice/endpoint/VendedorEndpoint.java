@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.cbf.entites.Cliente;
 import br.com.cbf.entites.Funcionario;
+import br.com.cbf.entites.RegistroAlteracoesCliente;
 import br.com.cbf.service.VendedorService;
 import br.com.cbf.service.impl.VendedorServiceImpl;
 import br.com.cbf.webservice.VendedorWebService;
@@ -23,6 +24,7 @@ public class VendedorEndpoint implements VendedorWebService {
 	@POST
 	@Path("novoCliente")
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Override
 	public Response cadastrarCliente(Cliente cliente) {
 		return this.service.cadastrarCliente(cliente);
@@ -35,6 +37,15 @@ public class VendedorEndpoint implements VendedorWebService {
 	@Override
 	public Response consultaCliente(@PathParam("cpf") String cpfCliente, @PathParam("dataNascimento") String dataNascimentoCliente, Funcionario vendedor) {
 		return this.service.realizarConsultaDeCPFDeCliente(cpfCliente, dataNascimentoCliente, vendedor);
+	}
+
+	@POST
+	@Path("atualizarCliente")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Override
+	public Response atualizarCliente(Cliente cliente, RegistroAlteracoesCliente alteracao) {
+		return this.service.atualizarCliente(cliente,alteracao);
 	}
 
 }

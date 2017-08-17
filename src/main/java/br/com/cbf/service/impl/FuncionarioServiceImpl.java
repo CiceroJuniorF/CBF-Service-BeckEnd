@@ -2,13 +2,10 @@ package br.com.cbf.service.impl;
 
 import java.net.URI;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.cbf.auxiliar.Alerts;
@@ -18,6 +15,7 @@ import br.com.cbf.dao.impl.FuncionarioDAOImpl;
 import br.com.cbf.dto.FuncionarioDTO;
 import br.com.cbf.entites.Cliente;
 import br.com.cbf.entites.Funcionario;
+import br.com.cbf.entites.RegistroAlteracoesCliente;
 import br.com.cbf.entites.Venda;
 import br.com.cbf.exception.ClienteException;
 import br.com.cbf.factory.EMFactory;
@@ -64,10 +62,14 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	}
 
 	@Override
-	public List<Funcionario> listarTodosFuncionariosDetalhado() {
+	public List<FuncionarioDTO> listarTodosFuncionariosDetalhado() {
 		try {
 			em.getTransaction().begin();
-			List<Funcionario> listaTodosDetalhado = daoFuncionario.listaTodosDetalhado();
+			List<FuncionarioDTO> listaTodosDetalhado  = new ArrayList<>();
+			for (Funcionario funcionario : daoFuncionario.listaTodosDetalhado()) {
+				listaTodosDetalhado.add(new FuncionarioDTO(funcionario));
+			}
+			
 			em.getTransaction().commit();
 			return listaTodosDetalhado;
 		} catch (SQLException e) {
@@ -95,7 +97,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	public Response buscaPorIdDetalhado(Integer id) {
 		try {
 			em.getTransaction().begin();
-			Funcionario buscaPorId = daoFuncionario.buscaPorId(id);
+			FuncionarioDTO buscaPorId = new FuncionarioDTO(daoFuncionario.buscaPorId(id));
 			em.getTransaction().commit();
 			return Response.status(200).entity(buscaPorId).build();
 		} catch (SQLException e) {
@@ -139,19 +141,14 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	}
 	// -----------------------------------------------------------------------------------------------------------------//
 
-	@POST
-	@Path("cliente/novoCliente")
-	@Consumes(MediaType.APPLICATION_JSON)
 	public Response cadastrarCliente(Cliente cliente) {
 		try {
-			
-			clienteService.cadastrar(cliente);
-			
-			return Response.status(201).build();
+
+			return Response.status(201).entity(clienteService.cadastrar(cliente)).build();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return Response.status(304).build();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.status(500).build();
 		}
@@ -173,6 +170,21 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 			e.printStackTrace();
 			return Response.status(500).entity(new Alerts(e.getMessage())).build();
 		}
-
 	}
+
+	@Override
+	public Response atualizarCliente(Cliente cliente, RegistroAlteracoesCliente alteracao) {
+		try {
+
+			return Response.status(201).entity(clienteService.atualizar(cliente,alteracao)).build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(304).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(500).build();
+		}
+	}
+	
+	
 }

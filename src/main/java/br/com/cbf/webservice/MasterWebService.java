@@ -41,7 +41,7 @@ public interface MasterWebService {
 
 	Response cadastrarOuAtualizarVendedor(Vendedor funcionario);
 
-	List<Funcionario> listarTodosVendedoresDetalhado();
+	List<FuncionarioDTO> listarTodosVendedoresDetalhado();
 
 	List<FuncionarioDTO> listarTodosVendedoresSimples();
 
@@ -54,7 +54,7 @@ public interface MasterWebService {
 
 	Response cadastrarOuAtualizarAjudante(Ajudante funcionario);
 
-	List<Funcionario> listarTodosAjudantesDetalhado();
+	List<FuncionarioDTO> listarTodosAjudantesDetalhado();
 
 	List<FuncionarioDTO> listarTodosAjudantesSimples();
 
@@ -83,7 +83,7 @@ public interface MasterWebService {
 	// -----------------------------------------------------------------------------------------------------------------//
 	// -----------------------------------------------------------------------------------------------------------------//
 
-	List<Funcionario> listarTodosFuncionariosDetalhado();
+	List<FuncionarioDTO> listarTodosFuncionariosDetalhado();
 
 	List<FuncionarioDTO> listarTodosFuncionariosSimples();
 

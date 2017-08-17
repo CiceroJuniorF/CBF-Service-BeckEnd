@@ -4,9 +4,11 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,16 +33,22 @@ public class RegistroAlteracoesCliente {
 	@Column(name = "descricao")
 	private String descricaoDoMotivoDeAlteracao;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private DetalhesDoCliente detalhesCliente;
+	
 	@Deprecated
 	public RegistroAlteracoesCliente() {}
 	
-
 	public RegistroAlteracoesCliente(Integer idAlteracaoCliente, Calendar dataAtualizacao,
-			String descricaoDoMotivoDeAlteracao) {
+			String descricaoDoMotivoDeAlteracao, DetalhesDoCliente detalhesCliente) {
 		this.idAlteracaoCliente = idAlteracaoCliente;
 		this.dataAtualizacao = dataAtualizacao;
 		this.descricaoDoMotivoDeAlteracao = descricaoDoMotivoDeAlteracao;
+		this.detalhesCliente = detalhesCliente;
 	}
+
+
+
 
 
 
@@ -70,6 +78,16 @@ public class RegistroAlteracoesCliente {
 	public void setDataAtualizacao(Calendar dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
 	}
+
+	public DetalhesDoCliente getDetalhesCliente() {
+		return detalhesCliente;
+	}
+
+	public void setDetalhesCliente(DetalhesDoCliente detalhesCliente) {
+		this.detalhesCliente = detalhesCliente;
+	}
+	
+	
 	
 	
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.cbf.dto.ClienteDTO;
 import br.com.cbf.entites.Cliente;
 import br.com.cbf.entites.Funcionario;
+import br.com.cbf.entites.RegistroAlteracoesCliente;
 import br.com.cbf.exception.ClienteException;
 
 public interface ClienteService {
@@ -22,7 +23,7 @@ public interface ClienteService {
 	
 	public boolean verificaCPFExistente(String CPF) throws ClienteException;
 
-	void cadastrar(Cliente cliente) throws SQLException;
+	public ClienteDTO cadastrar(Cliente cliente) throws SQLException;
 
-	Cliente atualizar(Cliente cliente) throws SQLException;
+	public ClienteDTO atualizar(Cliente cliente, RegistroAlteracoesCliente alteracao) throws SQLException;
 }

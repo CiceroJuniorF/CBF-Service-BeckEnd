@@ -5,12 +5,13 @@ import java.util.List;
 
 import br.com.cbf.dto.ClienteDTO;
 import br.com.cbf.entites.Cliente;
+import br.com.cbf.entites.RegistroAlteracoesCliente;
 import br.com.cbf.entites.RegistroDeConsulta;
 import br.com.cbf.exception.ClienteException;
 
 public interface ClienteDAO {
 	
-	void salvar(Cliente cliente) throws SQLException;
+	Cliente salvar(Cliente cliente) throws SQLException;
 
 	List<ClienteDTO> listarSimples() throws SQLException;
 
@@ -20,7 +21,7 @@ public interface ClienteDAO {
 	
 	List<Cliente> listaTodosDetalhado() throws SQLException;
 
-	void atualiza(Cliente cliente) throws SQLException;
+	Cliente atualiza(Cliente cliente, RegistroAlteracoesCliente alteracao) throws SQLException;
 	
 	boolean verificaExisteCPF(String CPF) throws ClienteException;
 

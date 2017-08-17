@@ -27,7 +27,7 @@ public class Funcionario extends Usuario {
 	@Column(name = "salario_comissao")
 	private Double salarioComissao;
 	
-	@ManyToOne(/*optional = false*/)
+	@ManyToOne
 	@JoinColumn(name = "freguesia_pertecente")
 	private Freguesia freguesia;
 	

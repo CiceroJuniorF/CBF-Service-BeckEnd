@@ -1,6 +1,7 @@
 package br.com.cbf.service.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -41,10 +42,13 @@ public class AjudanteServiceImpl extends FuncionarioServiceImpl implements Ajuda
 	}
 
 	@Override
-	public List<Funcionario> listarTodosFuncionariosDetalhado() {
+	public List<FuncionarioDTO> listarTodosFuncionariosDetalhado() {
 		try {
 			em.getTransaction().begin();
-			List<Funcionario> listaTodosDetalhado = daoAjudante.listaTodosDetalhado();
+			List<FuncionarioDTO> listaTodosDetalhado  = new ArrayList<>();
+			for (Funcionario funcionario : daoAjudante.listaTodosDetalhado()) {
+				listaTodosDetalhado.add(new FuncionarioDTO(funcionario));
+			}
 			em.getTransaction().commit();
 			return listaTodosDetalhado;
 		} catch (SQLException e) {

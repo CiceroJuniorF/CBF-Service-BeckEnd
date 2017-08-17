@@ -10,6 +10,7 @@ import br.com.cbf.dao.ClienteDAO;
 import br.com.cbf.dao.GenericDAO;
 import br.com.cbf.dto.ClienteDTO;
 import br.com.cbf.entites.Cliente;
+import br.com.cbf.entites.RegistroAlteracoesCliente;
 import br.com.cbf.entites.RegistroDeConsulta;
 import br.com.cbf.enums.CodigosErros;
 import br.com.cbf.exception.ClienteException;
@@ -25,10 +26,12 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 	
 	@Override
-	public void salvar(Cliente cliente) throws SQLException {
+	public Cliente salvar(Cliente cliente) throws SQLException {
 		em.persist(cliente.getEndereco());
-		em.persist(cliente.getRegistro());
 		dao.adiciona(cliente);
+		em.persist(cliente.getRegistro());
+		
+		return cliente;
 		
 		
 	}
@@ -66,11 +69,12 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 
 	@Override
-	public void atualiza(Cliente cliente) throws SQLException {
+	public Cliente atualiza(Cliente cliente, RegistroAlteracoesCliente alteracao) throws SQLException {
 		
-		em.persist(cliente.getRegistro().getAlteracao().size());
-		em.merge(cliente.getRegistro());
+		em.persist(alteracao);
 		dao.atualiza(cliente);
+		
+		return cliente;
 
 	}
 
