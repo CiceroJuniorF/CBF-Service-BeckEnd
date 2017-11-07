@@ -72,12 +72,12 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 
 	@Override
-	public Cliente atualiza(Cliente cliente, RegistroAlteracoesCliente alteracao) throws SQLException {
+	public RegistroAlteracoesCliente atualiza(RegistroAlteracoesCliente alteracao) throws SQLException {
 		
 		em.persist(alteracao);
-		dao.atualiza(cliente);
+		dao.atualiza(alteracao.getClienteAlterado());
 		
-		return cliente;
+		return alteracao;
 
 	}
 

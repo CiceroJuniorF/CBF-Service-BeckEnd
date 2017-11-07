@@ -1,17 +1,14 @@
 package br.com.cbf.entites;
 
 import java.util.Calendar;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -41,10 +38,6 @@ public class DetalhesDoCliente {
 	@JoinColumn(name = "cadastrador", nullable = false)
 	private Funcionario cadastrador;
 	
-	
-	@OneToMany(mappedBy = "detalhesCliente", fetch= FetchType.EAGER)
-	@Column(name="registro_alteracao")
-	private List<RegistroAlteracoesCliente> alteracao;
 	
 
 	@Deprecated
@@ -81,14 +74,6 @@ public class DetalhesDoCliente {
 
 	public void setCadastrador(Funcionario cadastrador) {
 		this.cadastrador = cadastrador;
-	}
-
-	public List<RegistroAlteracoesCliente> getAlteracao() {
-		return alteracao;
-	}
-
-	public void setAlteracao(List<RegistroAlteracoesCliente> alteracao) {
-		this.alteracao = alteracao;
 	}
 
 	public Cliente getCliente() {

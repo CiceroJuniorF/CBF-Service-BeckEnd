@@ -21,7 +21,7 @@ public interface ClienteDAO {
 	
 	List<Cliente> listaTodosDetalhado() throws SQLException;
 
-	Cliente atualiza(Cliente cliente, RegistroAlteracoesCliente alteracao) throws SQLException;
+	RegistroAlteracoesCliente atualiza(RegistroAlteracoesCliente alteracoa) throws SQLException;
 	
 	boolean verificaExisteCPF(String CPF) throws ClienteException;
 

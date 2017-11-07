@@ -12,6 +12,6 @@ public interface VendedorWebService {
 
 	public Response consultaCliente(String cpf, String dataNascimento, Funcionario vendedor);
 
-	Response atualizarCliente(Cliente cliente, RegistroAlteracoesCliente alteracao);
+	Response atualizarCliente(RegistroAlteracoesCliente alteracao);
 
 }

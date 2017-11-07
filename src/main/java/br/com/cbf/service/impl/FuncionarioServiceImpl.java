@@ -175,10 +175,10 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	}
 
 	@Override
-	public Response atualizarCliente(Cliente cliente, RegistroAlteracoesCliente alteracao) {
+	public Response atualizarCliente(RegistroAlteracoesCliente alteracao) {
 		try {
 
-			return Response.status(201).entity(clienteService.atualizar(cliente,alteracao)).build();
+			return Response.status(201).entity(clienteService.atualizar(alteracao)).build();
 		} catch (SQLException e) {
 		
 			e.printStackTrace();

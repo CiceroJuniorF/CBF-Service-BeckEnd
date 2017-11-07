@@ -42,15 +42,13 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
-	public ClienteDTO atualizar(Cliente cliente, RegistroAlteracoesCliente alteracao) throws SQLException {
-		System.out.println("sdasdasdasd------------- "+alteracao.getDescricaoDoMotivoDeAlteracao());
-		alteracao.setDataAtualizacao(DataAuxiliar.dataAtual());
-		alteracao.setDetalhesCliente(cliente.getRegistro());
+	public ClienteDTO atualizar(RegistroAlteracoesCliente alteracao) throws SQLException {
+
 		
 		em.getTransaction().begin();
-		ClienteDTO clienteAtualizado = new ClienteDTO(daoCliente.atualiza(cliente, alteracao));
+		RegistroAlteracoesCliente alteracaoCliente = daoCliente.atualiza(alteracao);
 		em.getTransaction().commit();
-		return clienteAtualizado;
+		return new ClienteDTO(alteracaoCliente.getClienteAlterado());
 
 	}
 

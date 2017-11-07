@@ -31,5 +31,5 @@ public interface FuncionarioService{
 	
 	public Response realizarConsultaDeCPFDeCliente(String cpfCliente, String dataNascimentoCliente, Funcionario funcionario);
 	
-	public Response atualizarCliente(Cliente cliente, RegistroAlteracoesCliente alteracao);
+	public Response atualizarCliente(RegistroAlteracoesCliente alteracao);
 }

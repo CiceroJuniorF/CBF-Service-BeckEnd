@@ -25,5 +25,5 @@ public interface ClienteService {
 
 	public ClienteDTO cadastrar(Cliente cliente) throws SQLException;
 
-	public ClienteDTO atualizar(Cliente cliente, RegistroAlteracoesCliente alteracao) throws SQLException;
+	public ClienteDTO atualizar(RegistroAlteracoesCliente alteracao) throws SQLException;
 }

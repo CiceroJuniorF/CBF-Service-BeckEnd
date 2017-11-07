@@ -44,8 +44,8 @@ public class VendedorEndpoint implements VendedorWebService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public Response atualizarCliente(Cliente cliente, RegistroAlteracoesCliente alteracao) {
-		return this.service.atualizarCliente(cliente,alteracao);
+	public Response atualizarCliente(RegistroAlteracoesCliente alteracao) {
+		return this.service.atualizarCliente(alteracao);
 	}
 
 }

@@ -4,10 +4,10 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -33,25 +33,21 @@ public class RegistroAlteracoesCliente {
 	@Column(name = "descricao")
 	private String descricaoDoMotivoDeAlteracao;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private DetalhesDoCliente detalhesCliente;
+	@ManyToOne
+	@JoinColumn(name = "clienteAlterado", nullable = false)
+	private Cliente clienteAlterado;
 	
 	@Deprecated
 	public RegistroAlteracoesCliente() {}
 	
 	public RegistroAlteracoesCliente(Integer idAlteracaoCliente, Calendar dataAtualizacao,
-			String descricaoDoMotivoDeAlteracao, DetalhesDoCliente detalhesCliente) {
+			String descricaoDoMotivoDeAlteracao, DetalhesDoCliente detalhesCliente,Cliente cliente) {
 		this.idAlteracaoCliente = idAlteracaoCliente;
 		this.dataAtualizacao = dataAtualizacao;
 		this.descricaoDoMotivoDeAlteracao = descricaoDoMotivoDeAlteracao;
-		this.detalhesCliente = detalhesCliente;
+		this.clienteAlterado = cliente;
+		
 	}
-
-
-
-
-
-
 
 	public Integer getIdAlteracaoCliente() {
 		return idAlteracaoCliente;
@@ -79,13 +75,15 @@ public class RegistroAlteracoesCliente {
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
-	public DetalhesDoCliente getDetalhesCliente() {
-		return detalhesCliente;
+	public Cliente getClienteAlterado() {
+		return clienteAlterado;
 	}
 
-	public void setDetalhesCliente(DetalhesDoCliente detalhesCliente) {
-		this.detalhesCliente = detalhesCliente;
+	public void setClienteAlterado(Cliente clienteAlterado) {
+		this.clienteAlterado = clienteAlterado;
 	}
+	
+	
 	
 	
 	
